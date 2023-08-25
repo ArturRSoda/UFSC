@@ -11,12 +11,13 @@ function [X, op] = questao21b(A, B)
 			A(i,k) = 0;
 			for (j = (k+1):(n+1))
 				A(i,j) = A(i,j) - aux*A(k,j);
-				op += 1;
+				op += 2;
 			end
 		end
 	end
 
 	X(n) = A(n,(n+1))/A(n,n);
+	op += 1;
 
 	for (i = (n-1):-1:1)
 		somatoria = 0;
@@ -25,7 +26,7 @@ function [X, op] = questao21b(A, B)
 			op += 1;
 		end
 		X(i) = (A(i,(n+1)) - somatoria)/A(i,i);
-		op += 1;
+		op += 2;
 	end
 	X = transpose(X);
 end
