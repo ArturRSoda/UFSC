@@ -1,8 +1,0 @@
-disp("EXERCICIO 3")
-[A, B] = matriz(20)
-
-disp("EXERCICIO 3.A)")
-det_A = det(A)
-X = condicionado(A)
-
-m_det_A = abs(det_A)/X

@@ -1,10 +1,12 @@
-function [A, B] = matriz();
+function [A, B] = matriz(n)
+
 	n1 = 5;
 	n2 = 10;
 	n3 = 20;
 
-	A = zeros(n3, n3);
-	B = zeros(n3, 1);
+	A = zeros(n, n);
+	B = zeros(n, 1);
+
 
 	i = 1;
 	A(i,i) = 3;
@@ -25,11 +27,12 @@ function [A, B] = matriz();
 		B(i,1) = 3;
 	end
 
-	for (i = (n2+1):(n3))
-		A(i,(i-3)) = -3;
+	for (i = (n2+1):n3)
+		A(i,(i-3)) = -3;	
 		A(i,(i-1)) = -2;
 		A(i,i) = 7;
 		B(i,1) = 5;
 	end
+
 
 end

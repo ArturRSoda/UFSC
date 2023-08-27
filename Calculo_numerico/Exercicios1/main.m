@@ -1,34 +1,35 @@
 disp("EXERCICIO 3")
-[A, B] = matriz(20)
-
-disp("EXERCICIO 3.A)")
-det_A = det(A)
-X = condicionado(A)
-
-m_det_A = abs(det_A)/X
-disp("SISTEMA E CONDICIONADO POIS ||det(A)|| >> 1")
+[A, B] = matriz()
 
 disp("")
 
-disp("EXERCICIO 3.B")
-disp("Se o a matriz fosse mal condicionado, o sistema mais indicado seria o iterativo")
+disp("EXERCICIO 3.a)")
+condicionado(A)
 
 disp("")
 
-disp("EXERCICIO 3.C")
-disp("Escolher as linhas mais indicadas, aquelas com os maiores A(i,i)")
+disp("EXERCICIO 3.b)")
+disp("Caso ele seja MAL CONDICIONADO, o metodo mais indicado e o iterativo")
 
 disp("")
 
-disp("EXERCICIO 3.D")
+disp("EXERCICIO 3.c)")
+disp("Devemos escolher os maiores valores possiveis para a diagonal principal")
+
+disp("")
+
+disp("EXERCICIO 3.D)")
 convergente(A)
-disp("A E CONVERGENTE, pois os modulos de A(i,i) sao maiores que os modulos das somas dos restantes valores da linha")
 
 disp("")
 
-disp("EXERCICIO 3.F")
-X = fgauss(A, B)
-n = size(X, 1)
+disp("EXERCICIO 3.G)")
+[X, nop] = fgauss(A, B);
+X
 residuo = sum((A*X) - B)
-Operacoes_realizadas = (4*(n**3) + 9*(n**2) - n - 6)/6
 
+disp("")
+disp("EXERCICIO 3.h)")
+n = size(X, 1);
+op = (4*(n**3) + 9*(n**2) - n - 6)/6
+nop
