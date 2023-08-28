@@ -46,7 +46,7 @@ jr $t0
 # Seção 7: codifica as alternativas de 
 # execução
 
-jat.L0:	addi $s0, $s0, 0 #expressao definida no relatorio
+L0:	addi $s0, $s0, 0 #expressao definida no relatorio
 	j Exit
 	
 L1:	sub $s0, $s1, $s2
