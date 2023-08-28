@@ -30,14 +30,14 @@ la $t4, jat
 
 # Seção 4: testa se k está no intervalo
 # [0,4], caso contrário desvia p/ default
-slti $t0, $s5, 5          # $t0 = 1, se k < 5
-beq $t0, $zero, default   # se $t0 != 0, goto default
-slti $t0, $t5, 0          # $t0 = 1, se k < 0
-bne $t0, $zero, default   # se $t0 = 0, goto default
+sltiu $t1, $s5, 5      # $t0 = 1, se 0 <= x < 5
+			 # $t0 = 0, se x < 0 ou x >= 5
+beq $t1, $zero, default 
 
 # Seção 5: calcula o endereço de jat[k]
 sll $s5, $s5, 2   # k = k*4
 add $t0, $t4, $s5 # $t0 = $t4 (addr base do jat) + $s5 (k)
+lw $t0, 0($t1)    # carrega de para t0 do endereco salvo em t1
 
 # Seção 6: desvia para o endereço que se 
 # encontra armazenado em jat[k]
@@ -48,24 +48,24 @@ jr $t0
 
 
 
-Label0:	addi $s0, $s0, 0 #expressao definida no 
+L0:	addi $s0, $s0, 0 #expressao definida no 
 	j Exit
 	
-Label1:	sub $s0, $s1, $s2
+L1:	sub $s0, $s1, $s2
 	j Exit
 	
-Label2:	add $t1, $s1, $s2
+L2:	add $t1, $s1, $s2
 	add $s0, $t1, $s4	
 	j Exit
 	
-Label3:	or $t1, $s3, $s2
+L3:	or $t1, $s3, $s2
 	or $s0, $t1, $s4
 	j Exit
 
-Label4:	and $s0, $s2, $s5
+L4:	and $s0, $s2, $s5
 	j Exit
 	
-LabelDefault: sub $t1, $s3, $s5
+default: sub $t1, $s3, $s5
 	addi $s0, $t1, 5
 
 Exit: nop
