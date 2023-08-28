@@ -1,4 +1,6 @@
-A = [3 -1 -1;
+format long
+
+A = [3 -1 -1;
 	1 3 1;
 	1 -1 2]
 
@@ -7,3 +9,4 @@ B = [1;
 	2]
 
 X = fgauss_seidel(A,B)
+res = max(abs(A*X - B))

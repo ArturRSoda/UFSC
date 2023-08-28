@@ -46,24 +46,26 @@ jr $t0
 # Seção 7: codifica as alternativas de 
 # execução
 
-L0:	addi $s0, $s0, 0 #expressao definida no relatorio
+
+
+Label0:	addi $s0, $s0, 0 #expressao definida no 
 	j Exit
 	
-L1:	sub $s0, $s1, $s2
+Label1:	sub $s0, $s1, $s2
 	j Exit
 	
-L2:	add $t1, $s1, $s2
+Label2:	add $t1, $s1, $s2
 	add $s0, $t1, $s4	
 	j Exit
 	
-L3:	or $t1, $s3, $s2
+Label3:	or $t1, $s3, $s2
 	or $s0, $t1, $s4
 	j Exit
 
-L4:	and $s0, $s2, $s5
+Label4:	and $s0, $s2, $s5
 	j Exit
 	
-default: sub $t1, $s3, $s5
+LabelDefault: sub $t1, $s3, $s5
 	addi $s0, $t1, 5
 
 Exit: nop

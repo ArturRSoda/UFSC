@@ -1,5 +1,27 @@
 function X = fgauss_seidel(A, B)
 
+	% Buscar os indices originais dos coeficientes nao nulos de cada linha i
+	%NN = nao nulo
+	%NTNN = numero total de nao nulos
+	for (i = 1:n)
+		NTNN = 0;
+
+		for (j = 1:(i-1))
+			if (abs(A(i,j)) > 1e-14)
+				NTNN += 1;
+				NN(i,NTNN) = j;	
+
+			end
+		end
+
+		for (j = (i+1):n)
+			if (abs(A(i,j)) > 1e-14)
+				NTNN += 1;
+				NN(i,NTNN) = j;
+			end
+		end
+	end
+
 	X = [0;
 		0;
 		0;]
