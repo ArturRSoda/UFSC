@@ -6,6 +6,8 @@ printf("\n")
 printf("Questão 2.1.a)\n")
 [A, B] = questao21();
 
+printf("\n")
+
 printf("Questão 2.1.b)\n")
 X = questao21b(A, B)
 residuo = max(abs((A*X) - B))
@@ -24,9 +26,12 @@ questao22a(A)
 printf("\n")
 
 printf("Questão 2.2.b)\n")
-X = questao22b(A, B)
+[X, Operacoes_realizadas] = questao22b(A, B);
+X
 residuo = max(abs((A*X) - B))
+
 
 printf("\n")
 
 printf("Questão 2.2.c)\n")
+Operacoes_realizadas
