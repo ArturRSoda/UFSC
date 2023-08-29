@@ -1,22 +1,10 @@
-function x = convergente(A);
+function x = questao22a(A);
 
 	n = size(A, 1);
 
 	convergente = 1;
 
-	soma = 0;
-	i = 1;
-	for (j = (2:n))
-		soma += abs(A(i,j));
-	end
-	if (abs(A(i,i)) >= soma)
-		printf("|%d| >= |%d| V \n", A(i,i), soma)
-	else
-		printf("|%d| >= |%d| F \n", A(i,i), soma)
-		convergente = 0;
-	end
-
-	for (i = 2:n)
+	for (i = 1:n)
 		soma = 0;
 
 		for (j = 1:(i-1))
@@ -27,24 +15,12 @@ function x = convergente(A);
 			soma += abs(A(i,j));
 		end
 
-		if (abs(A(1,1)) >= soma)
+		if (abs(A(i,i)) >= soma)
 			printf("|%d| >= |%d| V \n", A(i,i), soma)
 		else
 			printf("|%d| >= |%d| F \n", A(i,i), soma)
 			convergente = 0;
 		end
-	end
-
-	soma = 0;
-	i = n;
-	for (j = (1:(n-1)))
-		soma += abs(A(i,j));
-	end
-	if (abs(A(i,i)) >= soma)
-		printf("|%d| >= |%d| V \n", A(i,i), soma)
-	else
-		printf("|%d| >= |%d| F \n", A(i,i), soma)
-		convergente = 0;
 	end
 
 	if (convergente == 1)

@@ -8,7 +8,7 @@ printf("Questão 2.1.a)\n")
 
 printf("Questão 2.1.b)\n")
 X = questao21b(A, B)
-residuo = sum((A*X) - B)
+residuo = max(abs((A*X) - B))
 
 printf("\n")
 
@@ -18,9 +18,15 @@ Operacoes_realizadas = (4*(N**3) + 9*(N**2) - N - 6)/6
 
 printf("\n")
 
-printf("Questão 2.1.a)\n")
+printf("Questão 2.2.a)\n")
 questao22a(A)
 
+printf("\n")
 
+printf("Questão 2.2.b)\n")
+X = questao22b(A, B)
+residuo = max(abs((A*X) - B))
 
+printf("\n")
 
+printf("Questão 2.2.c)\n")

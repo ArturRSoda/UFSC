@@ -41,6 +41,7 @@ NN
             X(i) = X(i)=(1-lambda)*X_anterior(i)+lambda*(B(i,1) - sum(A(i, NN(i,c))*X(NN(i,c),1)))/A(i,i);
         end
         X;
+
         diferenca = max(abs(X - X_anterior));
     end
 k

@@ -30,14 +30,13 @@ la $t4, jat
 
 # Seção 4: testa se k está no intervalo
 # [0,4], caso contrário desvia p/ default
-sltiu $t1, $s5, 5      # $t0 = 1, se 0 <= x < 5
-			 # $t0 = 0, se x < 0 ou x >= 5
-beq $t1, $zero, default 
+sltiu $t0, $s5, 5 	# $t0 = 1, se 0 <= x < y // $t0 = 0, se x < 0 ou x  y
+beq $t0, $zero, default
 
 # Seção 5: calcula o endereço de jat[k]
 sll $s5, $s5, 2   # k = k*4
-add $t0, $t4, $s5 # $t0 = $t4 (addr base do jat) + $s5 (k)
-lw $t0, 0($t1)    # carrega de para t0 do endereco salvo em t1
+add $t1, $t4, $s5 # $t0 = $t4 (addr base do jat) + $s5 (k)
+lw $t0, 0($t1)
 
 # Seção 6: desvia para o endereço que se 
 # encontra armazenado em jat[k]
@@ -48,7 +47,8 @@ jr $t0
 
 
 
-L0:	addi $s0, $s0, 0 #expressao definida no 
+L0:	add $t1, $s2, $s3
+	sll $s0, $t1, 1
 	j Exit
 	
 L1:	sub $s0, $s1, $s2
