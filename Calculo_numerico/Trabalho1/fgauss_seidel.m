@@ -25,7 +25,7 @@ function X = fgauss_seidel(A, B)
 nao_nulos_total
 NN
     % Utiliza os valores disponíveis
-    X = [0; 0; 0;];
+	X = zeros(n, 1);
     diferenca = 1;
     k = 0;
     lambda = 0.8 % Fator de relaxacao otimo para este exemplo
