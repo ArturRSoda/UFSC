@@ -16,7 +16,7 @@ function x = questao22a(A);
 		end
 
 		if (soma < 1)
-			printf("soma < 1 \n")
+			printf("|%d| >= |%d| F (soma < 1) \n", A(i,i), soma)
 			convergente = 0
 			break;
 
