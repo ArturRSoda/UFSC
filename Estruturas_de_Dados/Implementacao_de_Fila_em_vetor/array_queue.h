@@ -2,7 +2,6 @@
 #ifndef STRUCTURES_ARRAY_QUEUE_H
 #define STRUCTURES_ARRAY_QUEUE_H
 
-#include <bits/fs_dir.h>
 #include <cstdint>  // std::size_t
 #include <stdexcept>  // C++ Exceptions
 
@@ -46,14 +45,13 @@ class ArrayQueue {
 
 }  // namespace structures
 
-#endif
-
 template<typename T>
 structures::ArrayQueue<T>::ArrayQueue() {
 	max_size_ = DEFAULT_SIZE;
 	contents = new T[max_size_];
 	begin_ = 0;
 	end_ = -1;
+	size_ = 0;
 }
 
 template<typename T>
@@ -62,14 +60,81 @@ structures::ArrayQueue<T>::ArrayQueue(std::size_t max) {
 	contents = new T[max_size_];
 	begin_ = 0;
 	end_ = -1;
+	size_ = 0;
 }
 
 template<typename T>
-structures::ArrayQueue<T>::~ArrayQueue(){
+structures::ArrayQueue<T>::~ArrayQueue() {
 	delete [] contents;
 }
 
 template<typename T>
-structures::ArrayQueue<T>::enqueue(const T& data){
-
+void structures::ArrayQueue<T>::enqueue(const T& data) {
+	if (!full()) {
+		end_ = (end_ + 1) % max_size_;
+		contents[end_] = data;
+		size_++;
+	} else {
+		throw std::out_of_range("FILA CHEIA");
+	}
 }
+
+template<typename T>
+T structures::ArrayQueue<T>::dequeue() {
+	if (!empty()) {
+		T data = contents[begin_];
+		begin_ = (begin_ + 1) % max_size_;
+		size_--;
+		return data;
+	} else {
+		throw std::out_of_range("FIlA VAZIA");
+	}
+}
+
+template<typename T>
+T& structures::ArrayQueue<T>::back() {
+	if (!empty()) {
+		return contents[end_];
+	} else {
+		throw std::out_of_range("FILA VAZIA");
+	}
+}
+
+template<typename T>
+void structures::ArrayQueue<T>::clear() {
+	end_ = -1;
+	begin_ = 0;
+	size_ = 0;
+}
+
+template<typename T>
+std::size_t structures::ArrayQueue<T>::size() {
+	return size_;
+}
+
+template<typename T>
+std::size_t structures::ArrayQueue<T>::max_size() {
+	return max_size_;
+}
+
+template<typename T>
+bool structures::ArrayQueue<T>::empty() {
+	if (size() == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+template<typename T>
+bool structures::ArrayQueue<T>::full() {
+	if (size() == max_size_) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+#endif
+
+
