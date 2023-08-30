@@ -1,20 +1,44 @@
-A = [3 -1 -1;
-	1 3 1;
-	1 -1 2]
+function X = teste(A, B)
 
-B = [1;
-	5;
-	2]
+	n = size(A, 1);
+	X = zeros(n, 1);
 
-X = questao21b(A, B)
-residuo = abs((A*X) - B)
+	for (i = 1:n)
+		l = 1;
+		count = 1;
+		for (j = 1:n)
+			if ((abs(A(i,j)) > 1e-14) && (i != j))
+				nao_nulo(i,l) = j;
+				l++;
+			end
+		end
+		count_nn(i, count) = l-1;
+		count++;
+	end
 
-A = [A B];
-n = size(A, 1);
+	nn_i = size(nao_nulo, 1);
+
+	lambda = 1;
+	k = 0;
+		diferenca = 1;
+
+	l = 1;
+	while ((diferenca > 1e-10) && (k < 100))
+		k++;	
+		X_anterior = X;
+
+		for (i = 1:nn_i)
+			c = 1:count_nn(i)
+
+			for (j = 1:
+
+		end
 
 
-X = questao22b(A, B)
+		diferenca = 1e-11;
 
+	end
 
+	
 
-
+end

@@ -15,11 +15,17 @@ function x = questao22a(A);
 			soma += abs(A(i,j));
 		end
 
-		if (abs(A(i,i)) >= soma)
+		if (soma < 1)
+			printf("soma < 1 \n")
+			convergente = 0
+			break;
+
+		elseif (abs(A(i,i)) >= soma)
 			printf("|%d| >= |%d| V \n", A(i,i), soma)
 		else
 			printf("|%d| >= |%d| F \n", A(i,i), soma)
 			convergente = 0;
+			break;
 		end
 	end
 

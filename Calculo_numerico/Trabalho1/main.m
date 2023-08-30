@@ -30,7 +30,6 @@ printf("Questão 2.2.b)\n")
 X
 residuo = max(abs((A*X) - B))
 
-
 printf("\n")
 
 printf("Questão 2.2.c)\n")
