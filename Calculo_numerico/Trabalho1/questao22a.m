@@ -2,7 +2,9 @@ function x = questao22a(A);
 
 	n = size(A, 1);
 
-	convergente = 1;
+	maior_q = 0;
+	convergente_dominante = 1;
+	convergente_extritamente_dominante = 1;
 
 	for (i = 1:n)
 		soma = 0;
@@ -15,25 +17,42 @@ function x = questao22a(A);
 			soma += abs(A(i,j));
 		end
 
-		if (soma < 1)
-			printf("|%d| >= |%d| F (soma < 1) \n", A(i,i), soma)
-			convergente = 0
-			break;
+		v = abs(A(i,i));
+		if (v > soma)
+			maior_q = 1;
+			printf("|%d| > |%d| V \n", A(i,i), soma)
 
-		elseif (abs(A(i,i)) >= soma)
+		elseif (v >= soma)
 			printf("|%d| >= |%d| V \n", A(i,i), soma)
+			convergente_extritamente_dominante = 0;
+
 		else
+			convergente_dominante = 0;
+			convergente_extritamente_dominante = 0;
 			printf("|%d| >= |%d| F \n", A(i,i), soma)
-			convergente = 0;
-			break;
 		end
+
 	end
 
-	if (convergente == 1)
-		disp("Sistema convergente, pois possui diagonal dominante")	
-		disp("ou seja, o modo do A(i,i) e maior que o modulo da soma dos outros valores la linha")
-	else
-		disp("Sistema nao convergente, nao possui diagonal dominante")
+	maior_q
+	convergente_dominante
+	convergente_extritamente_dominante
+
+	if (convergente_extritamente_dominante == 1);
+		disp("Sistema convergente, pois possui diagonal extritamente dominante")	
+		disp("ou seja, para todo A(i,i): A(i,i) > Zi (i = 1, ... , n)")
+		return;
 	end
+
+	if (convergente_dominante == 1)
+		if (maior_q == 1)
+			disp("Sistema convergente, pois possui diagonal dominante")	
+			disp("ou seja, para todo A(i,i): A(i,i) >= Zi (i = 1, ... , n)")
+			disp("e ainda, pelo menos um A(i,i) > Zi (i = 1, ..., n)")
+			return;
+	end
+
+
+	disp("Sistema nao convergente, nao possui diagonal dominante")
 
 end
