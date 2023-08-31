@@ -1,6 +1,7 @@
 function X = questao21b(A, B)
 	n = size(A, 1);
 	A = [A B];
+	X = zeros(1, n);
 	
 	for (k = 1:(n-1))
 		for (i = (k+1):n)
