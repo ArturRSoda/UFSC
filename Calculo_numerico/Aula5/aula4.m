@@ -3,13 +3,13 @@
 
 printf("PRIMEIRO EXEMPLO\n")
 
-A = [0 2 3;
-	1.5 -1 4;
-	-7 2 -3]
+A = [1 2 1.5;
+	-2 3 5;
+	-5 10 3]
 
-B = [10;
-	-1;
-	8]
+B = [-2;
+	-3;
+	-1]
 
 determinante = det(A)
 

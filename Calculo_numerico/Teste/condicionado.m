@@ -1,17 +1,21 @@
-function X = condicionado(A)
+function x = condicionado(A)
+	n = size(A, 1);
 
-	n = size(A,1);
-
-	soma_T = 0;
-
+	somat = 0;
 	for (i = 1:n)
-		soma_L = 0;
+		somatoria = 0;
 		for (j = 1:n)
-			soma_L += A(i,j)**2;
+			somatoria += A(i,j)**2;
 		end
-		soma_T += sqrt(soma_L);
+		somat += sqrt(somatoria);
 	end
 
-	X = soma_T;
+	if ((abs(det(A))/somat) < 0.01)
+		disp("sistema mal condicionado")
+		disp("sensivel a pequenas mudancas")
+	else
+		disp("sistema condicionado")	
+		printf("||det(A)|| = %.2f\n", somat)
+	end
 
 end

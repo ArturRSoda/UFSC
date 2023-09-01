@@ -1,50 +1,50 @@
 function x = convergente(A);
 	n = size(A, 1);
 
-	soma = 0;
-	for (j = 2:n)
-		soma += abs(A(1,j));
-	end 
+	maior_q = 0;
+	dominante = 1;
+	extritamente_dominante = 0;
 
-	printf("|%d| >= |%d| ", A(1,1), soma)
-
-	if (A(1,1) >= soma)
-		printf("V\n")
-	else
-		printf("F\n")
-	end
-
-	for (i = 2:(n-1))
-		soma = 0;
-		for (j = 1:(i-1))
-			soma += A(i,j);
+	for (i = 1:n);
+		somatoria = 0;
+		for (j = 1:(i-1));
+			somatoria += abs(A(i,j));
 		end
 		for (j = (i+1):n)
-			soma += A(i,j);
+			somatoria += abs(A(i,j));
 		end
 
-		printf("|%d| >= |%d| ", A(i,i), soma)
 
-		if (A(i,i) >= soma)
-			printf("V\n")
+		if (abs(A(i,i)) >= somatoria)
+			if (A(i,i) > somatoria)
+				maior_q = 1;
+				printf("|%d| > |%d| V\n", A(i,i), somatoria)
+			else
+				printf("|%d| >= |%d| V\n", A(i,i), somatoria)
+				extritamente_dominante = 0;
+			end
 		else
-			printf("F\n")
+			printf("|%d| >= |%d| F\n", A(i,i), somatoria)
+			extritamente_dominante = 0;
+			dominante = 0;
 		end
 	end
 
-	soma = 0;
-	for (j = 1:(n-1))
-		soma += abs(A(1,j));
-	end 
-
-	printf("|%d| >= |%d| ", A(n,n), soma)
-
-	if (A(n,n) >= soma)
-		printf("V\n")
-	else
-		printf("F\n")
+	if (extritamente_dominante == 1)
+		disp("convergente, pois diagonal extritamente_dominante")
+		return;
 	end
 
-
+	if (dominante == 1)
+		if (maior_q == 1)
+			disp("convergente, pois diagonal dominante")
+			return;
+		end
 	end
+
+	if ((dominante == 0) && (extritamente_dominante == 0))
+		disp("nao convergente, diagonal nao dominante")
+	end
+
+end
 

@@ -19,6 +19,8 @@ function [X, op] = fgauss(A, B);
 		end
 	end
 
+	A
+
 	X(n,1) = A(n,(n+1))/A(n,n);
 	op += 1;
 
