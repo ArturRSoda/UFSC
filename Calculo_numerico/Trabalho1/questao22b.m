@@ -1,39 +1,39 @@
-function [X, op] = questao22b(A, B)
-	n = size(A, 1);
+function [X, operacoes] = questao22b(A, B)
+    n = size(A, 1);
+	operacoes = 0;
+    for (i = 1:n)
+        nao_nulos_total(i) = 0; 
+        for (j = 1:(i-1))
+            if (abs(A(i, j)) > 1e-14)
+               nao_nulos_total(i) += 1; 
+               NN(i, nao_nulos_total(i))=j;
+            end
+        end
+        
+        for (j = (i+1):n)
+            if (abs(A(i, j)) > 1e-14)
+               nao_nulos_total(i) += 1; 
+               NN(i, nao_nulos_total(i))=j;
+            end
+        end
+        
+    end
+    X = zeros(n, 1);
+    diferenca = 1;
+    k = 0;
+    lambda = 1.01
+    while ((diferenca > 1e-6) && (k < 100))
+        k = k + 1;
+        X_anterior = X;
+        for (i=1:n)
+			c=1:nao_nulos_total(i);
+            X(i) = (1-lambda)*X_anterior(i)+lambda*(B(i,1) - sum(A(i, NN(i,c))*X(NN(i,c),1)))/A(i,i);
+        end
+        diferenca = max(abs(X - X_anterior));
+    end
 
-	X = zeros(n,1);
-	lambda = 1.01
-
-	op = 0;
-	diferenca = 1;
-	k = 0;
-	while ((diferenca > 1e-6) && (k < 100))
-		k++;
-		X_anterior = X;
-
-		for (i = 1:n)
-			somatoria = 0;
-
-			for (j = 1:(i-1))
-				if (A(i,j) > 1e-14)
-					somatoria += A(i,j) * X(j,1);
-					op += 2;
-				end
-			end
-
-			for (j = (i+1):n)
-				if (A(i,j) > 1e-14)
-					somatoria += A(i,j) * X(j,1);
-					op += 2;
-				end
-			end
-
-			aux = (B(i,1) - somatoria)/A(i,i);
-			op += 2;
-			X(i,1) = (1 - lambda)*X_anterior(i,1) + lambda*aux;
-			op += 4;
-		end
-
-		diferenca = max(abs(X - X_anterior));
+	for (i = 1:n)
+		operacoes = operacoes + 5 + (nao_nulos_total(i) - 1) + nao_nulos_total(i);
 	end
-end
+	operacoes = (operacoes * k);
+endfunction

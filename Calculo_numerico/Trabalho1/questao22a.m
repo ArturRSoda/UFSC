@@ -34,10 +34,6 @@ function x = questao22a(A);
 
 	end
 
-	maior_q
-	convergente_dominante
-	convergente_extritamente_dominante
-
 	if (convergente_extritamente_dominante == 1);
 		disp("Sistema convergente, pois possui diagonal extritamente dominante")	
 		disp("ou seja, para todo A(i,i): A(i,i) > Zi (i = 1, ... , n)")
