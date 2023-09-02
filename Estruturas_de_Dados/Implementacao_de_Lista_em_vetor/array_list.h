@@ -7,7 +7,6 @@
 #include <exception>
 #include <stdexcept>
 
-
 namespace structures {
 
 template<typename T>
@@ -91,18 +90,10 @@ void structures::ArrayList<T>::push_front(const T& data) {
 		throw std::out_of_range("Lista cheia");
 	}
 
-	T temp[size_];
-
-	for (size_t i = 0; i < size_; i++) {
-		temp[i] = contents[i];
-	}
-
 	size_++;
-
-	for (size_t i = 1; i < size_; i++) {
-		contents[i] = temp[i-1];
+	for (size_t i = (size_-1); i > 0; i--) {
+		contents[i] = contents[i-1];
 	}
-
 	contents[0] = data;
 }
 
@@ -114,22 +105,15 @@ void structures::ArrayList<T>::insert(const T& data, std::size_t index) {
 
 	if (index >= size_) {
 		throw;
-	} else {
-		const size_t tam = size_ - index;
-		T temp[tam];
-
-		for (size_t i = 0; i < tam; i++) {
-			temp[i] = contents[index+i];
-		}
-
-		size_++;
-
-		for (size_t i = index+1; i < size_; i++) {
-			contents[i] = temp[i+1];
-		}
-
-		contents[index] = data;
 	}
+
+	size_++;
+
+	for (size_t i = (size_-1); i > index; i--) {
+		contents[i] = contents[i-1];
+	}
+
+	contents[index] = data;
 }
 
 
@@ -150,25 +134,18 @@ void structures::ArrayList<T>::insert_sorted(const T& data) {
 template<typename T>
 T structures::ArrayList<T>::pop(std::size_t index) {
 	if (empty()) {
-		throw std::out_of_range("Lista vazia");
+		return -2;
 	}
 
 	if (index >= size_) {
-		throw;
+		return -3;
 	}
 
-	size_t tam = size_ - index;
-	size_t temp[tam];
 	T dado = contents[index];
-
-	for (size_t i = 0; i < tam; i++) {
-		temp[i] = contents[index+i];
-	}
-
 	size_--;
 
 	for (size_t i = index; i < size_; i++) {
-		contents[i] = temp[i-index];
+		contents[i] = contents[i+1];
 	}
 
 	return dado;
@@ -177,7 +154,7 @@ T structures::ArrayList<T>::pop(std::size_t index) {
 template<typename T>
 T structures::ArrayList<T>::pop_back() {
 	if (empty()) {
-		throw std::out_of_range("Lista vazia");
+		return -2;
 	}
 
 	size_--;
@@ -189,21 +166,14 @@ T structures::ArrayList<T>::pop_back() {
 template<typename T>
 T structures::ArrayList<T>::pop_front() {
 	if (empty()) {
-		throw std::out_of_range("Lista vazia");
+		return -2;
 	}
 
-	size_t tam = size_-1;
-	size_t temp[tam];
 	T dado = contents[0];
 
-	for (size_t i = 0; i < tam; i++) {
-		temp[i] = contents[i+1];
-	}
-
 	size_--;
-
 	for (size_t i = 0; i < size_; i++) {
-		contents[i] = temp[i];
+		contents[i] = contents[i+1];
 	}
 
 	return dado;
@@ -244,7 +214,7 @@ bool structures::ArrayList<T>::empty() const {
 template<typename T>
 bool structures::ArrayList<T>::contains(const T& data) const {
 	if (empty()) {
-		throw std::out_of_range("Lista Vazia");
+		return -2;
 	}
 
 	for (size_t i = 0; i < size_; i++) {
@@ -259,7 +229,7 @@ bool structures::ArrayList<T>::contains(const T& data) const {
 template<typename T>
 std::size_t structures::ArrayList<T>::find(const T& data) const {
 	if (empty()) {
-		throw std::out_of_range("Lista Vazia");
+		return -2;
 	}
 
 	for (size_t i = 0; i < size_; i++) {
@@ -267,7 +237,6 @@ std::size_t structures::ArrayList<T>::find(const T& data) const {
 			return i;
 		}
 	}
-
 	throw;
 }
 
@@ -283,24 +252,38 @@ std::size_t structures::ArrayList<T>::max_size() const {
 
 template<typename T>
 T& structures::ArrayList<T>::at(std::size_t index) {
-	return contents[index];
+	if (index < size_) {
+		return contents[index];
+	}
+    throw;
 }
 
 template<typename T>
 T& structures::ArrayList<T>::operator[](std::size_t index) {
-	return contents[index];
+	if (index < size_) {
+		return contents[index];
+	}
+	throw;
 }
+
 
 template<typename T>
 const T& structures::ArrayList<T>::at(std::size_t index) const {
-	return contents[index];
+	if (index < size_) {
+		return contents[index];
+	}
+	throw;
 }
 
 template<typename T>
 const T& structures::ArrayList<T>::operator[](std::size_t index) const {
-	return contents[index];
+	if (index < size_) {
+		return contents[index];
+	}
+	throw;
 }
 
 #endif
+
 
 
