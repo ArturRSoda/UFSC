@@ -72,26 +72,22 @@ structures::ArrayList<T>::~ArrayList() {
 template<typename T>
 void structures::ArrayList<T>::clear() {
 	while (size_ > 0) {
-		pop_back();
+		this->pop_back();
 		size_--;
 	}
 }
 
 template<typename T>
 void structures::ArrayList<T>::push_back(const T& data) {
-	if (full()) {
-		throw std::out_of_range("Lista cheia");
-	} else {
-		contents[size_] = data;
-		size_++;
-	}
+	if (this->full()) throw std::out_of_range("Lista cheia");
+
+	contents[size_] = data;
+	size_++;
 }
 
 template<typename T>
 void structures::ArrayList<T>::push_front(const T& data) {
-	if (full()) {
-		throw std::out_of_range("Lista cheia");
-	}
+	if (this->full()) throw std::out_of_range("Lista cheia");
 
 	size_++;
 	for (size_t i = (size_-1); i > 0; i--) {
@@ -102,19 +98,15 @@ void structures::ArrayList<T>::push_front(const T& data) {
 
 template<typename T>
 void structures::ArrayList<T>::insert(const T& data, std::size_t index) {
-	if (full()) {
-		throw std::out_of_range("Lista Cheia");
-	}
+	if (this->full()) throw std::out_of_range("Lista Cheia");
 
-	int i = static_cast<int>(index);
-	if ((i < 0) && (index >= size_)) {
-		throw std::out_of_range("passou do range maximo da lista");
-	}
+	if ((static_cast<int>(index) < 0) || (index > size_)) throw std::out_of_range("passou do range maximo da lista");
 
 	size_++;
 	for (size_t i = (size_-1); i > index; i--) {
 		contents[i] = contents[i-1];
 	}
+	
 	contents[index] = data;
 
 }
@@ -122,9 +114,7 @@ void structures::ArrayList<T>::insert(const T& data, std::size_t index) {
 
 template<typename T>
 void structures::ArrayList<T>::insert_sorted(const T& data) {
-	if (full()) {
-		throw std::out_of_range("Lista Cheia");
-	}
+	if (this->full()) throw std::out_of_range("Lista Cheia");
 
 	if (static_cast<int>(size_) > 0) {
 		for (size_t i = 0; i < size_; i++) {
@@ -133,27 +123,22 @@ void structures::ArrayList<T>::insert_sorted(const T& data) {
 				return;
 			}
 		}
-		size_++;
-		insert(data, (size_-1));
+		this->push_back(data);
+
 	} else {
-		insert(data, 0);
+		this->insert(data, 0);
 	}
 
 }
 
 template<typename T>
 T structures::ArrayList<T>::pop(std::size_t index) {
-	if (empty()) {
-		return -2;
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia");
 
-	if (index >= size_) {
-		return -3;
-	}
+	if ((static_cast<int>(index) < 0) || (index >= size_)) throw std::out_of_range("Index fora do rage");
 
 	T dado = contents[index];
 	size_--;
-
 	for (size_t i = index; i < size_; i++) {
 		contents[i] = contents[i+1];
 	}
@@ -163,21 +148,16 @@ T structures::ArrayList<T>::pop(std::size_t index) {
 
 template<typename T>
 T structures::ArrayList<T>::pop_back() {
-	if (empty()) {
-		return -2;
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia");
 
 	size_--;
-	T dado = contents[size_];
 
-	return dado;
+	return contents[size_];
 }
 
 template<typename T>
 T structures::ArrayList<T>::pop_front() {
-	if (empty()) {
-		return -2;
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia");
 
 	T dado = contents[0];
 
@@ -191,63 +171,47 @@ T structures::ArrayList<T>::pop_front() {
 
 template<typename T>
 void structures::ArrayList<T>::remove(const T& data) {
-	if (empty()) {
-		throw std::out_of_range("Lista vazia");
-	}
+	if (this->empty()) throw std::out_of_range("Lista vazia");
 
 	for (size_t i = 0; i < size_; i++) {
 		if (contents[i] == data) {
-			pop(i);
-			break;
+			this->pop(i);
+			return;
 		}
 	}
 }
 
 template<typename T>
 bool structures::ArrayList<T>::full() const {
-	if (size_ == max_size_) {
-		return true;
-	} else {
-		return false;
-	}
+	if (size_ == max_size_) return true; else return false;
 }
 
 template<typename T>
 bool structures::ArrayList<T>::empty() const {
-	if (size_ == 0) {
-		return true;
-	} else {
-		return false;
-	}
+	if (size_ == 0) return true; else return false;
 }
 
 template<typename T>
 bool structures::ArrayList<T>::contains(const T& data) const {
-	if (empty()) {
-		return -2;
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia");
 
 	for (size_t i = 0; i < size_; i++) {
 		if (contents[i] == data) {
 			return true;
 		}
 	}
-
 	return false;
 }
 
 template<typename T>
 std::size_t structures::ArrayList<T>::find(const T& data) const {
-	if (empty()) {
-		return -2;
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia:");
 
 	for (size_t i = 0; i < size_; i++) {
 		if (contents[i] == data) {
 			return i;
 		}
 	}
-
 	return size_;
 }
 
@@ -263,17 +227,9 @@ std::size_t structures::ArrayList<T>::max_size() const {
 
 template<typename T>
 T& structures::ArrayList<T>::at(std::size_t index) {
-	//printf("\n\n %ld \n\n", index);
-	//printf("\n\n %d \n\n", (-1 < index));
-	int i = static_cast<int>(index);
-	int s = static_cast<int>(size_);
-	if ((-1 < i) && (i < s)) {
-		return contents[index];
-	} else {
-		throw std::out_of_range("Indice fora do range");
-	}
-	
-
+	if (this->empty()) throw std::out_of_range("lista vazia");
+	if (index >= size_) throw std::out_of_range("index fora do range");
+	return contents[index];
 }
 
 template<typename T>
@@ -287,13 +243,9 @@ T& structures::ArrayList<T>::operator[](std::size_t index) {
 
 template<typename T>
 const T& structures::ArrayList<T>::at(std::size_t index) const {
-	int i = static_cast<int>(index);
-	int s = static_cast<int>(size_);
-	if ((-1 < i) && (i < s)) {
-		return contents[index];
-	} else {
-		throw std::out_of_range("Indice fora do range");
-	}
+	if (this->empty()) throw std::out_of_range("lista vazia");
+	if (index >= size_) throw std::out_of_range("index fora do range");
+	return contents[index];
 }
 
 template<typename T>
