@@ -3,7 +3,9 @@
 #define STRUCTURES_ARRAY_LIST_H
 
 #include <algorithm>
+#include <bits/types/stack_t.h>
 #include <cstdint>
+#include <cstdio>
 #include <exception>
 #include <stdexcept>
 
@@ -66,6 +68,7 @@ structures::ArrayList<T>::~ArrayList() {
 	delete [] contents;
 }
 
+
 template<typename T>
 void structures::ArrayList<T>::clear() {
 	while (size_ > 0) {
@@ -103,17 +106,17 @@ void structures::ArrayList<T>::insert(const T& data, std::size_t index) {
 		throw std::out_of_range("Lista Cheia");
 	}
 
-	if (index >= size_) {
-		throw;
+	int i = static_cast<int>(index);
+	if ((i < 0) && (index >= size_)) {
+		throw std::out_of_range("passou do range maximo da lista");
 	}
 
 	size_++;
-
 	for (size_t i = (size_-1); i > index; i--) {
 		contents[i] = contents[i-1];
 	}
-
 	contents[index] = data;
+
 }
 
 
@@ -123,12 +126,19 @@ void structures::ArrayList<T>::insert_sorted(const T& data) {
 		throw std::out_of_range("Lista Cheia");
 	}
 
-	for (size_t i = 0; i < size_; i++) {
-		if (contents[i] > data) {
-			insert(data, i);
-			break;
+	if (static_cast<int>(size_) > 0) {
+		for (size_t i = 0; i < size_; i++) {
+			if (contents[i] > data) {
+				insert(data, i);
+				return;
+			}
 		}
+		size_++;
+		insert(data, (size_-1));
+	} else {
+		insert(data, 0);
 	}
+
 }
 
 template<typename T>
@@ -237,7 +247,8 @@ std::size_t structures::ArrayList<T>::find(const T& data) const {
 			return i;
 		}
 	}
-	throw;
+
+	return size_;
 }
 
 template<typename T>
@@ -252,35 +263,45 @@ std::size_t structures::ArrayList<T>::max_size() const {
 
 template<typename T>
 T& structures::ArrayList<T>::at(std::size_t index) {
-	if (index < size_) {
+	//printf("\n\n %ld \n\n", index);
+	//printf("\n\n %d \n\n", (-1 < index));
+	int i = static_cast<int>(index);
+	int s = static_cast<int>(size_);
+	if ((-1 < i) && (i < s)) {
 		return contents[index];
+	} else {
+		throw std::out_of_range("Indice fora do range");
 	}
-    throw;
+	
+
 }
 
 template<typename T>
 T& structures::ArrayList<T>::operator[](std::size_t index) {
-	if (index < size_) {
-		return contents[index];
+	if (static_cast<int>(index) < 0) {
+		return contents[0];
 	}
-	throw;
+	return contents[index];
 }
 
 
 template<typename T>
 const T& structures::ArrayList<T>::at(std::size_t index) const {
-	if (index < size_) {
+	int i = static_cast<int>(index);
+	int s = static_cast<int>(size_);
+	if ((-1 < i) && (i < s)) {
 		return contents[index];
+	} else {
+		throw std::out_of_range("Indice fora do range");
 	}
-	throw;
 }
 
 template<typename T>
 const T& structures::ArrayList<T>::operator[](std::size_t index) const {
-	if (index < size_) {
-		return contents[index];
+	if (static_cast<int>(index) < 0) {
+		return contents[0];
 	}
-	throw;
+	return contents[index];
 }
 
 #endif
