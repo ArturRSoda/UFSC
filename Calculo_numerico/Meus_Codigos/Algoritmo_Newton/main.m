@@ -1,7 +1,7 @@
 
 f = @(x) x .* log(x) .- 1
 
-dominio = [1e-4 10]
+subdominio = [1e-4 10]
 
-x = metodo_newton(f, dominio)
+x = metodo_newton(f, subdominio)
 residuo = abs(f(x))
