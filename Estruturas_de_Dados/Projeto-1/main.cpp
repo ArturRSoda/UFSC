@@ -16,11 +16,6 @@ typedef struct {
 	string matriz;
 } cenario;
 
-typedef struct {
-	int x;
-	int y;
-} position;
-
 bool verify_file(ifstream&, int&);
 cenario* search(ifstream&, int);
 int count_floor(cenario);
@@ -43,11 +38,8 @@ int main() {
 	ifstream xml_file2 (xmlfilename);
 	cenario* cenarios = search(xml_file2, n_cenarios);
 
-	for (int i = 0; i < n_cenarios; i++) {
+	for (int i = 0; i < n_cenarios; i++) 
 		cout << cenarios[i].name << " " << count_floor(cenarios[i]) << "\n"; 
-
-	}
-
 
 	delete [] cenarios;
 	xml_file.close();
@@ -99,14 +91,12 @@ int count_floor(cenario cn) {
 					queue.enqueue(to_string(px-1) + " " + to_string(py));
 				}
 
-		if (px+1 <= height) {
-			if (matriz[((px+1) * width) + py] == '1') {
+		if (px+1 <= height) 
+			if (matriz[((px+1) * width) + py] == '1') 
 				if (c_matriz[((px+1) * width) + py] == '0') {
 					c_matriz[((px+1) * width) + py] = '1';
 					queue.enqueue(to_string(px+1) + " " + to_string(py));
 				}
-			}
-		}
 
 		if (py-1 >= 0)
 			if (matriz[(px * width) + (py-1)] == '1')
@@ -122,10 +112,13 @@ int count_floor(cenario cn) {
 					queue.enqueue(to_string(px) + " " + to_string(py+1));
 				}
 	}
+	/*
     int cnt = count(c_matriz.begin(), c_matriz.end(), '1');
     if (cnt == 1616) cnt -= 12;
     else if (cnt == 2058) cnt -= 2;
     return cnt;
+	*/
+	return count(c_matriz.begin(), c_matriz.end() , '1');
 }
 
 cenario* search(ifstream& xml_file, int n_cenarios) {
@@ -136,7 +129,6 @@ cenario* search(ifstream& xml_file, int n_cenarios) {
 	cenario* array_cenarios = new cenario[n_cenarios];
 	int count_cn = 0;
 	cenario cn;
-
 
 	bool id_matriz = false;
 
@@ -165,9 +157,7 @@ cenario* search(ifstream& xml_file, int n_cenarios) {
 
 				} else {
 					value += character;
-					if (id_matriz && (value.size() == width)) {
-						matriz += value;
-					}
+					if (id_matriz && (value.size() == width)) matriz += value;
 				}
 
 			} else {
@@ -197,9 +187,7 @@ cenario* search(ifstream& xml_file, int n_cenarios) {
 						}
 
 					} else {
-						if (id == "matriz") {
-							id_matriz = true;
-						}
+						if (id == "matriz") id_matriz = true;
 					}
 
 					value.clear();
