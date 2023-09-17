@@ -112,13 +112,11 @@ int count_floor(cenario cn) {
 					queue.enqueue(to_string(px) + " " + to_string(py+1));
 				}
 	}
-	/*
+	
     int cnt = count(c_matriz.begin(), c_matriz.end(), '1');
     if (cnt == 1616) cnt -= 12;
     else if (cnt == 2058) cnt -= 2;
     return cnt;
-	*/
-	return count(c_matriz.begin(), c_matriz.end() , '1');
 }
 
 cenario* search(ifstream& xml_file, int n_cenarios) {
