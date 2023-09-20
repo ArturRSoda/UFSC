@@ -30,12 +30,12 @@ pthread_mutex_t mutex;
 
 
 void *incrementor(void *arg) {
-	pthread_mutex_lock(&mutex);
     int n_loops = *(int *)arg;
     for (int i = 0; i < n_loops; i++) {
+		pthread_mutex_lock(&mutex);
         contador_global += 1;
+		pthread_mutex_unlock(&mutex);
     }
-	pthread_mutex_unlock(&mutex);
     pthread_exit(NULL); // ou return NULL;
 }
 

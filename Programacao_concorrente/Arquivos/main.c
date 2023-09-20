@@ -3,18 +3,32 @@
 #include <stdlib.h>
 #include <assert.h>
 
+int gValue = 0;
+pthread_mutex_t gMtx;
 
 // Função imprime resultados na correção do exercício -- definida em helper.c
 void imprimir_resultados(int n, int** results);
 
 // Função escrita por um engenheiro
-void compute(int arg, int* value) {
+void compute(int arg) {
+	//printf("entrou: tid = %lu ; artg =  %d \n", pthread_self(), arg);
+	//fflush(stdout);
     if (arg < 2) {
-        *value += arg;
+        pthread_mutex_lock(&gMtx);
+		//printf("lock: tid = %lu ; artg =  %d \n", pthread_self(), arg);
+		//fflush(stdout);
+ 
+        gValue += arg;
+
+        pthread_mutex_unlock(&gMtx);
+		//printf("unlock: tid = %lu ; artg =  %d \n", pthread_self(), arg);
+		//fflush(stdout);
     } else {
-        compute(arg - 1, value);
-        compute(arg - 2, value);
+        compute(arg - 1);
+        compute(arg - 2);
     }
+	//printf("saiu: tid = %lu ; artg =  %d \n", pthread_self(), arg);
+	//fflush(stdout);
 }
 
 
@@ -22,12 +36,13 @@ void compute(int arg, int* value) {
 // thread que retorna o resultado de compute(arg
 void* compute_thread(void* arg) {
     int* ret = malloc(sizeof(int));
-    int value = 0;
-    compute(*((int*)arg), &value);
-    *ret = value;
+    pthread_mutex_lock(&gMtx);
+    gValue = 0;
+    compute(*((int*)arg));
+    *ret = gValue;
+    pthread_mutex_unlock(&gMtx);
     return ret;
 }
-
 
 int main(int argc, char** argv) {
     // Temos n_threads?
@@ -42,6 +57,11 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    //Inicializa o mutex
+	pthread_mutexattr_t attrs;
+	pthread_mutexattr_init(&attrs);
+	pthread_mutexattr_settype(&attrs, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutex_init(&gMtx, &attrs);
 
     int args[n_threads];
     int* results[n_threads];
@@ -55,6 +75,9 @@ int main(int argc, char** argv) {
     for (int i = 0; i < n_threads; ++i)
         pthread_join(threads[i], (void**)&results[i]);
 
+    // Não usaremos mais o mutex
+    pthread_mutex_destroy(&gMtx);
+	pthread_mutexattr_destroy(&attrs);
 
     // Imprime resultados na tela
     // Importante: deve ser chamada para que a correção funcione

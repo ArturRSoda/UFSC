@@ -1,9 +1,11 @@
+//#include <bits/pthreadtypes.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <stdio.h>
 #include <pthread.h>
 #include <time.h>
+
 
 //Funções auxiliares. Definidas em helper.c -- NÃO DEVEM SER ALTERADAS
 void gerar_matrizes();
@@ -50,6 +52,9 @@ int main(int argc, char* argv[]) {
     gerar_matrizes();
 
     //Crias as threads
+	
+	pthread_mutex_init(&matrix_mutex, NULL);
+
     pthread_t threads[num_threads];
     for (int i = 0; i < num_threads; i++) {
         pthread_create(&threads[i], NULL, matrix_mult_worker, NULL);
@@ -59,6 +64,8 @@ int main(int argc, char* argv[]) {
     for (int i = 0; i < num_threads; i++) {
         pthread_join(threads[i], NULL);
     }
+
+	pthread_mutex_destroy(&matrix_mutex);
 
     //Imprime as matrizes em um arquivo resultado.txt
     imprimir_matrizes();

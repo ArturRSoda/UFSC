@@ -40,11 +40,15 @@ void * matrix_mult_worker(void *arg) {
         minha_linha = linha_atual;
         minha_coluna = coluna_atual;
 
+		pthread_mutex_lock(&matrix_mutex);
+
         coluna_atual += 1;
         if (coluna_atual >= tamanho_matriz) {
             coluna_atual = 0;
             linha_atual += 1;
         }
+
+		pthread_mutex_unlock(&matrix_mutex);
 
         if (minha_linha >= tamanho_matriz)  
             break;

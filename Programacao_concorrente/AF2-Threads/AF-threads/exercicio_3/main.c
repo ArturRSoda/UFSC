@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
     //for (int i = 0; i < a_size; ++i) 
     //    result += a[i] * b[i];
     
-	if (a_size < n_threads) a_size = n_threads;
+	if (n_threads > a_size) n_threads = a_size;
 
 	pthread_t* thread = malloc(n_threads*sizeof(pthread_t));
 	thread_struct* ts = malloc(n_threads*sizeof(thread_struct));
