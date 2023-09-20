@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include <cstdio>
 #include "doubly_linked_list.h"
 
 int main(int argc, char* argv[]) {

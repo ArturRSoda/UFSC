@@ -1,5 +1,6 @@
 //! Copyright [2023] <Artur Soda>
 
+#include <cstdio>
 #include <exception>
 #include <iterator>
 #include <stdexcept>
@@ -144,7 +145,7 @@ void structures::DoublyLinkedList<T>::push_front(const T& data) {
 
 template<typename T>
 void structures::DoublyLinkedList<T>::insert(const T& data, std::size_t index) {
-	if ((static_cast<int>(size_) < 0) || (index > size_))
+	if (index > size_)
 		throw std::out_of_range("Index fora do range");
 
 	if (index == 0) {
@@ -214,7 +215,7 @@ T structures::DoublyLinkedList<T>::pop(std::size_t index) {
 	temp->next()->prev(p);
 
 	T aux = temp->data();
-	delete [] temp;
+	delete  temp;
 	size_--;
 	return aux;
 
@@ -224,8 +225,9 @@ template<typename T>
 T structures::DoublyLinkedList<T>::pop_back() {
 	if (this->empty()) throw std::out_of_range("Lista vazia");
 
-	if (static_cast<int>(size_) == 1)
+	if (static_cast<int>(size_) == 1) {
 		return this->pop_front();
+	}
 
 	Node* p = tail->prev();
 	Node* temp = tail;
@@ -233,7 +235,7 @@ T structures::DoublyLinkedList<T>::pop_back() {
 	tail = p;
 
 	T aux = temp->data();
-	delete [] temp;
+	delete temp;
 	size_--;
 	return aux;
 }
@@ -242,13 +244,16 @@ template<typename T>
 T structures::DoublyLinkedList<T>::pop_front() {
 	if (this->empty()) throw std::out_of_range("Lista vazia");
 
+
 	Node* p = head;
 	head = p->next();
-	head->prev(nullptr);
+	if (head != nullptr)
+		head->prev(nullptr);
 
 	T aux = p->data();
-	delete [] p;
+	delete  p;
 	size_--;
+	
 	return aux;
 }
 
