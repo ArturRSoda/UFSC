@@ -31,23 +31,24 @@ class DoublyLinkedList {
 
     std::size_t find(const T& data) const;  // posição de um dado
     std::size_t size() const;  // tamanho
+
  private:
     class Node {  // implementar cada um dos métodos de Node
      public:
-        Node(const T& data):
+        explicit Node(const T& data):
 			data_{data}
-		{}
+		 {}
 
         Node(const T& data, Node* next):
 			data_{data},
 			next_{next}
-		{}
+		 {}
 
         Node(const T& data, Node* prev, Node* next):
 			data_{data},
 			prev_{prev},
 			next_{next}
-		{}
+		 {}
 
         T& data() {
 			return data_;
@@ -92,7 +93,7 @@ class DoublyLinkedList {
     std::size_t size_;
 };
 
-} // namespace structures
+}  // namespace structures
 
 template <typename T>
 structures::DoublyLinkedList<T>::DoublyLinkedList() {
@@ -109,19 +110,21 @@ structures::DoublyLinkedList<T>::~DoublyLinkedList() {
 template<typename T>
 void structures::DoublyLinkedList<T>::clear() {
 	while (!(this->empty())) {
-		this->pop_back();
+		this->pop_front();
 	}
 }
 
 template<typename T>
 void structures::DoublyLinkedList<T>::push_back(const T& data) {
+	Node* temp = new Node(data, nullptr, nullptr);
+
 	if (this->empty()) {
-		this->push_front(data);
+		tail = head = temp;
+		size_++;
 		return;
 	}
 
-	Node* temp = new Node(data, tail, nullptr);
-	if (temp == nullptr) return;
+	temp->prev(tail);
 	tail->next(temp);
 	tail = temp;
 	size_++;
@@ -130,9 +133,10 @@ void structures::DoublyLinkedList<T>::push_back(const T& data) {
 template<typename T>
 void structures::DoublyLinkedList<T>::push_front(const T& data) {
 	Node* temp = new Node(data, nullptr, nullptr);
+	if (temp == nullptr) return;
 
 	if (this->empty()) {
-		tail = head = temp;	
+		tail = head = temp;
 		size_++;
 		return;
 	}
@@ -215,27 +219,27 @@ T structures::DoublyLinkedList<T>::pop(std::size_t index) {
 	temp->next()->prev(p);
 
 	T aux = temp->data();
-	delete  temp;
+	delete temp;
 	size_--;
 	return aux;
-
 }
 
 template<typename T>
 T structures::DoublyLinkedList<T>::pop_back() {
 	if (this->empty()) throw std::out_of_range("Lista vazia");
 
-	if (static_cast<int>(size_) == 1) {
-		return this->pop_front();
+	Node* p = tail;
+
+	if (size_ == 1) {
+		head = nullptr;
+		tail = nullptr;
+	} else {
+		tail = p->prev();
+		tail->next(nullptr);
 	}
 
-	Node* p = tail->prev();
-	Node* temp = tail;
-	p->next(nullptr);
-	tail = p;
-
-	T aux = temp->data();
-	delete temp;
+	T aux = p->data();
+	delete p;
 	size_--;
 	return aux;
 }
@@ -244,16 +248,18 @@ template<typename T>
 T structures::DoublyLinkedList<T>::pop_front() {
 	if (this->empty()) throw std::out_of_range("Lista vazia");
 
-
 	Node* p = head;
-	head = p->next();
-	if (head != nullptr)
+
+	if (size_ == 1) {
+		head = tail = nullptr;
+	} else {
+		head = p->next();
 		head->prev(nullptr);
+	}
 
 	T aux = p->data();
 	delete  p;
 	size_--;
-	
 	return aux;
 }
 
@@ -269,7 +275,6 @@ void structures::DoublyLinkedList<T>::remove(const T& data) {
 		}
 		p = p->next();
 	}
-
 }
 
 template<typename T>
@@ -287,7 +292,6 @@ bool structures::DoublyLinkedList<T>::contains(const T& data) const {
 		p = p->next();
 	}
 	return false;
-	
 }
 
 template<typename T>
@@ -301,7 +305,6 @@ T& structures::DoublyLinkedList<T>::at(std::size_t index) {
 	}
 
 	return p->data();
-
 }
 
 template<typename T>
@@ -328,7 +331,6 @@ std::size_t structures::DoublyLinkedList<T>::find(const T& data) const {
 		p = p->next();
 	}
 	return size_;
-	
 }
 
 template<typename T>
