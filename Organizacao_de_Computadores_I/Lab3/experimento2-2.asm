@@ -1,16 +1,5 @@
 .data
-#_save: .word ...                    # completar com Estímulo 2.1 ou Estímulo 2.2
-_save:
-.word 999                    # completar com Estímulo 2.1 ou Estímulo 2.2
-.word 7
-.word 6
-.word 6
-.word 6
-.word 6
-.word 6
-.word 6
-.word 6
-
+_save: .word 9999, 7, 6, 6, 6, 6, 6, 6, 6                    # completar com Estímulo 2.1 ou Estímulo 2.2
 _k: .word 6 
 _error: .asciiz "Index Out of Bounds Exception"	    
 .text
@@ -22,14 +11,14 @@ lw $t3, 4($s6)          # $t3 = tamanho do save              completar com 1 ins
 addi $s3, $zero, 0      # $t0(i) = 2                         completar com 1 instrução nativa
 Loop: 
 # verificação de limite do arranjo
-sltu $t4, $s3, $t3 	# $t4 = 1, se 0 <= i < t3 // $t4 = 0, se i < 0 ou i > t3   teste de índice: completar com 1 instrução nativa
+sltu $t4, $s3, $t3 	              # $t4 = 1, se 0 <= i < t3 // $t4 = 0, se i < 0 ou i > t3   teste de índice: completar com 1 instrução nativa
 beq $t4, $zero, IndexOutOfBounds      # desvio para mensagem de erro: completar com 1 instrução nativa
 # corpo do laço
 sll $t1, $s3, 2     #t1 = i*4
 add $t1, $t1, $s6   #t1 += save[0]
 lw $t0, 8($t1)      #t0 = t1 (save[i+2])               # você terá que modificar esta instrução!
 bne $t0, $s5, Exit  #se save[1] != k, va para exit
-addi $s3, $s3, 1    #i++   
+addi $s3, $s3, 1    #i++       
 j Loop               #va para loop
 
 Exit: # rotina para imprimir inteiro no console
