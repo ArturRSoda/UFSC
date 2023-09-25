@@ -1,12 +1,12 @@
 .data
-_save: .word ...          # completar com Estímulo 1.1 ou 1.2
+_save: .word 6,6,6,2,7,6,5          # completar com Estímulo 1.1 ou 1.2
 _k: .word 6             
 .text
 .globl main
 main: # inicialização
-...                       # completar com 1 pseudoinstrução
-...                       # completar com 1 pseudoinstrução
-...                       # completar com 1 instrução nativa      
+la $s6, _save                    # completar com 1 pseudoinstrução
+lw $s5, _k                       # completar com 1 pseudoinstrução
+add $s3, $zero, $zero            # completar com 1 instrução nativa       
 Loop: # corpo do laço
 sll $t1, $s3, 2    
 add $t1, $t1, $s6 
