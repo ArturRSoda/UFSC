@@ -1,7 +1,7 @@
 function x = questao1() 
 
 	disp("Questao 1.a) ")
-	disp("sin(x)^3 * cos(x)^3+0.1=0, subdominio=[-6, +6]")
+	disp("sin(x)^3 * cos(x)^3+0.1=0")
 	f = @(x) sin(x).^3 .* cos(x).^3 .+ 0.1;
 	subdominio = [-6, +6];
 
