@@ -3,8 +3,11 @@
 #include <semaphore.h>
 #include <stdlib.h>
 #include <unistd.h>
+<<<<<<< HEAD
 #include <string.h>
 #include <stdbool.h>
+=======
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 
 /* ---------- Definições Globais. ---------- */
 #define TEMPO_BASE 1000000
@@ -26,6 +29,7 @@ char cabeceiras[2][11] = { { "CONTINENTE" }, { "ILHA" } };
 int total_veiculos;
 int veiculos_turno;
 
+<<<<<<< HEAD
 char* sentido;
 int contador_veiculo;
 pthread_mutex_t mutex_contador;
@@ -37,10 +41,17 @@ sem_t sinal_continente;
 // ToDo: Adicione aque quaisquer outras variávels globais necessárias.
 /* ---------------------------------------- */
 
+=======
+// ToDo: Adicione aque quaisquer outras variávels globais necessárias.
+/* ---------------------------------------- */
+
+
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 /* Inicializa a ponte. */
 void ponte_inicializar() {
 	
 	// ToDo: IMPLEMENTAR!
+<<<<<<< HEAD
 	
 	sem_init(&sem_ilha, 0, veiculos_turno);
 	sem_init(&sem_continente, 0, veiculos_turno);
@@ -51,6 +62,8 @@ void ponte_inicializar() {
 
 	sentido = "ILHA";
 	contador_veiculo = 0;
+=======
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 
 	/* Imprime direção inicial da travessia. NÃO REMOVER! */
 	printf("\n[PONTE] *** Novo sentido da travessia: CONTINENTE -> ILHA. ***\n\n");
@@ -59,6 +72,7 @@ void ponte_inicializar() {
 
 /* Função executada pelo veículo para ENTRAR em uma cabeceira da ponte. */
 void ponte_entrar(veiculo_t *v) {
+<<<<<<< HEAD
 	char* cabeceira_veiculo = cabeceiras[v->cabeceira];
 	// 0->continente
 	// 1->ilha
@@ -70,10 +84,15 @@ void ponte_entrar(veiculo_t *v) {
 		sem_wait(&sem_ilha);
 	}
 
+=======
+	
+	// ToDo: IMPLEMENTAR!
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 }
 
 /* Função executada pelo veículo para SAIR de uma cabeceira da ponte. */
 void ponte_sair(veiculo_t *v) {
+<<<<<<< HEAD
 	char* cabeceira_veiculo = cabeceiras[v->cabeceira];
 	// 0->continente
 	// 1->ilha
@@ -99,14 +118,25 @@ void ponte_sair(veiculo_t *v) {
 		fflush(stdout);
 	}
 
+=======
+
+	// ToDo: IMPLEMENTAR!
+	/* Você deverá imprimir a nova direção da travessia quando for necessário! */	
+	printf("\n[PONTE] *** Novo sentido da travessia: %s -> %s. ***\n\n", cabeceiras[v->cabeceira], cabeceiras[!v->cabeceira]);
+	fflush(stdout);
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 }
 
 /* FINALIZA a ponte. */
 void ponte_finalizar() {
 
+<<<<<<< HEAD
 	sem_destroy(&sem_ilha);
 	sem_destroy(&sem_continente);
 	pthread_mutex_destroy(&mutex_contador);
+=======
+	// ToDo: IMPLEMENTAR!
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 	
 	/* Imprime fim da execução! */
 	printf("[PONTE] FIM!\n\n");
@@ -182,4 +212,8 @@ int main(int argc, char **argv) {
 	ponte_finalizar();
 
 	return 0;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947

@@ -28,4 +28,8 @@ a = [1, -2, -3, 5] # coeficientes da equação
 
 x_octave = roots(a)
 [x, M] = roots_aula(a)
+<<<<<<< HEAD
 residuos = valorPolinomio(a, x)
+=======
+residuos = valorPolinomio(a, x)
+>>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
