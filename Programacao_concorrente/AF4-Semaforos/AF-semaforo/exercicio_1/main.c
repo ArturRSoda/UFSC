@@ -11,10 +11,7 @@ sem_t sem_b;
 
 void *thread_a(void *args) {
     for (int i = 0; i < *(int*)args; ++i) {
-<<<<<<< HEAD
 
-=======
->>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
 		sem_wait(&sem_a);
 
 	//      +---> arquivo (FILE*) destino
@@ -26,10 +23,6 @@ void *thread_a(void *args) {
         fflush(stdout);
 
 		sem_post(&sem_b);
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
     }
     return NULL;
 }
@@ -43,10 +36,6 @@ void *thread_b(void *args) {
         fflush(stdout);
 
 		sem_post(&sem_a);
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
     }
     return NULL;
 }
@@ -76,10 +65,6 @@ int main(int argc, char** argv) {
 	sem_destroy(&sem_a);
 	sem_destroy(&sem_b);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4f9a1d29342af6bbd7430ecf009417afb6038947
     //Imprime quebra de linha e fecha arquivo
     fprintf(out, "\n");
     fclose(out);
