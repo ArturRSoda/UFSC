@@ -9,10 +9,7 @@ function [T, R, I, B] = cria_vetores()
 	B = zeros(n3);
 
 	i = 1;
-	T(i) = NaN
-	R(i) = 3;
-	I(i) = 2;
-	B(i) = 2;
+	T(i) = NaN; R(i) = 3; I(i) = 2; B(i) = 2;
 
 	for (i = 2:n1)
 		T(i) = -2;
@@ -28,16 +25,16 @@ function [T, R, I, B] = cria_vetores()
 		B(i) = 3;
 	end
 
-	for (i = n2+1:n3)
+	for (i = n2+1:n3-1)
 		T(i) = -3;
 		R(i) = 7;
-
-		if (i == n3)
-			I(i) = NaN;
-		else
-			I(i) = 2;
-		end
-
+		I(i) = 2;
 		B(i) = 5;
 	end
+
+	i = n3;
+	T(i) = -4;
+	R(i) = 7;
+	I(i) = NaN;
+	B(i) = -5;
 end;
