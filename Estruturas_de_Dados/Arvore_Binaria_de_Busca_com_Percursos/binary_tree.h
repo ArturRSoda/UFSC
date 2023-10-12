@@ -1,10 +1,6 @@
 //! Copyright [2023] <Artur Soda>
 
 #include "array_list.h"
-#include <algorithm>
-#include <array>
-#include <iterator>
-#include <stdexcept>
 
 namespace structures {
 
@@ -12,6 +8,10 @@ template<typename T>
 class BinaryTree {
 public:
     ~BinaryTree() {
+		ArrayList<T> list = this->in_order();
+		while (root_ != nullptr) {
+			this->remove(list.pop_back());
+		}
 	}
 
     void insert(const T& data) {
