@@ -1,6 +1,7 @@
 //! Copyright [2023] <Artur Soda>
 
 #include "array_list.h"
+#include <array>
 #include <iterator>
 #include <stdexcept>
 
@@ -9,24 +10,67 @@ namespace structures {
 template<typename T>
 class BinaryTree {
 public:
-	BinaryTree();
-    ~BinaryTree();
+	BinaryTree() {
+		root_ = nullptr;
+		size_ = 0;
+	}
 
-    void insert(const T& data);
+    ~BinaryTree() {
+		ArrayList<T> list = this->pre_order();
+		while (!this->empty()) {
+			this->remove(list.pop_back());
+		}
+	}
 
-    void remove(const T& data);
+    void insert(const T& data) {
+		printf("tentando inserir = %d \n", data);
+		if (!this->contains(data)) {
+			printf("entro \n");
+			this->insert_aux(data, root_);
+			size_++;
+			printf("somo \n");
+			ArrayList<T> list = this->pre_order();
+			printf("size = %d \n", size_);
+			printf("contais = %d \n", this->contains(data));
+			printf("root == null : %b \n", root_ == nullptr);
+			printf("list size = %d \n", list.size());
+		}
+	}
 
-    bool contains(const T& data) const;
+    void remove(const T& data) {
+		if (this->contains(data)) size_--;
+		root_ = this->remove_aux(data, root_);
+	}
 
-    bool empty() const;
+	bool contains(const T& data) const {
+		return this->contains_aux(data, root_);
+	}
 
-    std::size_t size() const;
+	bool empty() const {
+		return (size_ == 0);
+	}
 
-    ArrayList<T> pre_order() const;
+	std::size_t size() const {
+		return size_;
+	}
 
-    ArrayList<T> in_order() const;
+	ArrayList<T> pre_order() const {
+		ArrayList<T> list;
+		this->pre_order_aux(list, root_);
+		return list;
+	}
 
-    ArrayList<T> post_order() const;
+	ArrayList<T> in_order() const {
+		ArrayList<T> list;
+		this->in_order_aux(list, root_);
+		return list;
+	}
+
+	ArrayList<T> post_order() const {
+		ArrayList<T> list;
+		this->post_order_aux(list, root_);
+		return list;
+	}
 
 private:
     struct Node {
@@ -43,6 +87,14 @@ private:
 
     Node* root_;
     std::size_t size_;
+
+	Node* min_node(Node* root) {
+		if (root == nullptr)
+			return nullptr;
+		if (root->left != nullptr)
+			return this->min_node(root->left);
+		return root;
+	}
 
 	void pre_order_aux(ArrayList<T>& list, Node* root) const {
 		if (root != nullptr) {
@@ -69,157 +121,75 @@ private:
 		}
 	}
 
+	bool contains_aux(const T& data, Node* root) const {
+		if (root == nullptr)
+			return false;
+		else if (data < root->data)
+			return this->contains_aux(data, root->left);
+		else if (data > root->data)
+			return this->contains_aux(data, root->right);
+		else
+			return true;
+	}
+
+	void insert_aux(const T& data, Node* root) {
+		Node* novo;
+		if (root == nullptr) {
+			printf("entro aki \n");
+			root = new Node(data);
+		}
+		else if (data < root->data) {
+			if (root->left == nullptr) {
+				novo = new Node(data);
+				root->left = novo;
+			} else {
+				this->insert_aux(data, root->left);
+			}
+		} else if (data > root->data) {
+			if (root->right == nullptr) {
+				novo = new Node(data);
+				root->right = novo;
+			} else {
+				this->insert_aux(data, root->right);
+			}
+		}
+	}
+
+	Node* remove_aux(const T& data, Node* root) {
+		if (root == nullptr)
+			return nullptr;
+		if (data < root->data) {
+			root->left = this->remove_aux(data, root->left);
+			return root;
+		}
+		else if (data > root->data) {
+			root->right = this->remove_aux(data, root->right);
+			return root;
+		}
+		else if ((root->left != nullptr) && (root->right != nullptr)) {
+			Node* temp = this->min_node(root->right);
+			root->data = temp->data;
+			root->right = this->remove_aux(data, root->right);
+			return root;
+		}
+		else if (root->left != nullptr) {
+			Node* temp = root->left;
+			delete root;
+			return temp;
+		}
+		else if (root->right != nullptr) {
+			Node* temp = root->right;
+			delete root;
+			return temp;
+		}
+		else {
+			delete root;
+			return nullptr;
+		}
+	}
+
 };
 
-}  // namespace structures
-
-template<typename T>
-structures::BinaryTree<T>::BinaryTree() {
-	root_ = nullptr;
-	size_ = 0;
 }
 
-template<typename T>
-structures::BinaryTree<T>::~BinaryTree() {
-	while (!this->empty()) {
-		this->remove(root_->data);
-	}
-}
-
-template<typename T>
-void structures::BinaryTree<T>::insert(const T& data) {
-	if (this->contains(data)) return;
-
-	Node* p = root_;
-	Node* q = nullptr;
-
-	Node* novo = new Node(data);
-
-	if (this->empty()) {
-		root_ = novo;
-	}
-	else {
-		while (p != nullptr) {
-			q = p;
-			if (data < p->data) {
-				p = p->left;
-			}
-			else {
-				p = p->right;
-			}
-		}
-		if (data < q->data) {
-			q->left = novo;
-		}
-		else {
-			q->right = novo;
-		}
-	}
-	size_++;
-}
-
-template<typename T>
-void structures::BinaryTree<T>::remove(const T& data) {
-	if (this->empty()) throw std::out_of_range("Lista vazia");
-
-	Node* p = root_;
-	Node* q = nullptr;
-
-	if (static_cast<int>(size_) == 1) {
-		root_ == nullptr;
-		delete p;
-		size_--;
-		return;
-	}
-
-	while (p != nullptr) {
-		if (data == p->data) {
-			if ((p->left == nullptr) && (p->right == nullptr)) {
-				if (p->data < q->data) {
-					q->left = nullptr;
-				}
-				else {
-					q->right = nullptr;
-				}
-				delete p;
-				size_--;
-				return;
-			}
-			
-			if (p->right != nullptr) {
-				q = p->right;
-				while (q->left != nullptr) {
-					q = q->left;
-				}
-				T aux = q->data;
-				this->remove(aux);
-				p->data = aux;
-			}
-			else {
-				q = p->left;
-				while (q->right != nullptr) {
-					q = q->right;
-				}
-				T aux = q->data;
-				this->remove(aux);
-				p->data = aux;
-			}
-		}
-		else if (data < p->data) {
-			q = p;
-			p = p->left;
-		}
-		else {
-			q = p;
-			p = p->right;
-		}
-	}
-}
-
-template<typename T>
-bool structures::BinaryTree<T>::contains(const T& data) const{
-	Node* p = root_;
-	while (p != nullptr) {
-		if (data == p->data) return true;
-
-		if (data < p->data) {
-			p = p->left;	
-		}
-		else {
-			p = p->right;
-		}
-	}
-	return false;
-}
-
-template<typename T>
-bool structures::BinaryTree<T>::empty() const {
-	return (static_cast<int>(size_) == 0);
-}
-
-template<typename T>
-std::size_t structures::BinaryTree<T>::size() const {
-	return size_;
-}
-
-template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::pre_order() const {
-	ArrayList<T> list;
-	pre_order_aux(list, root_);
-	return list;
-}
-
-template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::in_order() const {
-	ArrayList<T> list;
-	in_order_aux(list, root_);
-	return list;
-}
-
-template<typename T>
-structures::ArrayList<T> structures::BinaryTree<T>::post_order() const {
-	ArrayList<T> list;
-	post_order_aux(list, root_);
-	return list;
-}
 
