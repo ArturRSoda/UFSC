@@ -12,6 +12,11 @@ yn = sin(xn).^2;
 coef = coeficientes_gregory_newton(xp, grau, yp)
 ya = interpolacao_gregory_newton(xn, xp, grau, coef);
 
+plot(xn, ya)
+hold on
+p = plot(xn, yn)
+waitfor(p)
+
 erro_max = max(abs(ya - yn))
 
 

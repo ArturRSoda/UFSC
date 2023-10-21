@@ -20,3 +20,8 @@ ye = (cos(xp)).^2;
 
 erro_max = max(abs(ya-ye))
 
+plot(xp, ya)
+hold on
+p = plot(xp, ye)
+waitfor(p)
+
