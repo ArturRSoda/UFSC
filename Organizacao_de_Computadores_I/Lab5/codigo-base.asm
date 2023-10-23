@@ -15,34 +15,38 @@ main:
   syscall
   
 sort:
-  addi $sp,$sp,-12 
+  addi $sp,$sp,-16
+  sw   $s3,12($sp) 
   sw   $ra,8($sp) 
   sw   $s1,4($sp)  
   sw   $s0,0($sp)  
 
-
+  move $s3, $a1
+  move $s2, $a0
   move $s0,$zero   # MARCA 0: inicialização da variável i
+
 
 # início do corpo do laço externo
 for1tst:  
 
   nop # MARCA 1
-  slt  $t0,$s0,$a1     
+  slt $t0, $s0, $s3     #slt  $t0,$s0,$a1 
   beq  $t0,$zero,exit1  
-  addi $s1,$s0,-1     
+  addi $s1,$s0,-1  
 
 # inicio do corpo do laço interno
 for2tst:
-  slti $t0,$s1,0     
-  bne  $t0,$zero,exit2  
-  sll  $t1,$s1,2     
-  add  $t2,$a0,$t1     
+  slti $t0,$s1,0  
+  bne  $t0,$zero,exit2 
+  sll  $t1,$s1,2   
+  add  $t2,$s2,$t1 
   lw   $t3,0($t2)
   lw   $t4,4($t2)
   slt  $t0,$t4,$t3
   beq  $t0,$zero,exit2
 
-  
+  move $a1, $s1
+  move $a0, $s2
   nop # MARCA 2
   jal  swap 	
   addi $s1,$s1,-1
@@ -56,15 +60,16 @@ exit1:
   lw   $s0,0($sp)  
   lw   $s1,4($sp)
   lw   $ra,8($sp)
-  addi $sp,$sp,12
+  lw   $s3,12($sp)
+  addi $sp,$sp,16
   jr   $ra
 # implementação da procedure swap
 swap:
   sll  $t1,$a1,2   # reg $t1=k+4
   add  $t1,$a0,$t1 # reg $t1=v+(k*4)
   lw   $t0,0($t1)  # reg $t0 (temp)  =v[k]
-  lw   $t2,4($t1)  # reg $t2 = v[k+1]
-  sw   $t2,0($t1)  # v[k] = reg $t2
+  lw   $a0,4($t1)  # reg $t2 = v[k+1]
+  sw   $a0,0($t1)  # v[k] = reg $t2
   sw   $t0,4($t1)  # v[k+1] = reg $t0 temp
   jr   $ra         # retorna para a rotina chamadora
   
