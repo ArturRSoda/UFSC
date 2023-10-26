@@ -2,6 +2,7 @@
 
 #include "array_list.h"
 #include <tuple>
+#include <iostream>
 
 namespace structures {
 
@@ -92,7 +93,7 @@ private:
 		return p;
 	}
 
-	Node* simpleRight(Node* root) {
+	Node* simpleLeft(Node* root) {
 		Node* p = root->left;
 		root->left = p->right;
 		p->right = root;
@@ -103,7 +104,7 @@ private:
 		return p;
 	}
 
-	Node* simpleLeft(Node* root) {
+	Node* simpleRight(Node* root) {
 		Node* p = root->right;
 		root->right = p->left;
 		p->left = root;
@@ -139,6 +140,7 @@ private:
 			return root;
 		}
 
+	
 		root->height_ = updateHeight(root);
 		int balance = getBalance(root);
 
@@ -172,9 +174,8 @@ private:
 
 		} else {
 			if ((root->left == nullptr) && (root->right == nullptr)) {
-				Node* p = root;
+				delete root;
 				root = nullptr;
-				delete p;
 			} else if (root->left == nullptr) {
 				Node* temp = root;
 				root = root->right;
@@ -200,17 +201,13 @@ private:
 			if (getBalance(root->left) >= 0) {
 				return simpleRight(root);
 			} else {
-				//root->left = simpleLeft(root->left);
-				//return simpleRight(root);
 				return doubleRight(root);
 			}
 		}
 		if (balance < -1) {
 			if (getBalance(root->right) <= 0) {
-				return simpleRight(root);
+				return simpleLeft(root);
 			} else {
-				//root->right = simpleRight(root->right);
-				//return simpleLeft(root);
 				return doubleLeft(root);
 
 			}

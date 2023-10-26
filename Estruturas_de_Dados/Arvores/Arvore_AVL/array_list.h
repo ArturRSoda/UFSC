@@ -1,7 +1,6 @@
 #ifndef STRUCTURES_ARRAY_LIST_H
 #define STRUCTURES_ARRAY_LIST_H
 
-#include <cstdint>
 namespace structures {
 
 template<typename T>
