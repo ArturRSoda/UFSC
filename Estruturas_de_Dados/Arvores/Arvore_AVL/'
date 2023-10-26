@@ -119,11 +119,6 @@ private:
 		return simpleLeft(root);
 	}
 
-	Node* doubleRight(Node* root) {
-		root->right = simpleLeft(root->right);
-		return simpleRight(root);
-	}
-
 
 	Node* insert_aux(const T& data, Node* root) {
 		if (root == nullptr) {
@@ -147,14 +142,16 @@ private:
 				return simpleRight(root);
 
 			} else if (data > root->left->data) {
-				return doubleRight(root);
+				root->left = simpleLeft(root->left);
+				return simpleRight(root);
 			}
 		}
 		if (balance < -1) {
 			if (data > root->right->data) {
 				return simpleLeft(root);
 			} else if (data < root->right->data) {
-				return doubleLeft(root);
+				root->right = simpleRight(root->right);
+				return simpleLeft(root);
 			}
 		}
 		return root;
@@ -200,19 +197,16 @@ private:
 			if (getBalance(root->left) >= 0) {
 				return simpleRight(root);
 			} else {
-				//root->left = simpleLeft(root->left);
-				//return simpleRight(root);
-				return doubleRight(root);
+				root->left = simpleLeft(root->left);
+				return simpleRight(root);
 			}
 		}
 		if (balance < -1) {
 			if (getBalance(root->right) <= 0) {
 				return simpleRight(root);
 			} else {
-				//root->right = simpleRight(root->right);
-				//return simpleLeft(root);
-				return doubleLeft(root);
-
+				root->right = simpleRight(root->right);
+				return simpleLeft(root);
 			}
 		}
 		return root;

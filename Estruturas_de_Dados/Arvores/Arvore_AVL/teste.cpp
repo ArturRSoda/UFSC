@@ -263,6 +263,7 @@ TEST_F(AVLTreeTest, Remove) {
         string_list.remove("Hello, World!");
         ASSERT_FALSE(string_list.contains("Hello, World!"));
         ASSERT_EQ(size-1, string_list.size());
+		printf("teste \n");
         ASSERT_EQ(2, string_list.height());
     }
 
