@@ -13,6 +13,7 @@ double standard_deviation(double* data, int size) {
     for (int i = 0; i < size; ++i) 
         avg += data[i];
 
+    #pragma omp barrier
 	#pragma omp single
     avg /= size;
 
