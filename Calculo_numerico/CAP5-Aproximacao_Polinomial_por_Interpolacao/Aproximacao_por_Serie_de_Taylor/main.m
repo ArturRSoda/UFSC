@@ -22,7 +22,7 @@ erro = abs(ya-ye);
 erro_max = max(erro)
 
 %plot(xp, ya, "r;-;", xp, ye, "b; -;")
-plot(xp, erro, "r;-;")
+p = plot(xp, erro, "r;-;")
 grid on
 
 % diminuir erro -> aumenta número de termos 
