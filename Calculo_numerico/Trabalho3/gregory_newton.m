@@ -5,7 +5,7 @@ function coef = gregory_newton(xp, yp, grau);
 	end
 
 	for (k = 2:grau)
-		for (i = 1:(grau+1-k))
+		for (i = 1:grau+1-k)
 			delta_y(i, k) = (delta_y(i+1, k-1) - delta_y(i, k-1))/(xp(i+k) - xp(i));
 		end
 	end

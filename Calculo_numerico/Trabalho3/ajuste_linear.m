@@ -1,4 +1,4 @@
-function coef = ajuste_polinomial(x, y, grau)
+function coef = ajuste_linear(x, y, grau)
 
 	for (i = 1:grau+1)
 		for (j = 1:grau+1)

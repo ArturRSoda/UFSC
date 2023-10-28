@@ -1,15 +1,28 @@
 function x = questao_2_nao_linear()
-	g1 = @(x) sin(x(1)) * cos(x(2)) + x(3) - 1.5
-	g2 = @(x) x(1)*x(1) + x(2)*x(2) + x(3)*x(3) - 3.0
-	g3 = @(x) x(1) + x(2) + x(3) - 3.1
+	x = [1.2,  1.5, 2,    4,   6,    10,  15]
+	y = [0.45, 0.4, 0.33, 0.2, 0.14, 0.1, 0.06]
 
-	wi = [complex(-1,1); complex(1,1); complex(1,1)]
+	g = @(c, x) c(1)./(c(2)+c(3).*(x).^2)
 
-	w = newtonsis3(wi, g1, g2, g3)
-	res_max_w = max(abs([g1(w); g2(w); g3(w)]))
+	f1 = @(c, x, y) sum( (g(c, x) - y) ./ (c(2) + c(3).*(x).^2));
+	f2 = @(c, x, y) sum( (g(c, x) - y) ./ ((c(2) + c(3).*(x).^2).^2));
+	f3 = @(c, x, y) sum( (g(c, x) - y) .* ( (x.^2)/((c(2) + c(3).*(x).^2).^2)));
 
-	zi = [complex(-1,1); complex(0.5,1); complex(0.5,1)]
-	z = newtonsis3(zi, g1, g2, g3)
-	res_max_z = max(abs([g1(z); g2(z); g3(z)]))
+
+	ci = [1; -1; 1];
+	c = newtonsis3(ci, x, y, f1, f2, f3)
+
+	h = 0.01;
+	xp = min(x) : h : max(x);
+	yp = g(c, xp);
+
+
+	Desvio_quadratico = sum((g(c, x) - y).^2)
+
+	plot(x, y, "r*");
+	hold on;
+	plot(xp, yp);
+	title("Questao 2 nao linear");
+	hold off;
 end
 

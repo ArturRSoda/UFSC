@@ -1,39 +1,50 @@
-% Exemplo 4.2 do livro
+%Dados os m=9 pontos experimentais
+x = [0.2,   0.5,    1,      2,      4,      6,      10,     15]
+y = [0.5,   0.3,    0.1,    -0.4,   -0.9,   -1.4,   -2,     -2.8]
 
-f1 = @(x) exp(x(1)) + x(2) - 1
-f2 = @(x) x(1)*x(1) + x(2)*x(2) - 4
+% Determine uma funcao aproximadora g(x) que represente os pontos m experimentais
+% acima
 
-x = newtonsis2(f1, f2)
-res_max_x = max(abs([f1(x); f2(x)]))
+g = @(c, x) c(1) + c(2) .* x.^(c(3));
 
-% Resolucao do trabalho 2
+% f1 = @(c, x, y) sum(c(1) + c(2) .* x.^c(3) - y);
+f1 = @(c, x, y) sum(g(c, x) - y);
+f2 = @(c, x, y) sum((g(c, x) - y) .* x.^c(3));
+f3 = @(c, x, y) sum((g(c, x) - y) .* x.^c(3) .* log(x));
 
-g1 = @(x) sin(x(1)) * cos(x(2)) + x(3) - 1.5
-g2 = @(x) x(1)*x(1) + x(2)*x(2) + x(3)*x(3) - 3.0
-g3 = @(x) x(1) + x(2) + x(3) - 3.1
+% A solucao para c eh obtida pelo metodo de newton para sistemas de 3 equacoes
+% nao linerares
 
-wi = [complex(-1,1); complex(1,1); complex(1,1)]
-w = newtonsis3(wi, g1, g2, g3)
-res_max_w = max(abs([g1(w); g2(w); g3(w)]))
+% Valor chutado para a solucao:
+ci = [1; 1; 1];
+c = newtonsis3(ci, x, y, f1, f2, f3)
 
-zi = [complex(-1,1); complex(0.5,1); complex(0.5,1)]
-z = newtonsis3(zi, g1, g2, g3)
-res_max_z = max(abs([g1(z); g2(z); g3(z)]))
+h = 0.01;
+xp = min(x) : h : max(x);
+yp = g(c, xp);
 
-% Para esse valor inicial:
-% xi = = [complex(1,1); complex(1,1); complex(1,1)]
+somatorio_desvios_mod = sum(abs(g(c, x) - y))
 
-% Encontramos:
-% w =                                                                             
-%   1.0345 + 0.3662i                                                             
-%   1.0238 - 0.1486i                                                             
-%   1.0417 - 0.2175i
+% Agora podemos testar a aproximacao g(x) polinomia (Pn(x)) de grau 2, 3 ...
 
-% Para o seguinte valor inicial:
-% wi = [complex(-1,1); complex(1,1); complex(1,1)]
+% Vamos determinar uma funcao aproximadora que represente os m = 5 pontos
+% experimentais:
 
-% Encontramos:
-% z =                                                           
-%   -0.55702 + 0.29938i                                                           
-%    1.57571 - 1.56223i                                                           
-%    2.08131 + 1.26285i
+% Agora, iremos ajustar um polinomio de grau n = 1
+
+n = 2
+a1 = coeficientes_ajuste_polinomial(x, y, n);
+%Grafico para xp
+
+yp1 = valor_polinomio_base_canonica(xp, a1);
+
+n = 3
+a2 = coeficientes_ajuste_polinomial(x, y, n);
+%Grafico para xp
+yp2 = valor_polinomio_base_canonica(xp, a2);
+
+
+plot(x, y, "r*", xp,yp1, "b-",xp,yp2, "k-", xp, yp, "-m")
+grid on
+
+
