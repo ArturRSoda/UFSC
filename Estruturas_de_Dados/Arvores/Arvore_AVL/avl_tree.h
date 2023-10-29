@@ -1,8 +1,7 @@
 //! Copyright [2023] <Artur Soda>
 
+#include <algorithm>
 #include "array_list.h"
-#include <tuple>
-#include <iostream>
 
 namespace structures {
 
@@ -35,8 +34,7 @@ public:
 
 private:
     struct Node {
-
-        Node(const T& data_) {
+        explicit Node(const T& data_) {
 			data = data_;
 			height_ = 0;
 			left = nullptr;
@@ -57,17 +55,9 @@ private:
     Node* root_;
     std::size_t size_;
 
-	int max(int a, int b) {
-		if (a > b) {
-			return a;
-		} else {
-			return b;
-		}
-	}
-
 	int getHeight(Node* root) const {
 		if (root == nullptr) {
-			return 0;
+			return -1;
 		} else {
 			return root->height_;
 		}
@@ -82,7 +72,7 @@ private:
 	}
 
 	int updateHeight(Node* root) {
-		return (1 + max(getHeight(root->left), getHeight(root->right)));
+		return (1 + std::max(getHeight(root->left), getHeight(root->right)));
 	}
 
 	Node* minValue(Node* root) {
@@ -94,34 +84,34 @@ private:
 	}
 
 	Node* simpleLeft(Node* root) {
-		Node* p = root->left;
-		root->left = p->right;
-		p->right = root;
+		Node* p = root->right;
+		root->right = p->left;
+		p->left = root;
 
-		root->height_ = max(getHeight(root->left), getHeight(root->right)) + 1;
-		p->height_ = max(getHeight(p->left), root->height_) + 1;
+		root->height_ = updateHeight(root);
+		p->height_ = updateHeight(p);
 
 		return p;
 	}
 
 	Node* simpleRight(Node* root) {
-		Node* p = root->right;
-		root->right = p->left;
-		p->left = root;
+		Node* p = root->left;
+		root->left = p->right;
+		p->right = root;
 
-		root->height_ = max(getHeight(root->right), getHeight(root->left)) + 1;
-		p->height_ = max(getHeight(p->right), root->height_) + 1;
+		root->height_ = updateHeight(root);
+		p->height_ = updateHeight(p);
 
 		return p;
 	}
 
 	Node* doubleLeft(Node* root) {
-		root->left = simpleRight(root->left);
+		root->right = simpleRight(root->right);
 		return simpleLeft(root);
 	}
 
 	Node* doubleRight(Node* root) {
-		root->right = simpleLeft(root->right);
+		root->left = simpleLeft(root->left);
 		return simpleRight(root);
 	}
 
@@ -140,7 +130,6 @@ private:
 			return root;
 		}
 
-	
 		root->height_ = updateHeight(root);
 		int balance = getBalance(root);
 
@@ -151,8 +140,7 @@ private:
 			} else if (data > root->left->data) {
 				return doubleRight(root);
 			}
-		}
-		if (balance < -1) {
+		} else if (balance < -1) {
 			if (data > root->right->data) {
 				return simpleLeft(root);
 			} else if (data < root->right->data) {
@@ -209,7 +197,6 @@ private:
 				return simpleLeft(root);
 			} else {
 				return doubleLeft(root);
-
 			}
 		}
 		return root;
@@ -255,7 +242,7 @@ private:
 	}
 };
 
-} //  namespace structures
+}  //  namespace structures
 
 // -----
 
