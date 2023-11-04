@@ -15,7 +15,7 @@ int main() {
 	structures::TrieTree<string> tree;
 	string filename;
 
-    cin >> filename;  // entrada
+	cin >> filename;  // entrada
 
 	ifstream file(filename);
 
@@ -40,19 +40,18 @@ void read_file(ifstream& file, structures::TrieTree<string>& tree) {
 		tree.insert(word, position, length);
 
 		position += length+1;
-	}
+}
 
 }
 
 void search_tree(structures::TrieTree<string>& tree) {
-    string word;
+	string word;
 
-    while (1) {  
-        cin >> word;
+	while (true) {  
+		cin >> word;
 
-        if (word.compare("0") == 0) {
-            break;
-        }
+		if (word.compare("0") == 0) break;
+		
 
 		if (!tree.contain(word)) {
 			cout << word << " is not prefix" << endl;
@@ -67,5 +66,5 @@ void search_tree(structures::TrieTree<string>& tree) {
 			if (length != 0)
 				cout << word << " is at (" << position << "," << length << ")" << endl;
 		}
-    }
+	}
 }
