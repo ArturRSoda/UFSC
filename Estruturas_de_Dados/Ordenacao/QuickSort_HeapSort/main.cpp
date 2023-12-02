@@ -1,4 +1,3 @@
-#include <iomanip>
 #include <iostream>
 #include <stdlib.h>
 #include <chrono>
@@ -7,9 +6,9 @@
 using namespace std;
 
 int* randArray(int tam);
-int partition(int* A, int p, int r);
-void quickSort(int* A, int p, int r);
-void adjust(int* A, int i, int n);
+int partition(int* A, int inf_lim, int upper_lim);
+void quickSort(int* A, int inf_lim, int upper_lim);
+void heapify(int* A, int n, int i);
 void heapSort(int* A, int n);
 
 int main() {
@@ -82,27 +81,32 @@ int main() {
 	stop = chrono::high_resolution_clock::now();
 	auto a100000_heapsort_temp = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
-	cout << "------- Quick Sort -------" << endl;
+	cout << "-------- Quick Sort -------" << endl;
 	cout << "a1000_q   -> " << a1000_quicksort_temp.count() << " ms" << endl; 
 	cout << "a5000_q   -> " << a5000_quicksort_temp.count() << " ms" << endl; 
 	cout << "a10000_q  -> " << a10000_quicksort_temp.count() << " ms" << endl; 
 	cout << "a50000_q  -> " << a50000_quicksort_temp.count() << " ms" << endl; 
 	cout << "a100000_q -> " << a100000_quicksort_temp.count() << " ms" << endl; 
-	cout << "--------------------------" << endl;
+	cout << "---------------------------" << endl;
 
-	cout << "------- Heap Sort -------" << endl;
+	cout << "-------- Heap Sort --------" << endl;
 	cout << "a1000_h   -> " << a1000_heapsort_temp.count() << " ms" << endl; 
 	cout << "a5000_h   -> " << a5000_heapsort_temp.count() << " ms" << endl; 
 	cout << "a10000_h  -> " << a10000_heapsort_temp.count() << " ms" << endl; 
 	cout << "a50000_h  -> " << a50000_heapsort_temp.count() << " ms" << endl; 
 	cout << "a100000_h -> " << a100000_heapsort_temp.count() << " ms" << endl; 
-	cout << "--------------------------" << endl;
+	cout << "---------------------------" << endl;
 
 	delete [] a1000_q;
 	delete [] a5000_q;
 	delete [] a10000_q;
 	delete [] a50000_q;
 	delete [] a100000_q;
+	delete [] a1000_h;
+	delete [] a5000_h;
+	delete [] a10000_h;
+	delete [] a50000_h;
+	delete [] a100000_h;
 	return 0;
 }
 
@@ -114,67 +118,72 @@ int* randArray(int tam) {
 	return A;
 }
 
-
-int partition(int* A, int p, int r) {
-	int x = A[r];
-	int i = p - 1;
-
-	int temp;
-	for (int j = p; j < r; j++) {
-		if (A[j] <= A[r]) {
-			temp = A[r];
-			A[r] = A[j];
-			A[j] = temp;
-		}
-	}
-	temp = A[i+1];
-	A[i+1] = A[r];
-	A[r] = temp;
-
-	return i+1;
-}
-
-void quickSort(int* A, int p, int r) {
-	int q;
-	if (p < r) {
-		q = partition(A, p, r);
-		quickSort(A, p, q-1);
-		quickSort(A, q+1, r);
-	}
-}
-
-void adjust(int* A, int i, int n) {
+int partition(int* A, int inf_lim, int upper_lim) {
+	int i;
 	int j;
-	int aux;
-	
-	j = 2*i;	
 
-	while (j <= n) {
-		if ((j < n) && (A[j] < A[n])) {
-			j++;
-		}
-		if (aux >= A[j]) { 
-			return;
-		}
-		A[j/2] = A[j];
-		A[j] = aux;
-		j = 2*j;
+	int pivot = A[inf_lim];
+	int count = 0;
+
+	for (int i = inf_lim+1; i <= upper_lim; i++) {
+		if (A[i] <= pivot) count++;
 	}
-	aux = A[j/2];
+
+	int pivotIndex = inf_lim+count;
+	swap(A[pivotIndex], A[inf_lim]);
+	
+	i = inf_lim;
+	j = upper_lim;
+
+	while ((i < pivotIndex) && (j > pivotIndex)) {
+		while (A[i] <= pivot) { i++; }
+		while (A[j] > pivot) { j--; }
+		if ((i < pivotIndex) && (j > pivotIndex)) {
+			swap(A[i++], A[j--]);
+		}
+	}
+
+	return pivotIndex;
+}
+
+void quickSort(int* A, int inf_lim, int upper_lim) {
+	int i;
+	if (upper_lim > inf_lim) {
+		i = partition(A, inf_lim, upper_lim);
+		quickSort(A, inf_lim, i-1);
+		quickSort(A, i+1, upper_lim);
+	}
+}
+
+void heapify(int* A, int n, int i) {
+	int largest = i;
+	int l = 2*i + 1;
+	int r = 2*i + 2;
+
+	if ((l < n) && (A[l] > A[largest])) {
+		largest = l;
+	}
+
+	if ((r < n) && (A[r] > A[largest])) {
+		largest = r;
+	}
+
+	if (largest != i) {
+		swap(A[i], A[largest]);
+
+		heapify(A, n, largest);
+	}
 }
 
 void heapSort(int* A, int n) {
-	int i;
-	int temp;
 
-	for (int i = n/2; i > 1; i--) {
-		adjust(A, i, n);
+	for (int i = (n/2)-1; i >= 0; i--) {
+		heapify(A, n, i);
 	}
-	for (int i = n-1; i > 1; i--) {
-		temp = A[i+1];
-		A[i+1] = 1;
-		A[1] = temp;
-		adjust(A, 1, i);
+
+	for (int i = (n-1); i >= 0; i--) {
+		swap(A[0], A[i]);
+		heapify(A, i, 0);
 	}
 }
 

@@ -14,3 +14,8 @@ disp("");
 disp("Exercicio - 3");
 exercicio_3();
 
+disp("");
+disp("");
+
+disp("Exercicio - 4");
+exercicio_4();
