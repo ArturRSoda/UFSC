@@ -1,64 +1,80 @@
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+def new_node(data):
+    dict = {
+        "left"  : None,
+        "right" : None,
+        "data"  : data
+    }
+    return dict.copy()
 
-def insert(root, data):
-    if (root == None):
-        return Node(data)
+def insert(root, values):
+    while (len(values) > 0):
+        v = values.pop(0)
+        previous = root
+        actual = root
+        way = ""
 
-    if (data <= root.data):
-        root.left = insert(root.left, data)
-    else:
-        root.right = insert(root.right, data)
+        while True:
+            if (not actual):
+                if (way == "right"):
+                    previous["right"] = new_node(v)
+                else:
+                    previous["left"] = new_node(v)
+                break
 
-    return root
+            previous = actual
 
-def pre_order(root):
-    if (root == None):
-        return
-    print(" %d" % root.data, end="")
-    pre_order(root.left)
-    pre_order(root.right)
+            if (actual["data"] < v):
+                way = "right"
+                actual = actual["right"]
+            else:
+                way = "left"
+                actual = actual["left"]
 
-def in_order(root):
-    if (root == None):
-        return
-    in_order(root.left)
-    print(" %d" % root.data, end="")
-    in_order(root.right)
 
-def post_order(root):
-    if (root == None):
-        return
-    post_order(root.left)
-    post_order(root.right)
-    print(" %d" % root.data, end="")
+def in_order(root, arr):
+    if (root["left"] != None):
+        in_order(root["left"], arr)
+    arr.append(root["data"])
+    if (root["right"] != None):
+        in_order(root["right"], arr)
 
-c = int(input())
-for case in range(1, c+1):
+def pre_order(root, arr):
+    arr.append(root["data"])
+    if (root["left"] != None):
+        pre_order(root["left"], arr)
+    if (root["right"] != None):
+        pre_order(root["right"], arr)
+
+def post_order(root, arr):
+    if (root["left"] != None):
+        post_order(root["left"], arr)
+    if (root["right"] != None):
+        post_order(root["right"], arr)
+    arr.append(root["data"])
+
+
+n = int(input())
+for case in range(1, n+1):
     print("Case %d:" % case)
 
     n = int(input())
+    values = list(map(int, input().split()))
 
-    root = None
-    for x in input().split():
-        root = insert(root, int(x))
+    root = new_node(values.pop(0))
 
-    print("Pre.:", end="")
-    pre_order(root)
+    insert(root, values)
+
+    arr = list()
+    pre_order(root, arr)
+    print("Pre.: " + " ".join(list(map(str, arr))))
+
+    arr = list()
+    in_order(root, arr)
+    print("In..: " + " ".join(list(map(str, arr))))
+
+    arr = list()
+    post_order(root, arr)
+    print("Post: " + " ".join(list(map(str, arr))))
+
     print()
-
-    print("In..:", end="")
-    in_order(root)
-    print()
-
-    print("Post:", end="")
-    post_order(root)
-    print()
-
-    if (case != c):
-        print()
-
 
