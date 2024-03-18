@@ -1,0 +1,15 @@
+Os garcons nao podem ficar em um loop esperando os clientes = true
+Os clientes nao podem ficar em um loop esperando os garcons = true
+
+Garcom nao pode ficar em loop esperando cliente
+Garcom tem que dar wait
+Os clientes vao fazer um pedido para um garcom diferente
+Se capacidade = 2 cliente_n = 5 e garcom_n = 5, deu ruim (deadlock)
+
+Garcom nao pode ficar em loop esperando cliente [certo]
+Garcom tem que dar wait [certo]
+Os clientes vao fazer um pedido para um garcom diferente [errado]
+Se capacidade = 2 cliente_n = 5 e garcom_n = 10, deu ruim (deadlock)
+
+Os clientes vao fazer pedido para o mesmo garcom!
+

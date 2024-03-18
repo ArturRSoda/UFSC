@@ -1,0 +1,9 @@
+Boa tarde,
+
+Nós estamos com uma dúvida no trabalho 2.
+No caso em que duas pessoas da mesma faixa etária esperam na fila que a última experiência acabe, quando a experiência acaba elas entram na ixfera uma imediatamente após a outra.
+Dessa forma, na nossa implementação atual, algumas vezes a pessoa que entrou primeiro não é a primeira a sair.
+Isso seria um problema? Em outras palavras, é necessário assegurar que a primeira pessoa a entrar na ixfera seja a primeira a sair?
+
+Obrigado desde já.
+

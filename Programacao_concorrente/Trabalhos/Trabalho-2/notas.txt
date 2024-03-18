@@ -1,0 +1,13 @@
+Para pessoa entrar na esfera, (experiencia_atual is None or experiencia == experiencia_atual) and vagas_disponiveis > 0
+Quando pessoa sair da esfera, vagas_disponiveis++
+
+Quando for entrar:
+Esperar ser o primeiro
+Esperar tem vaga disponivel
+Enquanto !(experiencia_atual is None || experiencia == experiencia_atual), espera
+Entrar na esfera
+
+Quando for sair:
+Atualizar experiencia atual
+Liberar vaga disponivel
+
