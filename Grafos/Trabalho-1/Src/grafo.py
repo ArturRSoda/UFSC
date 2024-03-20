@@ -3,10 +3,10 @@ class Vertex:
     "Classe para os vertices do grafo"
 
     def __init__(self, i: int, lb: str) -> None:
-        self.__id = i
-        self.__label = lb
-        self.__degree = 0
-        self.__neighbors = list()
+        self.__id: int = i
+        self.__label: str = lb
+        self.__degree: int = 0
+        self.__neighbors: list[Vertex] = list()
 
     @property
     def id(self) -> int:
@@ -33,11 +33,11 @@ class Grafo:
     "Implementacao de Grafo nao-dirigido e ponderado"
 
     def __init__(self) -> None:
-        self.__adjacencyMatriz = list()
-        self.__vertexes = list()
+        self.__adjacencyMatriz: list[list[float]] = list()
+        self.__vertexes: list[Vertex] = list()
 
-        self.__qtdVertex = 0
-        self.__qtdEdge = 0
+        self.__qtdVertex: int = 0
+        self.__qtdEdge: int = 0
 
 
     def qtdVertices(self) -> int:
@@ -48,48 +48,44 @@ class Grafo:
         return self.__qtdEdge
 
 
-    def grau(self, v) -> int:
+    def grau(self, v: int) -> int:
         return self.__vertexes[v-1].degree
 
 
-    def rotulo(self, v) -> str:
+    def rotulo(self, v: int) -> str:
         return self.__vertexes[v-1].label
 
 
-    def vizinhos(self, v) -> list:
+    def vizinhos(self, v: int) -> list:
         return self.__vertexes[v-1].neighbors
 
 
-    def haAresta(self, u, v) -> bool:
+    def haAresta(self, u: int, v: int) -> bool:
         return False if (self.__adjacencyMatriz[u-1][v-1] == float("inf")) else True
 
 
-    def peso(self, u, v) -> float:
+    def peso(self, u: int, v: int) -> float:
         return self.__adjacencyMatriz[u-1][v-1]
 
 
     def ler(self, filePath: str) -> None:
         f = open(filePath, "r")
-        lines = f.read().split("\n")
+        lines: list[str] = f.read().split("\n")
         f.close
 
         self.__qtdVertex = int(lines[0].split()[1])
 
-        for i in range(1, self.__qtdVertex+1):
-            line = lines[i].replace('"', "").split()
-            id = int(line[0])
-            label = " ".join(line[1:])
-            self.__vertexes.append(Vertex(id, label))
+        self.__vertexes = [Vertex(int(line[0]), " ".join(line[1:])) for line in [lines[i].replace('"', "").split() for i in range(1, self.__qtdVertex+1)]]
 
         self.__adjacencyMatriz = [[float("inf") for _ in range(self.__qtdVertex)] for _ in range(self.__qtdVertex)]
         for i in range(self.__qtdVertex+2, len(lines)-1):
-            line = lines[i].split()
-            id1 = int(line[0])
-            id2 = int(line[1])
-            weight = float(line[2])
+            line: list[str] = lines[i].split()
+            id1: int = int(line[0])
+            id2: int = int(line[1])
+            weight: float = float(line[2])
 
-            v1 = self.__vertexes[id1-1]
-            v2 = self.__vertexes[id2-1]
+            v1: Vertex = self.__vertexes[id1-1]
+            v2: Vertex = self.__vertexes[id2-1]
 
             v1.degree += 1
             v2.degree += 1
@@ -100,7 +96,4 @@ class Grafo:
             self.__qtdEdge += 1
             self.__adjacencyMatriz[id1-1][id2-1] = weight
 
-            if (id1 == 1) and (id2 == 135):
-                print("aki")
-                print(self.__adjacencyMatriz[id1-1][id2-1])
 
