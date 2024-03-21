@@ -1,0 +1,20 @@
+primoAux :: Int -> Int -> Bool
+primoAux i n | (n <= 3) = not (n < 2)
+             | (i < n) = if (mod n i == 0) then False else primoAux (i+1) n 
+             | otherwise = True
+
+primo :: Int -> Bool
+primo n = primoAux 2 n
+
+goldbachAux :: Int -> Int -> [(Int, Int)] -> [(Int, Int)]
+goldbachAux i n arr | (i >= n) = arr
+                    | otherwise = goldbachAux (i+1) n b where b = if ((primo i) && (primo (n-i)) && (i <= (n-i))) then arr ++ [(i, (n-i))] else arr
+
+goldbach :: Int -> [(Int, Int)]
+goldbach n = goldbachAux 2 n []
+
+main = do
+    n <- readLn :: IO Int
+    print (goldbach n)
+
+
