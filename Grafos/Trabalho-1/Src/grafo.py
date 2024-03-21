@@ -6,7 +6,7 @@ class Vertex:
         self.__id: int = i
         self.__label: str = lb
         self.__degree: int = 0
-        self.__neighbors: list[Vertex] = list()
+        self.__neighbors: list[int] = list()
 
     @property
     def id(self) -> int:
@@ -90,8 +90,8 @@ class Grafo:
             v1.degree += 1
             v2.degree += 1
 
-            v1.neighbors.append(v2)
-            v2.neighbors.append(v1)
+            v1.neighbors.append(v2.id)
+            v2.neighbors.append(v1.id)
 
             self.__qtdEdge += 1
             self.__adjacencyMatriz[id1-1][id2-1] = weight
