@@ -8,7 +8,8 @@ primo n = primoAux 2 n
 
 goldbachAux :: Int -> Int -> [(Int, Int)] -> [(Int, Int)]
 goldbachAux i n arr | (i >= n) = arr
-                    | otherwise = goldbachAux (i+1) n b where b = if ((primo i) && (primo (n-i)) && (i <= (n-i))) then arr ++ [(i, (n-i))] else arr
+                    | ((primo i) && (primo (n-i)) && (i <= (n-i))) = goldbachAux (i+1) n (arr ++ [(i, (n-i))])
+                    | otherwise = goldbachAux (i+1) n arr
 
 goldbach :: Int -> [(Int, Int)]
 goldbach n = goldbachAux 2 n []
