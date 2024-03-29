@@ -67,6 +67,15 @@ class Grafo:
     def peso(self, u: int, v: int) -> float:
         return self.__adjacencyMatriz[u-1][v-1]
 
+    def arestas(self) -> list[tuple[int, int]]:
+        edges: list[tuple[int, int]] = list()
+        for vertex in range(1, self.qtdVertices()+1):
+            for n in self.vizinhos(vertex):
+                if ((n, vertex) not in edges):
+                    edges.append((vertex, n))
+        return edges
+
+
 
     def ler(self, filePath: str) -> None:
         f = open(filePath, "r")
