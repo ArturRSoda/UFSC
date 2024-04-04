@@ -1,4 +1,3 @@
-
 class Vertex:
     "Classe para os vertices do grafo"
 

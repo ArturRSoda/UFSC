@@ -17,7 +17,8 @@ def ex3() -> None:
     #printa 1 se for eulariano
     print(1 if eulariano else 0)
     #printa o ciclo
-    print(",".join(str(x) for x in ciclo))
+    if (eulariano):
+        print(",".join(str(x) for x in ciclo))
 
 
 ex3()
