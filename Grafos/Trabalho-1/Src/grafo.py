@@ -62,7 +62,6 @@ class Grafo:
     def haAresta(self, u: int, v: int) -> bool:
         return False if (self.__adjacencyMatriz[u-1][v-1] == float("inf")) else True
 
-
     def peso(self, u: int, v: int) -> float:
         return self.__adjacencyMatriz[u-1][v-1]
 
@@ -103,5 +102,6 @@ class Grafo:
 
                 self.__qtdEdge += 1
                 self.__adjacencyMatriz[id1-1][id2-1] = weight
+                self.__adjacencyMatriz[id2-1][id1-1] = weight
 
 
