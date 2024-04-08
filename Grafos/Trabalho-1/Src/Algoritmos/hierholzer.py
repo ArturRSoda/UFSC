@@ -27,8 +27,8 @@ def busca(graph: Grafo, v: int, knownEdges: list[bool], edges: list[tuple[int, i
     while True:
         #listas de arestas que ainda nao foram conhecidas
         edgesNotPassed: list[tuple[int, int]] = [edges[i] for i in range(len(knownEdges)) if knownEdges[i] == False]
-        #vercices ligados a essas arestas ainda nao conhecidas
-        vertexWithEdgesNotPassed: set[int] = set([vert for edge in edgesNotPassed for vert in edge])
+        #vercices ligados a essas arestas ainda nao conhecidas e que pertencem ao ciclo
+        vertexWithEdgesNotPassed: set[int] = set([vert for edge in edgesNotPassed for vert in edge if (vert in cicle)])
 
         #Para quando todas as arestas ja foram conhecidas
         if (not vertexWithEdgesNotPassed):
@@ -70,9 +70,9 @@ def hierholzer(graph: Grafo) -> tuple[bool, list[int]]:
     #neste caso, o primeiro
     v = edges[0][0]
 
-    #busca siclos eularianos
+    #busca ciclos eularianos
     eulariano, cicle, knownEdges = busca(graph, v, knownEdges, edges)
 
-    #returna True caso for eulariano e nao existam arestas que nao foram passadas
+    #retorna True caso for eulariano e nao existam arestas que nao foram passadas
     return (True, cicle) if ((eulariano) and (False not in knownEdges)) else (False, [])
 

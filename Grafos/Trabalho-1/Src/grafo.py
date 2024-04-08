@@ -75,7 +75,6 @@ class Grafo:
         return edges
 
 
-
     def ler(self, filePath: str) -> None:
         f = open(filePath, "r")
         lines: list[str] = f.read().split("\n")
@@ -86,22 +85,23 @@ class Grafo:
         self.__vertexes = [Vertex(int(line[0]), " ".join(line[1:])) for line in [lines[i].replace('"', "").split() for i in range(1, self.__qtdVertex+1)]]
 
         self.__adjacencyMatriz = [[float("inf") for _ in range(self.__qtdVertex)] for _ in range(self.__qtdVertex)]
-        for i in range(self.__qtdVertex+2, len(lines)-1):
+        for i in range(self.__qtdVertex+2, len(lines)):
             line: list[str] = lines[i].split()
-            id1: int = int(line[0])
-            id2: int = int(line[1])
-            weight: float = float(line[2])
+            if (line):
+                id1: int = int(line[0])
+                id2: int = int(line[1])
+                weight: float = float(line[2])
 
-            v1: Vertex = self.__vertexes[id1-1]
-            v2: Vertex = self.__vertexes[id2-1]
+                v1: Vertex = self.__vertexes[id1-1]
+                v2: Vertex = self.__vertexes[id2-1]
 
-            v1.degree += 1
-            v2.degree += 1
+                v1.degree += 1
+                v2.degree += 1
 
-            v1.neighbors.append(v2.id)
-            v2.neighbors.append(v1.id)
+                v1.neighbors.append(v2.id)
+                v2.neighbors.append(v1.id)
 
-            self.__qtdEdge += 1
-            self.__adjacencyMatriz[id1-1][id2-1] = weight
+                self.__qtdEdge += 1
+                self.__adjacencyMatriz[id1-1][id2-1] = weight
 
 
