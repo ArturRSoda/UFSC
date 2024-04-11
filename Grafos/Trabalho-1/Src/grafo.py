@@ -62,8 +62,10 @@ class Grafo:
     def haAresta(self, u: int, v: int) -> bool:
         return False if (self.__adjacencyMatriz[u-1][v-1] == float("inf")) else True
 
+
     def peso(self, u: int, v: int) -> float:
         return self.__adjacencyMatriz[u-1][v-1]
+
 
     def arestas(self) -> list[tuple[int, int]]:
         edges: list[tuple[int, int]] = list()

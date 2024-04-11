@@ -1,6 +1,7 @@
 from sys import argv
 from grafo import Grafo
 from Algoritmos.bellman_ford import bellman_ford
+from Algoritmos.dijkstra import dijkstra
 
 def ex4() -> None:
     if (len(argv) != 3):
@@ -13,7 +14,11 @@ def ex4() -> None:
 
     grafo.ler(fileName)
 
+    v = True
+    distances_dijkstra, ancestors_dijkistra = dijkstra(grafo, s)
     v, distances, ancestors = bellman_ford(grafo, s)
+
+    assert (distances == distances_dijkstra and ancestors == ancestors_dijkistra)
 
     path: list[int] = list()
     if (v):
