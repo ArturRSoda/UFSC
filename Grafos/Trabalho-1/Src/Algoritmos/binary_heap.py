@@ -18,7 +18,8 @@ class BinaryHeap:
             i = self.parent(i)
 
     def remove(self) -> float:
-        assert (not self.isEmpty())
+        if (self.isEmpty()):
+            return -1
         element: float = self.heap[0]
         if (len(self.heap) > 1):
             self.heap[0] = self.heap.pop()

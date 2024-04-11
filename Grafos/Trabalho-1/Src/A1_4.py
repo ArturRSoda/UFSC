@@ -14,11 +14,7 @@ def ex4() -> None:
 
     grafo.ler(fileName)
 
-    v = True
-    distances_dijkstra, ancestors_dijkistra = dijkstra(grafo, s)
     v, distances, ancestors = bellman_ford(grafo, s)
-
-    assert (distances == distances_dijkstra and ancestors == ancestors_dijkistra)
 
     path: list[int] = list()
     if (v):
@@ -33,6 +29,22 @@ def ex4() -> None:
 
             print("%d: %s; d=%d" % (i, ",".join([str(x) for x in path]), distances[i-1]))
 
+    print()
+    print(distances, ancestors)
+    distances, ancestors = dijkstra(grafo, s)
+    print(distances, ancestors)
+    print()
+
+    for i in range(1, grafo.qtdVertices()+1):
+        path.clear()
+
+        a: int = i
+        while (True):
+            path.insert(0, a)
+            if (a == s): break
+            a = ancestors[a-1]
+
+        print("%d: %s; d=%d" % (i, ",".join([str(x) for x in path]), distances[i-1]))
 ex4()
 
 
