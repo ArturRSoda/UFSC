@@ -9,12 +9,15 @@ class Position:
         self.downBorderBlock: bool = False
         self.leftBorderBlock: bool = False
         self.rightBorderBlock: bool = False
-        self.visited = False
+        self.region: int = None
 
 class Board:
     def __init__(self, boardText: list[str], n: int) -> None:
-        self.n = n
-        self.board = self.make_board(boardText)
+        self.n: int = n
+        self.board: list[list[Position]] = self.make_board(boardText)
+        self.regions: dict[int, list[int]] = dict()
+        self.find_regions()
+
 
     def make_board(self, lines: list[str]) -> list[list[Position]]:
         board: list[list[Position]] = list()
@@ -34,95 +37,69 @@ class Board:
             board.append(tempList.copy())
         return board
 
-    def inc_ij(self, i: int, j: int) -> tuple[int, int]:
-        j += 1
-        if (j == self.n):
-            j = 0
-            i += 1
-        return i,j
+    def find_regions(self) -> None:
+        r: int = 1
+        indexArr: list[tuple[int, int]] = list()
+        valueArr: list[int] = list()
+        for i in range(self.n):
+            for j in range(self.n):
+                self.print_regions()
+                input()
 
-    def dec_ij(self, i: int, j: int) -> tuple[int, int]:
-        j -= 1
-        if (j == -1):
-            j = self.n-1
-            i -= 1
-        return i,j
+                p = self.board[i][j]
 
-    def solve(self) -> None:
-        i: int = 0
-        j: int = 0
-        v: int = 1
+                if (not p.region):
+                    indexArr, valueArr = self.find_region(i, j, r, indexArr, valueArr)
 
-        while (i < self.n):
-            self.print_board()
-            input()
-            if (not self.board[i][j].constant):
-                print("teste")
-                print(i,j)
-                print(v)
-                print(self.verify_region(i, j, v, ""))
-                if (self.verify_region(i, j, v, "")):
-                    self.board[i][j].value = v
-                    v = 1
-                    i, j = self.inc_ij(i, j)
+                    self.regions[r] = valueArr
+                    indexArr.clear()
+                    valueArr.clear()
+                    r += 1
 
-                else:
-                    v += 1
-                    if (v == 10):
-                        i, j = self.dec_ij(i, j)
-                        v = self.board[i][j].value
 
-            else:
-                i, j = self.inc_ij(i, j)
-
-    def verify_region(self, i: int, j: int, value: int, back: str) -> bool:
+    def find_region(self, i: int, j: int, r: int, indexArr: list[tuple[int, int]], valueArr: list[int]) -> tuple[list[tuple[int, int]], list[int]]:
         p: Position = self.board[i][j]
+        
+        print(i,j)
+        if ((i, j) not in indexArr):
+            self.board[i][j].region = r
+            indexArr.append((i,j))
+            if (p.value not in valueArr):
+                valueArr.append(p.value)
 
-        if (p.value == value):
-            return False
+        if ((not p.upBorderBlock) and ((i-1, j) not in indexArr)):
+            indexArr, valueArr = self.find_region(i-1, j, r, indexArr, valueArr)
 
-        if ((not p.upBorderBlock) and (back != "up")):
-            if (not self.verify_region(i-1, j, value, "down")):
-                return False
+        if ((not p.downBorderBlock) and ((i+1, j) not in indexArr)):
+            indexArr, valueArr = self.find_region(i+1, j, r, indexArr, valueArr)
 
-        if ((not p.downBorderBlock) and (back != "down")):
-            if (not self.verify_region(i+1, j, value, "up")):
-                return False
+        if ((not p.leftBorderBlock) and ((i, j-1) not in indexArr)):
+            indexArr, valueArr = self.find_region(i, j-1, r, indexArr, valueArr)
 
-        if ((not p.leftBorderBlock) and (back != "left")):
-            if (not self.verify_region(i, j-1, value, "right")):
-                return False
+        if ((not p.rightBorderBlock) and ((i+1, j) not in indexArr)):
+            indexArr, valueArr = self.find_region(i, j+1, r, indexArr, valueArr)
 
-        if ((not p.rightBorderBlock) and (back != "right")):
-            if (not self.verify_region(i, j+1, value, "left")):
-                return False
+        return indexArr, valueArr
 
-        return True
+    def print_regions(self) -> None:
+        print("|"+"-"*((self.n*2)-1)+"|")
+        l1: str = ""
+        l2: str = ""
+        for i in range(self.n):
+            l1 = "|"
+            l2 = "|"
+            for j in range(self.n):
+                p: Position = self.board[i][j]
 
-    def verify_up(self, i: int, j: int, value: int) -> bool:
-        p: Position = self.board[i][j]
-        if (p.value == value):
-            return False
-        return True if p.upBorderBlock else self.verify_up(i-1, j, value)
+                l1 += ("%d" % p.region) if (p.region) else "."
+                l1 += "|" if p.rightBorderBlock else " "
 
-    def verify_down(self, i: int, j: int, value: int) -> bool:
-        p: Position = self.board[i][j]
-        if (p.value == value):
-            return False
-        return True if p.downBorderBlock else self.verify_up(i+1, j, value)
+                l2 += "-" if p.downBorderBlock else " "
+                l2 += "|" if ((j == self.n-1) or (not p.downBorderBlock) or (not self.board[i][j+1].downBorderBlock)) else "-"
 
-    def verify_left(self, i: int, j: int, value: int) -> bool:
-        p: Position = self.board[i][j]
-        if (p.value == value):
-            return False
-        return True if p.leftBorderBlock else self.verify_up(i, j-1, value)
-
-    def verify_right(self, i: int, j: int, value: int) -> bool:
-        p: Position = self.board[i][j]
-        if (p.value == value):
-            return False
-        return True if p.rightBorderBlock else self.verify_up(i, j+1, value)
-
+            print(l1)
+            print(l2)
+            
     def print_board(self) -> None:
         print("|"+"-"*((self.n*2)-1)+"|")
         l1: str = ""
@@ -151,7 +128,6 @@ def main() -> None:
     f.close()
 
     board: Board = Board(text.split('\n'), n)
-    board.solve()
     board.print_board()
 
 
