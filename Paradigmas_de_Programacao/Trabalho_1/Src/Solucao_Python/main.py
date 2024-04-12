@@ -43,15 +43,12 @@ class Board:
         valueArr: list[int] = list()
         for i in range(self.n):
             for j in range(self.n):
-                self.print_regions()
-                input()
-
                 p = self.board[i][j]
 
                 if (not p.region):
                     indexArr, valueArr = self.find_region(i, j, r, indexArr, valueArr)
 
-                    self.regions[r] = valueArr
+                    self.regions[r] = valueArr.copy()
                     indexArr.clear()
                     valueArr.clear()
                     r += 1
@@ -60,11 +57,10 @@ class Board:
     def find_region(self, i: int, j: int, r: int, indexArr: list[tuple[int, int]], valueArr: list[int]) -> tuple[list[tuple[int, int]], list[int]]:
         p: Position = self.board[i][j]
         
-        print(i,j)
         if ((i, j) not in indexArr):
             self.board[i][j].region = r
             indexArr.append((i,j))
-            if (p.value not in valueArr):
+            if ((p.value not in valueArr) and (p.value != -1)):
                 valueArr.append(p.value)
 
         if ((not p.upBorderBlock) and ((i-1, j) not in indexArr)):
@@ -129,6 +125,9 @@ def main() -> None:
 
     board: Board = Board(text.split('\n'), n)
     board.print_board()
+    print()
+    board.print_regions()
+    print(board.regions)
 
 
 main()
