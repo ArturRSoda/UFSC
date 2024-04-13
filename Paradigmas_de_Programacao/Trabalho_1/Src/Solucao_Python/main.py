@@ -37,6 +37,67 @@ class Board:
             board.append(tempList.copy())
         return board
 
+    def solve(self, i: int = 0, j: int = 0) -> bool:
+        if (i == self.n):
+            return True
+
+        elif (j == self.n):
+            return self.solve(i+1, 0)
+
+        elif (self.board[i][j].value != -1):
+            return self.solve(i, j+1)
+
+        else:
+            for guess in range(1, 10):
+                if (self.validate(i, j, guess)):
+                    self.board[i][j].value = guess
+                    self.regions[self.board[i][j].region].append(guess)
+                    self.regions[self.board[i][j].region].remove(-1)
+
+                    if (self.solve(i, j+1)):
+                        return True
+
+                    self.board[i][j].value = -1
+                    self.regions[self.board[i][j].region].remove(guess)
+                    self.regions[self.board[i][j].region].append(-1)
+
+            return False
+
+
+    def validate(self, i: int, j: int, guess: int) -> bool:
+        if (guess in self.regions[self.board[i][j].region]):
+            return False
+
+        if (guess > len(self.regions[self.board[i][j].region])):
+            return False
+
+        if (i != 0):
+            if (self.board[i-1][j].value == guess):
+                return False
+            
+            if (not self.board[i][j].upBorderBlock):
+                if (self.board[i-1][j].value <= guess):
+                    return False
+
+        if (i != self.n-1):
+            if (self.board[i+1][j].value == guess):
+                return False
+
+            if (not self.board[i][j].downBorderBlock):
+                if (self.board[i+1][j].value >= guess):
+                    return False
+
+        if (j != 0):
+            if (self.board[i][j-1].value == guess):
+                return False
+
+        if (j != self.n-1):
+            if (self.board[i][j+1].value == guess):
+                return False
+
+
+        return True
+
     def find_regions(self) -> None:
         r: int = 1
         indexArr: list[tuple[int, int]] = list()
@@ -53,14 +114,13 @@ class Board:
                     valueArr.clear()
                     r += 1
 
-
     def find_region(self, i: int, j: int, r: int, indexArr: list[tuple[int, int]], valueArr: list[int]) -> tuple[list[tuple[int, int]], list[int]]:
         p: Position = self.board[i][j]
         
         if ((i, j) not in indexArr):
             self.board[i][j].region = r
             indexArr.append((i,j))
-            if ((p.value not in valueArr) and (p.value != -1)):
+            if ((p.value not in valueArr) or (p.value == -1)):
                 valueArr.append(p.value)
 
         if ((not p.upBorderBlock) and ((i-1, j) not in indexArr)):
@@ -128,6 +188,10 @@ def main() -> None:
     print()
     board.print_regions()
     print(board.regions)
+    print()
+    board.solve()
+    print()
+    board.print_board()
 
 
 main()
