@@ -46,14 +46,25 @@ printBoard [] = putStr ""
 printBoard (a:b) = printRow a >>= (\x -> printBoard b)
 
 validate :: I -> J -> Int -> RegionsMap -> Board -> Maybe Bool
-validate i j guess dict board = let regionList = findWithDefault [] (getRegionBoard i j board) dict; pos = getPosition i j board in do
-    a0 <- inRow guess regionList
-    a1 <- if (guess > (getLen regionList)) then Nothing else (Just True)
+validate i j guess dict board = let regionList = findWithDefault [] (getRegionBoard i j board) dict; pos = getPosition i j board; len = getLen board in do
+    v0 <- inRow guess regionList
+    v1 <- if (guess > (getLen regionList)) then Nothing else (Just True)
 
-    a2 <- if (i == 0) then (Just True) else
-        if (getValue (getPosition (i-1) j board)) == guess then Nothing else
+    v2 <- if (i == 0) then (Just True) else
+        if (getValue (getPosition (i-1) j board) == guess) then Nothing else
             if (getUpBorderBlock pos) then (Just True) else 
-                if ((getValue (getPosition (i-1) j board)) <= guess) then (Just True) else Nothing
+                if ((getValue (getPosition (i-1) j board)) <= guess) then Nothing else (Just True) 
+
+    v3 <- if (i == (len-1)) then (Just True) else
+        if (getValue (getPosition (i+1) j board) == guess) then Nothing else
+            if (getDownBorderBlock pos) then (Just True) else
+                if ((getValue (getPosition (i+1) j board)) >= guess) then Nothing else (Just True)
+
+    v4 <- if (j == 0) then (Just True) else
+        if (getValue (getPosition i (j-1) board) == guess) then Nothing else (Just True)
+
+    v5 <- if (j == (len-1)) then (Just True) else
+        if (getValue (getPosition i (j+1) board) == guess) then Nothing else (Just True)
 
     Just True
 

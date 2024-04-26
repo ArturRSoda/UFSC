@@ -17,10 +17,11 @@ main = do
     contents2 <- readFile "Entradas/teste_regions.txt"
     let y = Prelude.map (Prelude.filter isNotSpace) (lines contents2)
     let rm = ["aaa", "abb", "ccc"]
-    let b = makeBoard [[1, 2, 3], [4, 1, 2], [1, 2, 3]] rm 0
+    let b = makeBoard [[4, 2, 3], [1, 1, 2], [2, 1, 3]] rm 0
 
-    let dict = (fromList [('a', [1, 2, 3, 4, (-1)]), ('b', [(-1), 1, 2]), ('c', [1, 2, 3])])
-    case (validate 1 0 (-1) dict b) of
+    let dict = (fromList [('a', [1, 2, 3, 4]), ('b', [1, 2]), ('c', [2, 1, 3])])
+    print (getLen b)
+    case (validate 1 0 1 dict b) of
         Nothing -> print "falho"
         Just False -> print "falho falso"
         Just True -> printBoard b
