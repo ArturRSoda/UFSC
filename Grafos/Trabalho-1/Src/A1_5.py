@@ -12,7 +12,10 @@ def ex5() -> None:
     grafo: Grafo = Grafo()
     grafo.ler(fileName)
 
+    # Retonar a matriz de distancia (todos para todos)
     distances: list[list[float]] = floyd_warshall(grafo)
+
+    # Imprime as distancias referentes de cada vertice
     for i, d in enumerate(distances):
         print("%d:%s"%(i+1, ",".join([str(int(x)) for x in d])))
 

@@ -13,23 +13,23 @@ def ex2() -> None:
 
     grafo.ler(fileName)
 
-    #pega as distancias dos vertices em relacao a S
-    #por meio de busca em largura
+    # Pega as distancias dos vertices em relacao a S
+    # por meio de busca em largura
     distances = busca_em_largura(grafo, s)[0]
 
-    #dicionario onde as chaves sao os levels e o valores sao os vertices no nivel
+    # Dicionario onde as chaves sao os niveis e o valores sao os vertices no nivel
     levels: dict[float, list[int]] = dict()
-    #para cada distancia
+    # Para cada distancia
     for i, d in enumerate(distances):
-        #se houver uma distancia
+        # Se houver uma distancia
         if (d != float("inf")):
-            #adiciona o vertices em seu respectivo nivel
+            # Adiciona o vertices em seu respectivo nivel
             if (levels.get(d)):
                 levels[d].append(i+1)
             else:
                 levels[d] = [i+1]
 
-    #printa os niveis
+    # Printa os niveis
     for k, v in sorted(levels.items()):
         print("%d: %s" % (k, ",".join([str(x) for x in v])))
 ex2()

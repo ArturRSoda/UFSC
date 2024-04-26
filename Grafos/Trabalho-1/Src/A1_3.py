@@ -12,14 +12,13 @@ def ex3() -> None:
 
     grafo.ler(fileName)
 
-    #busca ciclo eulariano
-    eulariano, ciclo = hierholzer(grafo)
-    #printa 1 se for eulariano
-    print(1 if eulariano else 0)
-    #printa o ciclo
-    if (eulariano):
+    # Busca ciclo euleriano
+    euleriano, ciclo = hierholzer(grafo)
+    # Imprime 1 se for euleriano
+    print(1 if euleriano else 0)
+    # Imprime o ciclo caso eulerino
+    if (euleriano):
         print(",".join(str(x) for x in ciclo))
-
 
 ex3()
 

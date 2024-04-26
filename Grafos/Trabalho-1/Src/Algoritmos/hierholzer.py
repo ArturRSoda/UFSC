@@ -1,78 +1,83 @@
 from grafo import Grafo
 
 def busca(graph: Grafo, v: int, knownEdges: list[bool], edges: list[tuple[int, int]]) -> tuple[bool, list[int], list[bool]]:
-    #lista que representa o ciclo, iniciado com o vertex passado
+    # Lista que representa o ciclo, iniciado com o vertex passado
     cicle: list[int] = [v]
     t: int = v
 
     while True:
-        #lista de arestas ligadas a V e ainda nao foram conhecidas
+        # Lista de arestas ligadas a V e ainda nao foram conhecidas
         vEdges: list[tuple[int, int]] = [edges[i] for i in range(len(edges)) if ((v in edges[i]) and (knownEdges[i] == False))]
-        #caso a lista for vazia retorna Falso
+        # Caso a lista for vazia retorna Falso
         if (not vEdges):
             return (False, [], knownEdges)
 
-        #pega a primeira aresta da lista e seta como conhecida
+        # Escolhe alguma aresta ligada a V que ainda nao foi conhecida
+        # Neste caso pega a primeira disponivel
+        #   Depois, define como conhecida e define v para o proximo vertice
         knownEdges[edges.index(vEdges[0])] = True
-        #passa para o proximo vertice
         v = vEdges[0][1] if (vEdges[0][1] != v) else vEdges[0][0]
 
-        #adiciona o proximo vertice a lista
+        # Adiciona V (proximo vertice) ao ciclo
         cicle.append(v)
 
-        #para quando fechar o ciclo
+        # Identifica se fechou o ciclo
         if (v == t):
             break
 
+    # Procura outro ciclo eleriano apartir de algum dos vertices dentro do ciclo ja achado
     while True:
-        #listas de arestas que ainda nao foram conhecidas
+        # Listas das arestas que ainda nao foram conhecidas
         edgesNotPassed: list[tuple[int, int]] = [edges[i] for i in range(len(knownEdges)) if knownEdges[i] == False]
-        #vercices ligados a essas arestas ainda nao conhecidas e que pertencem ao ciclo
+
+        # Utiliza a lista de arestas nao conhecidas para achar vertices pertencentes ao ciclo ja definido
+        # que possuem alguma dessas arestas (utiliza set para evitar vertices repetidos)
         vertexWithEdgesNotPassed: set[int] = set([vert for edge in edgesNotPassed for vert in edge if (vert in cicle)])
 
-        #Para quando todas as arestas ja foram conhecidas
+        # Para se todos os vertices do ciclo somente possuem arestas ja conhecidas
         if (not vertexWithEdgesNotPassed):
             break
 
-        #pega um dos vertices ligados a arestas nao conhecidas
-        #neste casso o primeiro
+        # Escolhe um dos vertices com arestas nao conhecidas
+        #   neste casso o primeiro
         vertex = list(vertexWithEdgesNotPassed)[0]
 
-        #procura ciclos neste vertice
+        # Procura ciclos neste vertice
         eulariano, newCicle, knownEdges = busca(graph, vertex, knownEdges, edges)
 
-        #retorna falso se nao encontrar
+        # Retorna falso se nao encontrar
         if (not eulariano):
             return (False, [], knownEdges)
 
-        #caso tenha encontrado outro ciclo, uni o este novo ciclo com o anterior
+        # Caso tenha encontrado outro ciclos 
+        #   uni o este novo ciclo com o anterior
         i: int = cicle.index(newCicle[0])
         cicle.pop(i)
         cicle[i:i] = newCicle
 
 
-    #retorna True caso for eulariano
+    # Retorna True caso for eulariano
     return (True, cicle, knownEdges)
 
 
 def hierholzer(graph: Grafo) -> tuple[bool, list[int]]:
-    #lista que representa se aresta foi conhecida
+    # Lista para controle de arestas ja visitadas 
     knownEdges: list[bool] = [False for _ in range(graph.qtdArestas())]
 
-    #lista de todas as arestas
+    # Lista de todas as arestas
     edges: list[tuple[int, int]] = graph.arestas()
 
-    #caso nao exista arestas retorna Falso
+    # Caso nao exista arestas retorna Falso
     if (not edges):
         return (False, [])
 
-    #seleciona um vertex que possui uma aresta
-    #neste caso, o primeiro
+    # Seleciona um vertex que possui uma aresta
+    # neste caso, o primeiro
     v = edges[0][0]
 
-    #busca ciclos eularianos
+    # Busca ciclos eulerianos
     eulariano, cicle, knownEdges = busca(graph, v, knownEdges, edges)
 
-    #retorna True caso for eulariano e nao existam arestas que nao foram passadas
+    # Retorna True caso for eulariano e nao existam arestas que nao foram passadas
     return (True, cicle) if ((eulariano) and (False not in knownEdges)) else (False, [])
 
