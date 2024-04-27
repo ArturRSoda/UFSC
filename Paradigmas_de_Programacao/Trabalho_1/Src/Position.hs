@@ -7,7 +7,7 @@ data Position = Position {
     leftBorderBlock :: Bool,
     rightBorderBlock :: Bool,
     region :: Char
-} deriving Show
+} deriving (Show, Eq)
 
 makePosition :: Int -> Int -> Int -> [[Char]] -> Int -> Position
 makePosition i j v rm l = let r = (rm!!i)!!j in
