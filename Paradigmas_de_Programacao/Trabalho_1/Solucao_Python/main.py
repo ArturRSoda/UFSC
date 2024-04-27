@@ -49,6 +49,14 @@ class Board:
 
         else:
             for guess in range(1, 10):
+                print("guess =", guess)
+                print("i =", i)
+                print("j =", j)
+                self.print_board()
+                print(self.regions[self.board[i][j].region])
+                print(guess in self.regions[self.board[i][j].region])
+                print(self.validate(i, j, guess))
+                input()
                 if (self.validate(i, j, guess)):
                     self.board[i][j].value = guess
                     self.regions[self.board[i][j].region].append(guess)

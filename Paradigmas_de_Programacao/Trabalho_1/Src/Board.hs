@@ -21,7 +21,9 @@ makeRow (a:b) rm i j len = [makePosition i j a rm len] ++ makeRow b rm i (j+1) l
 
 printRow :: Row -> IO ()
 printRow [] = putStrLn ""
-printRow (a:b) = putStr (show (getValue a) ++ " ") >>= (\x -> printRow b)
+printRow (a:b) 
+    | (getValue a == (-1)) = putStr ". " >>= (\x -> printRow b)
+    | otherwise = putStr (show (getValue a) ++ " ") >>= (\x -> printRow b)
 
 makeBoard :: [[Int]] -> RegionBoard -> I -> Board
 makeBoard [] _ _ = []

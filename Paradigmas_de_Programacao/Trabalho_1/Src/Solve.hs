@@ -1,55 +1,59 @@
 module Solve (validate) where
+import Data.Map
 import Board
 import Position
 import Utils
 
-validate :: I -> J -> Int -> RegionList -> Board -> Maybe Bool
-validate i j guess rl board = do
-    let pos = getPosition i j board
-    let n = getLen board
-    let regionLen = getLen rl
+validate :: I -> J -> Int -> RegionList -> Board -> Bool
+validate i j guess rl board =
+    notInRow guess rl &&
+    (guess <= regionLen) &&
+    verifyAbovePosition i j guess pos board &&
+    verifyBellowPosition i j guess pos board n &&
+    verifyLeftPosition i j guess board &&
+    verifyRightPosition i j guess board n where 
+          pos = getPosition i j board
+          n = getLen board
+          regionLen = getLen rl
 
-    v0 <- inRow guess rl
-    v1 <- operMaybe regionLen guess (>=)
-    v2 <- verifyAbovePosition i j guess pos board
-    v3 <- verifyBellowPosition i j guess pos board n
-    v4 <- verifyLeftPosition i j guess board
-    v5 <- verifyRightPosition i j guess board n
+notInRow :: Eq a => a -> [a] -> Bool
+notInRow _ [] = True
+notInRow v (a:b)
+    | (v == a) = False
+    |otherwise = notInRow v b
 
-    Just True
-
-inRow :: Eq a => a -> [a] -> Maybe Bool
-inRow _ [] = Nothing
-inRow v (a:b)
-    | (v == a) = Just True
-    |otherwise = inRow v b
-
-verifyAbovePosition :: I -> J -> Int -> Position -> Board -> Maybe Bool
-verifyAbovePosition i j guess pos board =
-    if (i == 0) then (Just True) else
+verifyAbovePosition :: I -> J -> Int -> Position -> Board -> Bool
+verifyAbovePosition i j guess pos board
+    | (i == 0) = True
+    | otherwise = 
         let abovePos = getPosition (i-1) j board in
-            (operMaybe (getValue abovePos) guess (/=)) >>=
-                (\x -> case (getUpBorderBlock pos) of
-                    True -> Just True
-                    otherwise -> operMaybe (getValue abovePos) guess (>))
+            (getValue abovePos /= guess) &&
+            (case (getUpBorderBlock pos) of
+                True -> True
+                False -> (getValue abovePos > guess))
         
-verifyBellowPosition :: I -> J -> Int -> Position -> Board -> Int -> Maybe Bool
-verifyBellowPosition i j guess pos board n = 
-    if (i == (n-1)) then (Just True) else
+verifyBellowPosition :: I -> J -> Int -> Position -> Board -> Int -> Bool
+verifyBellowPosition i j guess pos board n
+    | (i == (n-1)) = True
+    | otherwise =
         let bellowPos = getPosition (i+1) j board in 
-            (operMaybe (getValue bellowPos) guess (/=)) >>=
-                (\x -> case (getDownBorderBlock pos) of
-                    True -> Just True
-                    otherwise -> operMaybe (getValue bellowPos) guess (<))
+            (getValue bellowPos /= guess) &&
+            (case (getDownBorderBlock pos) of
+                True -> True
+                False -> (getValue bellowPos < guess))
 
 
-verifyLeftPosition :: I -> J -> Int -> Board -> Maybe Bool
-verifyLeftPosition i j guess board =
-    if (j == 0) then (Just True) else
-        operMaybe (getValue leftPos) guess (/=) where leftPos = getPosition i (j-1) board
+verifyLeftPosition :: I -> J -> Int -> Board -> Bool
+verifyLeftPosition i j guess board
+    | (j == 0) = True
+    | otherwise = 
+        let leftPos = getPosition i (j-1) board in 
+            (getValue leftPos /= guess)
 
-verifyRightPosition :: I -> J -> Int -> Board -> Int -> Maybe Bool
-verifyRightPosition i j guess board n = 
-    if (i == (n-1)) then (Just True) else
-        operMaybe (getValue rightPos) guess (/=) where rightPos = getPosition i (j+1) board
+verifyRightPosition :: I -> J -> Int -> Board -> Int -> Bool
+verifyRightPosition i j guess board n
+    | (i == (n-1)) = True
+    | otherwise = 
+        let rightPos = getPosition i (j+1) board in
+            (getValue rightPos /= guess)
 
