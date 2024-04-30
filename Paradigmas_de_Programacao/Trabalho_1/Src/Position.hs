@@ -1,5 +1,6 @@
 module Position (Position (Position), getValue, getUpBorderBlock, getDownBorderBlock, getLeftBorderBlock, getRightBorderBlock, getRegion, makePosition, changePositionValue) where 
 
+-- Estrutura das posicoes do tabuleiro
 data Position = Position {
     value :: Int,
     upBorderBlock :: Bool,
@@ -9,6 +10,7 @@ data Position = Position {
     region :: Char
 } deriving (Show, Eq)
 
+-- Instancia posicao, definindo seu valor, bloqueios e regiao
 makePosition :: Int -> Int -> Int -> [[Char]] -> Int -> Position
 makePosition i j v rm l = let r = (rm!!i)!!j in
     Position {
@@ -20,6 +22,7 @@ makePosition i j v rm l = let r = (rm!!i)!!j in
         region = r
     }
 
+-- Muda valor da posicao
 changePositionValue :: Position -> Int -> Position
 changePositionValue pos v =
     Position {
@@ -31,6 +34,7 @@ changePositionValue pos v =
         region = getRegion pos
     }
 
+------------------------------- Getters -------------------------------
 getValue :: Position -> Int
 getValue (Position value _ _ _ _ _) = value
 
@@ -48,4 +52,5 @@ getRightBorderBlock (Position _ _ _ _ rightBorderBlock _) = rightBorderBlock
 
 getRegion :: Position -> Char
 getRegion (Position _ _ _ _ _ region) = region
+-----------------------------------------------------------------------
 

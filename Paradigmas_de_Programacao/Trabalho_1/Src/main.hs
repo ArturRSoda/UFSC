@@ -1,9 +1,21 @@
+import System.Environment (getArgs)
 import Data.Char (digitToInt)
 import Data.Map
 import Utils
 import Position
 import Board
 import Solve
+
+readBoard :: String -> IO ([[Int]], [[Char]])
+readBoard path = do
+    valuesContent <- readFile ("Entradas/" ++ path ++ "/numbers.txt")
+    let vContWithoutSpace = Prelude.map (Prelude.filter isNotSpace) (lines valuesContent)
+    let valuesMatriz = Prelude.map (Prelude.map charToInt) vContWithoutSpace
+
+    regionsContent <- readFile ("Entradas/" ++ path ++ "/regions.txt")
+    let regionsMatriz = Prelude.map (Prelude.filter isNotSpace) (lines regionsContent)
+
+    return (valuesMatriz, regionsMatriz)
 
 isNotSpace :: Char -> Bool
 isNotSpace a = a /= ' '
@@ -13,12 +25,10 @@ charToInt a | a == '*' = -1
             | otherwise = digitToInt a
 
 main = do
-    valuesContent <- readFile "Entradas/teste.txt"
-    let boardContentWithoutSpace = Prelude.map (Prelude.filter isNotSpace) (lines valuesContent)
-    let valueMatriz = Prelude.map (Prelude.map charToInt) boardContentWithoutSpace
+    args <- getArgs
+    let path = head args
 
-    regionsContent <- readFile "Entradas/teste_regions.txt"
-    let regionsMatriz = Prelude.map (Prelude.filter isNotSpace) (lines regionsContent)
+    (valueMatriz, regionsMatriz) <- readBoard path
 
     let board = makeBoard valueMatriz regionsMatriz 0
     let regionsDict = defineRegions board
@@ -27,8 +37,15 @@ main = do
     print ("---------")
     let result = solve board 
     case (result) of
-        Just board -> printBoard board
         Nothing -> putStrLn "merda"
+        Just board -> do
+            printBoard board
+            print ("---------")
+            prettyPrint board
+
+
+
+
 
 
 
