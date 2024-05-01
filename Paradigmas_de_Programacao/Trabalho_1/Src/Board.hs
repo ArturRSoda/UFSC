@@ -26,7 +26,7 @@ makeRow :: [Int] -> RegionBoard -> I -> J -> Len -> Row
 makeRow [] _ _ _ _ = []
 makeRow (a:b) rm i j len = [makePosition i j a rm len] ++ makeRow b rm i (j+1) len
 
--- impreme linha (Simples)
+-- imprime linha (Simples)
 printRow :: Row -> IO ()
 printRow [] = putStrLn ""
 printRow (a:b) 
@@ -62,7 +62,7 @@ getPosition i j b = (b!!i)!!j
 defineRegions :: Board -> Map Char [Int]
 defineRegions board = defineRegionsAux 0 0 (getLen board) board empty
 
--- Metodo auxiliar de defineRegions
+-- Metodo auxiliar de defineRegions (Logica)
 defineRegionsAux :: I -> J -> Int -> Board -> Map Char [Int] -> Map Char [Int]
 defineRegionsAux i j n board dict
     | (i == n) = dict
