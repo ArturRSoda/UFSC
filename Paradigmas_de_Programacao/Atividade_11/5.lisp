@@ -1,0 +1,16 @@
+(defun aprovado (a b c)
+    (setq media (/ (+ (+ a b) c) 3))
+    (if (<= 6 media)
+        (concatenate 'string "Aprovado, media = " (write-to-string media))
+    (concatenate 'string "Reprovado, media = " (write-to-string media))
+    )
+)
+
+(defun main()
+    (setq a (read))
+    (setq b (read))
+    (setq c (read))
+    (write-string (aprovado a b c))
+)
+
+(main)
