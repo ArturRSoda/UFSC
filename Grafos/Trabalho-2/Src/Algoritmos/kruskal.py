@@ -10,7 +10,6 @@ def kruskal(graph: Grafo) -> set[tuple[int, int]]:
 
     # Lista de arestas ordenadas por ordem crescente de peso
     E: list[tuple[int, int]] = sorted(graph.arestas(), key=lambda t : graph.peso(t[0], t[1]))
-    print(E)
 
     # Monta o conjunto das arestas
     # Passa por todas as arestas, em ordem crescente de peso

@@ -16,22 +16,22 @@ def prim(graph: Grafo) -> list[int]:
     # Define chave do vertice escolhido como 0
     K[r] = 0
 
+    # Controla os vertices que ja fazem parte da solucao
     C: list[bool] = [False for _ in range(graph.qtdVertices())]
     
-    # Arvore binaria
-    Q: BinaryHeap = BinaryHeap(K.copy())
+    for _ in range(graph.qtdVertices()):
 
-    # Flag que indica quando temos que atualizar a arvore
-    add: bool = True
-    while (not Q.isEmpty()):
+        # Arvore binaria, para retornar a chave de menor valor
+        Q = BinaryHeap([K[i] for i in range(len(K)) if (not C[i])])
 
-        if (add):
-            #Q: BinaryHeap = BinaryHeap([K[i] for i in range(len(K)) if (not C[i])])
-            Q: BinaryHeap = BinaryHeap(K.copy())
-            add = False
+        # Busca pelo vertice com menor chave
+        u: int = K.index(Q.heap[0])+1
+        K_ = K.copy()
+        while (C[u-1]):
+            K_[u-1] = float("inf")
+            u = K_.index(Q.heap[0])+1
 
-        # Seleciona vertice com menor chave
-        u: int = K.index(Q.remove())+1
+        # Define que o vertice faz parte da solucao
         C[u-1] = True
         
         # Passa por todos os vizinhos de u
@@ -42,8 +42,6 @@ def prim(graph: Grafo) -> list[int]:
                 A[v-1] = u
                 # Definimos que a chave e V eh o peso de (u, v)
                 K[v-1] = graph.peso(u, v)
-                # Indica que a arvore binaria deve ser atualizada
-                add = True
 
     return A
 
