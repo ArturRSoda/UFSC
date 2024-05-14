@@ -12,6 +12,7 @@ def ex2() -> None:
 
     grafo.ler(fileName)
 
+    # Retorna lista de vertices ordenados topologicamente
     O: list[int] = ordenacao_topologica(grafo)
 
     print(" -> ".join([grafo.rotulo(i) for i in O]))
