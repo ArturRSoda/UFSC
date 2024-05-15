@@ -16,7 +16,7 @@ def ex2() -> None:
     print("------------------- Kruskal --------------------")
 
     # Retorna arvore geradora minima
-    # Conjunto das arestas de menor peso que ligam todos os vertices
+    # Definida pelo conjunto das arestas de menor peso que ligam todos os vertices
     A: set[tuple[int, int]] = kruskal(grafo)
 
     print(sum([grafo.peso(u, v) for (u, v) in A]))
@@ -29,7 +29,7 @@ def ex2() -> None:
     print("-------------------- Prim ----------------------")
 
     # Retorna arvore geradora minima
-    # lista das arestas de menor peso que ligam todos os vertices
+    # definida pela lista de antecessores
     A_: list[int] = prim(grafo)
     edges: list[tuple[int, int]] = [(A_[i], i+1) for i in range(len(A_)) if (A_[i])]
 

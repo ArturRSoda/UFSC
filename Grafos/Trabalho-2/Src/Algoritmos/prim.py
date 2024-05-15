@@ -13,16 +13,16 @@ def prim(graph: Grafo) -> list[int]:
     # Chaves de cada vertice
     K: list[float] = [float("inf") for _ in range(graph.qtdVertices())]
 
+    # Controla os vertices que ja fazem parte da solucao
+    C: list[bool] = [False for _ in range(graph.qtdVertices())]
+
     # Define chave do vertice escolhido como 0
     K[r] = 0
 
-    # Controla os vertices que ja fazem parte da solucao
-    C: list[bool] = [False for _ in range(graph.qtdVertices())]
-    
     for _ in range(graph.qtdVertices()):
 
         # Arvore binaria, para retornar a chave de menor valor
-        Q = BinaryHeap([K[i] for i in range(len(K)) if (not C[i])])
+        Q: BinaryHeap = BinaryHeap([K[i] for i in range(len(K)) if (not C[i])])
 
         # Busca pelo vertice com menor chave
         u: int = K.index(Q.heap[0])+1
