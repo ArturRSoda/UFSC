@@ -35,8 +35,7 @@
 
 
 (defun defineRegion (board)
-    (defparameter ht (make-hash-table))
-    (defineRegionsAux 0 0 (getLen board) board ht)
+    (defineRegionsAux 0 0 (getLen board) board (make-hash-table))
 )
 
 (defun defineRegionsAux (i j len board hashTable)
@@ -44,13 +43,12 @@
         ((= i len) hashTable)
         ((= j len) (defineRegionsAux (+ i 1) 0 len board hashTable))
         (t
-            (let ((pos (getPosition i j board)))
-                (setq val (Pos-value pos))
-                (setq reg (Pos-region pos))
+            (let ((pos (getPosition i j board))
+                  (val (Pos-value (getPosition i j board)))
+                  (reg (Pos-region (getPosition i j board)))
+                  (regionList (gethash (Pos-region (getPosition i j board)) hashTable)))
 
-                (setq regionList (gethash reg hashTable))
                 (setf (gethash reg hashTable) (cons val regionList))
-
                 (defineRegionsAux i (+ j 1) len board hashTable)
             )
         )
@@ -65,5 +63,36 @@
             (printBoard (cdr board))
         )
         
+    )
+)
+
+(defun prettyPrint (board)
+    (prettyPrintCabecario 0 (getLen board))
+    (prettyPrintAux 0 0 board (getLen board) "|" "|")
+)
+
+
+(defun prettyPrintAux (i j board len l1 l2)
+    (cond
+        ((= i len) (write-string ""))
+        ((= j len) (write-line l1) (write-line l2) (prettyPrintAux (+ i 1) 0 board len "|" "|"))
+        (t
+            (setq pos (getPosition i j board))
+
+            (setq l11 (concatenate 'string l1 (write-to-string (Pos-value pos))))
+            (setq l111 (concatenate 'string l11 (if (Pos-rightBorder pos) "|" " ")))
+
+            (setq l22 (concatenate 'string l2 (if (Pos-downBorder pos) "-" " ")))
+            (setq l222 (concatenate 'string l22 (if (or (= j (- len 1)) (or (not (Pos-downBorder pos)) (not (Pos-downBorder (getPosition i (+ j 1) board))))) "|" "-")))
+            (prettyPrintAux i (+ j 1) board len l111 l222)
+        )
+    )
+)
+
+(defun prettyPrintCabecario (j len)
+    (cond 
+        ((= j (* len 2)) (write-line "|"))
+        ((= j 0) (write-string "|") (prettyPrintCabecario (+ j 1) len))
+        (t (write-string "-") (prettyPrintCabecario (+ j 1) len))
     )
 )

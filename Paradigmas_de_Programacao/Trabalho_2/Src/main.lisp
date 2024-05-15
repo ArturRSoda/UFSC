@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; byte-compile-warnings: nil  -*-
 (load "Src/utils.lisp")
 (load "Src/position.lisp")
 (load "Src/board.lisp")
@@ -18,8 +19,7 @@
 )
 
 (defun main()
-    (setq argv ext:*args*)
-    (setq path (nth 0 argv))
+    (setq path (string (read)))
 
     (setq matrizes (readBoard path))
     (setq valuesMatriz (nth 0 matrizes))
@@ -34,10 +34,14 @@
 
     (write-line "")
 
-    (if (solve board)
-        (printBoard board)
-        (write-line "Tabuleiro nao possui solucao")
+    (cond
+        
+        ((not (solve board)) (write-line "Tabuleiro nao possui solucao"))
+        (t 
+            (printBoard board)
+            (write-line "")
+            (prettyPrint board)
+        )
     )
 )
 
-(main)
