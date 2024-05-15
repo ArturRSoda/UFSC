@@ -26,7 +26,6 @@
     (setq regionsMatriz (nth 1 matrizes))
 
     (setq board (makeBoard valuesMatriz regionsMatriz 0)) 
-    (setq regionHT (defineRegion board))
 
     (write-line "")
 
