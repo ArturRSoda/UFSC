@@ -1,3 +1,4 @@
+; Estrutura de posicoes do tabuleiro
 (defstruct Pos
     value
     upBorder
@@ -8,6 +9,7 @@
 )
 
 
+; Instancia posicoes, definindo seu valor, bloqueios e regiao
 (defun makePosition (i j v rm len)
     (let ((reg (nth j (nth i rm))))
         (make-Pos

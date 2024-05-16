@@ -1,6 +1,8 @@
 (load "Src/position.lisp")
 (load "Src/utils.lisp")
 
+; Monta linha de posicoes
+; Instanciando as posicoes
 (defun makeRow (arr rm i j len)
     (if (null arr)
         nil
@@ -8,6 +10,8 @@
     )
 )
 
+
+; Imprime a linha (simples)
 (defun printRow (row)
     (if (null row)
         (write-line "")
@@ -22,6 +26,8 @@
 
 )
 
+
+; Monta tabuleiro (matriz de posicoes)
 (defun makeBoard (matriz rm i)
     (if (null matriz)
         nil
@@ -29,15 +35,20 @@
     )
 )
 
+; Retorna uma posicao especifica do tabuleiro
 (defun getPosition (i j board)
     (nth j (nth i board))
 )
 
 
+; Le tabuleiro, entao retorna um hash table
+; Onde as chaves sao as regioes (Symbols) e os valores sao listas das posicoes correspondentes [int]
 (defun defineRegion (board)
     (defineRegionsAux 0 0 (getLen board) board (make-hash-table))
 )
 
+
+; Metodo auxiliar de defineRegions (Logica)
 (defun defineRegionsAux (i j len board hashTable)
     (cond 
         ((= i len) hashTable)
@@ -55,6 +66,8 @@
     )
 )
 
+
+; Imprime tabuleiro (simples)
 (defun printBoard (board)
     (cond 
         ((null board) (write-string ""))
@@ -62,16 +75,18 @@
             (printRow (car board))
             (printBoard (cdr board))
         )
-        
     )
 )
 
+
+; Imprime tabuleiro com regioes definidas
 (defun prettyPrint (board)
     (prettyPrintCabecario 0 (getLen board))
     (prettyPrintAux 0 0 board (getLen board) "|" "|")
 )
 
 
+; Metodo auxiliar de prettyPrint
 (defun prettyPrintAux (i j board len l1 l2)
     (cond
         ((= i len) (write-string ""))
@@ -89,6 +104,8 @@
     )
 )
 
+
+; Metodo auxiliar de prettyPrint
 (defun prettyPrintCabecario (j len)
     (cond 
         ((= j (* len 2)) (write-line "|"))
