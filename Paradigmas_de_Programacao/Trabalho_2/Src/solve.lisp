@@ -1,5 +1,4 @@
-(load "Src/board.lisp")
-(load "Src/utils.lisp")
+(in-package :myPack)
 
 ; Resolve tabuleiro
 (defun solve (board)

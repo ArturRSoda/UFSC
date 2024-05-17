@@ -1,3 +1,5 @@
+(in-package :myPack)
+
 ; Estrutura de posicoes do tabuleiro
 (defstruct Pos
     value

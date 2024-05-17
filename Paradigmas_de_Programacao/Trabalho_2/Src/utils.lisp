@@ -1,3 +1,5 @@
+(in-package :myPack)
+
 ; Retorna tamanho do vertor
 (defun getLen (arr)
     (if (null arr)

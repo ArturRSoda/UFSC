@@ -1,8 +1,4 @@
-;; -*- lexical-binding: t; byte-compile-warnings: nil  -*-
-(load "Src/utils.lisp")
-(load "Src/position.lisp")
-(load "Src/board.lisp")
-(load "Src/solve.lisp")
+(in-package :myPack)
 
 ; Le arquivos e retona matrizes de valores e regioes
 (defun readBoard (path)

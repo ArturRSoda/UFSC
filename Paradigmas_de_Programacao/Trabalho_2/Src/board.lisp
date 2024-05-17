@@ -1,5 +1,4 @@
-(load "Src/position.lisp")
-(load "Src/utils.lisp")
+(in-package :myPack)
 
 ; Monta linha de posicoes
 ; Instanciando as posicoes
