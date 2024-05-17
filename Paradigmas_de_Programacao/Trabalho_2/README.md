@@ -1,4 +1,10 @@
-1. Para criar o executavel basta usar o comando
+- Para criar o executavel:
 
-    'make'
+    1. Eh preciso ter SBCL instalado
+
+        `sudo apt install sbcl`
+
+    2. Em seguida digite
+
+        `make`
 
