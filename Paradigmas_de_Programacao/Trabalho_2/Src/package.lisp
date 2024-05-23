@@ -1,2 +1,0 @@
-(defpackage :myPack
-    (:use :cl))

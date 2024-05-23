@@ -1,0 +1,8 @@
+((a b b b b c d d)
+(a a f b c c e e)
+(i h f g c c l l)
+(i j f f f c l l)
+(i j f m m m l o)
+(k j n m n n o o)
+(k k n n n p p o)
+(k k q q p p p o))

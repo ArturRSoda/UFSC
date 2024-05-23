@@ -1,0 +1,6 @@
+((a f f f g h)
+(a e f g g g)
+(a a d g i i)
+(b c d j j i)
+(b c c k k i)
+(c c c k k k))
