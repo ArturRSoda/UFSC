@@ -1,5 +1,6 @@
 :- use_module(library(clpfd)).
-:- use_module('Src/solve.pl').
+:- use_module('Src/solve.pl', [solve_board/2]).
+:- use_module('Src/board.pl', [print_matriz/1]).
 
 read_matriz(Stream, []) :-
     at_end_of_stream(Stream).
@@ -24,30 +25,18 @@ build_matriz(Path, ValuesMatriz, RegionsMatriz) :-
     ValuesFile = [ValuesMatriz|_],
     RegionsFile = [RegionsMatriz|_].
 
-problem(1, [[2, _, _, _, 1, _],
-           [_, _, _, 3, _, _],
-           [_, 3, _, _, 5, 3],
-           [_, _, _, _, _, _],
-           [_, _, 3, _, 4, 2],
-           [_, _, _, _, _, _]],
-
-           [[a, a, b, b, b, c],
-            [d, d, d, d, d, c],
-            [e, f, f, f, d, g],
-            [e, e, e, f, g, g],
-            [h, h, i, j, j, j],
-            [k, k, i, i, j, j]]).
-
 main(Argv) :-
     Argv = [Path|_],
     string_upper(Path, PathUpper),
     build_matriz(PathUpper, ValuesMatriz, RegionsMatriz),
 
-    length(ValuesMatriz, Len),
-    solve_board(ValuesMatriz, RegionsMatriz, Len),
+    print_matriz(ValuesMatriz), nl,
 
-    maplist(portray_clause, ValuesMatriz),
+    solve_board(ValuesMatriz, RegionsMatriz),
 
+    maplist(label, ValuesMatriz),
+    %maplist(portray_clause, ValuesMatriz),
+    print_matriz(ValuesMatriz),
 
     halt.
 

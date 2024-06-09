@@ -1,5 +1,5 @@
 target:
-	swipl --goal=main -o result -c Src/main.pl
+	swipl --goal=main --stand_alone=true -o result -c Src/main.pl
 
 clean:
 	rm result
