@@ -1,6 +1,5 @@
 :- use_module(library(clpfd)).
 :- use_module('Src/solve.pl', [solve_board/2]).
-:- use_module('Src/board.pl', [print_matriz/1]).
 
 read_matriz(Stream, []) :-
     at_end_of_stream(Stream).
@@ -29,14 +28,6 @@ main(Argv) :-
     Argv = [Path|_],
     string_upper(Path, PathUpper),
     build_matriz(PathUpper, ValuesMatriz, RegionsMatriz),
-
-    print_matriz(ValuesMatriz), nl,
-
     solve_board(ValuesMatriz, RegionsMatriz),
-
-    maplist(label, ValuesMatriz),
-    %maplist(portray_clause, ValuesMatriz),
-    print_matriz(ValuesMatriz),
-
     halt.
 

@@ -1,8 +1,11 @@
 :- module(solve, [solve_board/2]).
-:- use_module('Src/board.pl', [make_regionsHT/3, get_regions/2]).
+:- use_module('Src/board.pl', [make_regionsHT/3, get_regions/2, print_matriz/3]).
 
 
 solve_board(ValuesMatriz, RegionsMatriz) :-
+
+    print_matriz(ValuesMatriz, RegionsMatriz, false), nl,
+
     ht_new(RegionHT),
     make_regionsHT(ValuesMatriz, RegionsMatriz, RegionHT),
     get_regions(RegionsMatriz, Regions),
@@ -12,7 +15,15 @@ solve_board(ValuesMatriz, RegionsMatriz) :-
 
     transpose(ValuesMatriz, TranspValueMatriz),
     transpose(RegionsMatriz, TranspRegionsMatriz),
-    validate_columns(TranspValueMatriz, TranspRegionsMatriz).
+    validate_columns(TranspValueMatriz, TranspRegionsMatriz),
+
+    maplist(label, ValuesMatriz),
+
+    print_matriz(ValuesMatriz, RegionsMatriz, false),
+    nl,
+    print_matriz(ValuesMatriz, RegionsMatriz, true).
+
+
 
 validate_regions([], _) :- !.
 validate_regions([R|T], RegionHT) :-
