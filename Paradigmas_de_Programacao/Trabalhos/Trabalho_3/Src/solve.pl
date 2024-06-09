@@ -9,14 +9,14 @@ solve_board(ValuesMatriz, RegionsMatriz) :-
     ht_new(RegionHT), get_regions(RegionsMatriz, Regions), % Cria novo hash-table e pega lista de regioes
     make_regionsHT(ValuesMatriz, RegionsMatriz, RegionHT), % Monta hash-table das regioes | Keys   -> Regioes
 
-    % Valida:
+    % Restricoes das:
     %   - Regioes
-    validate_regions(Regions, RegionHT),
+    regions_constraint(Regions, RegionHT),
     %   - Linhas
-    validate_rows(ValuesMatriz),        
+    rows_constraint(ValuesMatriz),        
     %   - Colunas
     transpose(ValuesMatriz, TrVM),  transpose(RegionsMatriz, TrRM), 
-    validate_columns(TrVM, TrRM),       
+    columns_constraint(TrVM, TrRM),       
 
     % Atribui valores a matriz
     maplist(label, ValuesMatriz),
@@ -27,46 +27,46 @@ solve_board(ValuesMatriz, RegionsMatriz) :-
     % Imprime resultado com cor
     print_matriz(ValuesMatriz, RegionsMatriz, true).     
 
-% validate_regions(RegionList, RegionHT)
-%   Valida valores da regiao
-validate_regions([], _) :- !.
-validate_regions([R|T], RegionHT) :-
+% regions_constraint(RegionList, RegionHT)
+%   Restricoes dos valores da regiao
+regions_constraint([], _) :- !.
+regions_constraint([R|T], RegionHT) :-
     ht_get(RegionHT, R, RegionList),
     length(RegionList, RegionLen),
                                  % Valores da regiao:
     RegionList ins 1..RegionLen, %     - Vao de 1 ateh Tamanha da regiao
     all_different(RegionList),   %     - Todos sao diverentes
 
-    validate_regions(T, RegionHT).
+    regions_constraint(T, RegionHT).
 
-% validate_columns(ValuesColumns, RegioesColumn)
-%   Valida Colunas 
-validate_columns([], []).
-validate_columns([VColumn|VT], [RColumn|RT]) :-
-    validate_single_column(VColumn, RColumn),
-    validate_columns(VT, RT).
+% columns_constraint(ValuesColumns, RegioesColumn)
+%   Restricoes das colunas
+columns_constraint([], []).
+columns_constraint([VColumn|VT], [RColumn|RT]) :-
+    single_columns_constraint(VColumn, RColumn),
+    columns_constraint(VT, RT).
 
-% validate_single_column(Column, Region)
-%   Metodo auxiliar de validate_columns (logica)
-validate_single_column([], []).                      % Se as regioes do valor atual (C1), e seu vizinho (C2) de baixo forem iguais:
-validate_single_column([_], [_]).                    %     C1 deve ser maior que C2
-validate_single_column([C1, C2|CT], [R1, R2|RT]) :-  % Else
-    (R1 == R2 -> C1 #> C2 ; C1 #\= C2),              %     C1 apenas eh diverente de C2
-    validate_single_column([C2|CT], [R2|RT]).
+% single_columns_constraint(Column, Region)
+%   Metodo auxiliar de columns_constraint (logica)
+single_columns_constraint([], []).                      % Se as regioes do valor atual (C1), e seu vizinho (C2) de baixo forem iguais:
+single_columns_constraint([_], [_]).                    %     C1 deve ser maior que C2
+single_columns_constraint([C1, C2|CT], [R1, R2|RT]) :-  % Else
+    (R1 == R2 -> C1 #> C2 ; C1 #\= C2),                 %     C1 apenas eh diverente de C2
+    single_columns_constraint([C2|CT], [R2|RT]).
 
-% validate_rows(ValuesMatriz)
+% rows_constraint(ValuesMatriz)
 %   Valida linhas
-validate_rows([]).
-validate_rows([Row|T]) :-
-    validate_single_row(Row),
-    validate_rows(T).
+rows_constraint([]).
+rows_constraint([Row|T]) :-
+    single_row_constraint(Row),
+    rows_constraint(T).
 
-% validate_single_row(ValueRow)
-%   Metodo auxilidar de validate_rows
+% single_row_constraint(ValueRow)
+%   Metodo auxilidar de rows_constraint
 %   Valores vizinhos devem ser diferentes
-validate_single_row([]).
-validate_single_row([_]).
-validate_single_row([V1, V2|T]) :-
+single_row_constraint([]).
+single_row_constraint([_]).
+single_row_constraint([V1, V2|T]) :-
     V1 #\= V2,            
-    validate_single_row([V2|T]).
+    single_row_constraint([V2|T]).
 
