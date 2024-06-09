@@ -6,9 +6,9 @@ solve_board(ValuesMatriz, RegionsMatriz, Len) :-
     maplist(same_length(ValuesMatriz), ValuesMatriz),
     append(ValuesMatriz, Vs), Vs ins 1..Len,
 
-    maplist(validate_row, ValuesMatriz).
+    validate_rows(ValuesMatriz, Len).
 
-    make_board(ValuesMatriz, RegionsMatriz, TempBoard),
+    %make_board(ValuesMatriz, RegionsMatriz, TempBoard),
     %transpose(TempBoard, TransposedBoard),
     
     %maplist(validate_column, TransposedBoard),
@@ -18,8 +18,23 @@ solve_board(ValuesMatriz, RegionsMatriz, Len) :-
 
     %validate_regions(Regions, RegionsDict).
 
+validate_rows([], _).
+validate_rows([Row|T], Len) :-
+    (0 =:= mod(Len, 2) ->
+        validate_even_row(Row) ;
+        validate_odd_row(Row)),
+    validate_rows(T, Len).
 
+validate_even_row([]).
+validate_even_row([V1, V2|T]) :-
+    V1 \== V2,
+    validate_even_row(T).
 
+validate_odd_row([]).
+validate_odd_row([V1, V2, V3|T]) :-
+    V1 \== V2,
+    V2 \== V3,
+    validate_even_row(T).
 
 
 validate_regions([], _) :- !.
@@ -35,17 +50,8 @@ validate_regions([R|T], RegionsDict) :-
     validate_regions(T, RegionsDict).
 
 
+is_even_arr([]) :- !.
+is_even_arr([_|T]) :- is_odd_arr(T).
 
-validate_column([]) :- !.
-validate_column([_]) :- !.
-validate_column([position(V1, R1), position(V2, R2)|T]) :-
-    (R1 == R2 -> V1 #> V2 ; V1 \== V2),
-    validate_column(T).
-    
-
-validate_row([]) :- !.
-validate_row([_]) :- !.
-validate_row([V1, V2|T]) :-
-    V1 \== V2,
-    validate_row(T).
-
+is_odd_arr([_]) :- !.
+is_odd_arr([_|T]) :- is_even_arr(T).

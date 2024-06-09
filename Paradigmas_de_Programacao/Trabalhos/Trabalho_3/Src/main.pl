@@ -39,9 +39,9 @@ problem(1, [[2, _, _, _, 1, _],
             [k, k, i, i, j, j]]).
 
 main(Argv) :-
-    %Argv = [Path|_],
-    %string_upper(Path, PathUpper),
-    %build_matriz(PathUpper, ValuesMatriz, RegionsMatriz),
+    Argv = [Path|_],
+    string_upper(Path, PathUpper),
+    build_matriz(PathUpper, ValuesMatriz, RegionsMatriz),
 
     length(ValuesMatriz, Len),
     solve_board(ValuesMatriz, RegionsMatriz, Len),
