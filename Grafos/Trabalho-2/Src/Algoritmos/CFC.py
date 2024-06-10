@@ -17,7 +17,6 @@ def DFS_Visit(graph: Grafo, v: int, C: list[bool], T: list[float], F: list[float
     # Marca tempo de volta
     time += 1
     F[v-1] = time
-
     return (C, T, F, A, time)
 
 

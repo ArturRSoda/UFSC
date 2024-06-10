@@ -34,7 +34,7 @@ def ex2() -> None:
     edges: list[tuple[int, int]] = [(A_[i], i+1) for i in range(len(A_)) if (A_[i])]
 
     print(sum([grafo.peso(u, v) for (u, v) in edges]))
-    print(", ".join(["%d-%d"%(u, v) for (u, v) in edges]))
+    print(", ".join(["%d-%d"%tuple(sorted((u, v))) for (u, v) in edges]))
 
     print("------------------------------------------------")
 
