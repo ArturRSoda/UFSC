@@ -1,5 +1,6 @@
 :- use_module(library(clpfd)).
 :- use_module('Src/solve.pl', [solve_board/2]).
+:- use_module('Src/board.pl', [print_matriz/3]).
 
 % Le arquivos e monta matrizes de valores e regioes
 build_matriz(Path, ValuesMatriz, RegionsMatriz) :-
@@ -20,6 +21,10 @@ read_matriz(Stream, [H|T]) :-
 main(Argv) :-
     Argv = [Path|_], string_upper(Path, PathUpper),       % Recebe Qual tabuleiro resolver como argumento
     build_matriz(PathUpper, ValuesMatriz, RegionsMatriz), % Monta matriz de valores e regioes
+    print_matriz(ValuesMatriz, RegionsMatriz, false), nl, % Imprime tabuleiro antes de resolver
     solve_board(ValuesMatriz, RegionsMatriz),             % Resolve tabuleiro
+    maplist(label, ValuesMatriz),                         % Atribui valores a matriz
+    print_matriz(ValuesMatriz, RegionsMatriz, false), nl, % Imprime tabuleiro resolvido sem cor
+    print_matriz(ValuesMatriz, RegionsMatriz, true),      % Imprime tabuleiro resolvido com cor
     halt.
 
