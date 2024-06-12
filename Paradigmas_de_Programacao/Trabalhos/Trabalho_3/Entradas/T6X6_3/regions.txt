@@ -1,6 +1,6 @@
-[[a, d, e, e, g, g],
-[a, d, f, g, g, g],
-[a, a, f, f, f, j],
-[b, b, h, j, j, j],
-[b, b, h, i, k, k],
-[c, c, i, i, i, i]].
+[[a, b, d, d, j, j],
+[a, b, e, j, j, j],
+[a, a, e, e, e, i],
+[c, c, f, i, i, i],
+[c, c, f, g, k, k],
+[h, h, g, g, g, g]].
