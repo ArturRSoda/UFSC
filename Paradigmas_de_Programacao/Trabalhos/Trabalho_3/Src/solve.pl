@@ -1,6 +1,7 @@
 :- module(solve, [solve_board/2]).
 :- use_module('Src/board.pl', [make_regionsHT/3, get_regions/2, print_matriz/3]).
 
+
 % Resolve e imprime tabuleiro
 solve_board(ValuesMatriz, RegionsMatriz) :-
 
