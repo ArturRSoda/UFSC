@@ -1,5 +1,5 @@
 :- module(solve, [solve_board/2]).
-:- use_module('Src/board.pl', [make_regionsHT/3, get_regions/2, print_matriz/3]).
+:- use_module('Src/board.pl', [make_regionsHT/3, get_regions/2]).
 
 
 % Resolve e imprime tabuleiro
@@ -17,16 +17,7 @@ solve_board(ValuesMatriz, RegionsMatriz) :-
     rows_constraint(ValuesMatriz),        
     %   - Colunas
     transpose(ValuesMatriz, TrVM),  transpose(RegionsMatriz, TrRM), 
-    columns_constraint(TrVM, TrRM),       
-
-    % Atribui valores a matriz
-    maplist(label, ValuesMatriz),
-
-    % Imprime resultado sem cor
-    print_matriz(ValuesMatriz, RegionsMatriz, false), nl,
-
-    % Imprime resultado com cor
-    print_matriz(ValuesMatriz, RegionsMatriz, true).     
+    columns_constraint(TrVM, TrRM).
 
 % regions_constraint(RegionList, RegionHT)
 %   Restricoes dos valores da regiao

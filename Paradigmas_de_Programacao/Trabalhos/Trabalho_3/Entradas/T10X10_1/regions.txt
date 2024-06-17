@@ -4,7 +4,7 @@
  [i, i, e, e, j, g, h, h, h, l],
  [i, i, i, e, j, j, k, l, l, l],
  [m, m, n, n, n, j, o, o, p, p],
- [m, m, m, n, n, q, r, s, p, p],
- [v, v, m, n, q, q, r, s, t, t],
+ [m, m, m, n, n, z, r, s, p, p],
+ [v, v, m, n, z, z, r, s, t, t],
  [v, v, w, w, w, w, r, s, s, u],
  [v, v, v, w, w, w, r, r, u, u]].
