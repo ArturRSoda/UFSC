@@ -13,6 +13,7 @@ def ex1() -> None:
 
     grafo.ler(fileName)
     
+    # Pesquisa todos os fluxos maximos possiveis no grafo, e retorna o maior deles
     print(int(max([edmonds_karp(grafo.getcopy(), u, v) for u in range(1, grafo.qtdVertices()+1) for v in range(1, grafo.qtdVertices()+1)])))
 
 ex1()
