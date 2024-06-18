@@ -26,9 +26,10 @@ def ex2() -> None:
 
     grafo.ler(fileName)
 
+    # Monta o emparelhamento maximo no grafo
     m, mate = hopcroft_karp(grafo)
+    # Monta o par de vertices
     A = make_vertices(mate)
-
 
     print(m)
     print(", ".join(["%d-%d"%(u, v) for (u, v) in A]))

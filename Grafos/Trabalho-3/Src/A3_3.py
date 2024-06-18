@@ -34,13 +34,11 @@ def ex3() -> None:
 
     grafo.ler(fileName)
 
-    X = lawler(grafo)
-    print(X)
+    # Procura numero minimo de cores no grafo
+    print(lawler(grafo))
 
-    cores = colore(grafo)
-    print(", ".join([str(x) for x in cores]))
-
-
+    # Colore os vertices e imprime
+    print(", ".join([str(x) for x in colore(grafo)]))
 
 ex3()
 
