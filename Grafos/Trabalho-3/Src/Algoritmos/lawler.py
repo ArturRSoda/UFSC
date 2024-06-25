@@ -51,7 +51,7 @@ def lawler(graph: Grafo):
         f[str(list(s))] = index
 
         # Monta um novo grafo a partir dos vertices do conjunto pego de S
-        G_: Grafo = graph.getcopy()
+        G_ = graph.getcopy()
         G_.qtdVertex = len(s)
         for i in range(len(G_.adjacencyMatriz)):
             for j in range(len(G_.adjacencyMatriz[0])):

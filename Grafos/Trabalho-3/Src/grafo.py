@@ -88,7 +88,7 @@ class Grafo:
         self.__filePath = filePath
         f = open(filePath, "r")
         lines: list[str] = f.read().split("\n")
-        f.close
+        f.close()
 
         self.__qtdVertex = int(lines[0].split()[1])
 
@@ -118,6 +118,11 @@ class Grafo:
                     v2.neighbors.append(v1.id)
 
                 self.__qtdEdge += 1
+
+
+    def setAdjacencyMatriz(self, v: list[list[float]]) -> None:
+        self.__adjacencyMatriz = v
+
 
     def getcopy(self):
         cp = Grafo()
