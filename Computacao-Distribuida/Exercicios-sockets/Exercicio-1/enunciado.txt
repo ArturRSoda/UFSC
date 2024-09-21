@@ -1,0 +1,10 @@
+Criar um programa cliente que conecte ao servidor executando no endereço e
+porta definidos abaixo.
+O servidor implementa um serviço de echo, que basicamente retorna ao cliente a
+mensagem recebida.
+O programa cliente deve imprimir na tela a mensagem de retorno do servidor.
+
+Informações Adicionais:
+Tipo de conexão: TCP ou UDP
+Endereço do Servidor: Definir em aula
+Porta: 1100

@@ -1,0 +1,8 @@
+Criar um programa cliente que repetidamente gera um número aleatório entre 1 e
+100 e envia o número para o servidor usando datagramas.
+
+O servidor aguarda datagramas com valores de medição coletados por clientes.
+Esses valores são ilustrados por números aleatórios entre 1 e 100.
+
+O servidor, a cada 1s, imprime o número de medições coletadas no último
+segundo e o valor médio de todas as medições.

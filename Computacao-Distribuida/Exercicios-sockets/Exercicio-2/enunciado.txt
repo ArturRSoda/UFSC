@@ -1,0 +1,11 @@
+Criar um servidor de operações aritméticas. Definir um protocolo em aula para as
+operações soma, subtracao, multiplicacao e divisao.
+
+O servidor deve atender requisições de vários clientes e retornar o valor destas
+operações.
+
+Informações Adicionais:
+As operações devem conter apenas dois operadores
+O operando será informado pelo como cabeçalho do protocolo
+Endereço do Servidor: Definir em aula
+Porta: 1101
