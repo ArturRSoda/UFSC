@@ -1,0 +1,5 @@
+teste1 = "4;P;{S};{0,1};P,0,P;P,0,Q;P,1,P;Q,0,R;Q,1,R;R,0,S;S,0,S;S,1,S"
+teste2 = "3;A;{C};{1,2,3,&};A,1,A;A,&,B;B,2,B;B,&,C;C,3,C"
+teste3 = "4;A;{D};{a,b};A,a,A;A,a,B;A,b,A;B,b,C;C,b,D"
+teste4 = "4;A;{A,D};{a,b};A,a,A;A,a,B;A,b,A;B,b,C;C,b,D"
+teste5 = "6;S;{S,X};{a,b,c};S,a,A;S,b,A;S,b,C;S,c,C;A,a,M;A,b,B;A,b,X;A,c,D;A,c,X;B,a,A;B,b,A;B,b,C;B,c,C;C,a,E;C,a,X;C,b,B;c,b,X;C,c,M;D,a,A;D,b,A;D,b,C;D,c,M;E,a,M;E,b,A;E,b,C;E,c,C"
