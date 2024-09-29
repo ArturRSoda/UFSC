@@ -31,6 +31,7 @@ def ler_argumentos(input):
     for transicao in transicoes_str:
         qi, a, qj = transicao.split(',')
         transicoes[qi][a] += '%s'%qj
+        transicoes[qi][a] = ''.join(sorted(set(transicoes[qi][a])))
 
     return n_estados, estados, alfabeto, transicoes, estado_inicial, estados_finais
 
@@ -117,7 +118,7 @@ INPUT5 = "6;S;{S,X};{a,b,c};S,a,A;S,b,A;S,b,C;S,c,C;A,a,M;A,b,B;A,b,X;A,c,D;A,c,
 
 
 def determiniza_transicoes(automato, estado, transicoes):
-    estado = ''.join(sorted(estado))
+    estado = ''.join(sorted(set(estado)))
 
     transicoes[estado] = dict()
     for a in automato.alfabeto:
@@ -129,10 +130,10 @@ def determiniza_transicoes(automato, estado, transicoes):
                     f = ''.join(sorted(automato.get_e_fecho(t)))
                     qj.add(f)
 
-            transicoes[estado][a] = ''.join(sorted(set(qj)))
+            transicoes[estado][a] = ''.join(sorted(set(''.join(qj))))
 
     for qj in transicoes[estado].values():
-        if (qj not in transicoes) and (qj!= ''):
+        if (qj not in transicoes.keys()) and (qj!= ''):
             determiniza_transicoes(automato, qj, transicoes)
 
 
@@ -211,7 +212,7 @@ def main():
         Essa é apenas uma sugestão de estruturação.
         [...]
     """
-    vpl_input = INPUT4
+    vpl_input = INPUT5
     
     nao_deterministico = Automato(*ler_argumentos(vpl_input))
     print(nao_deterministico.transicoes)
@@ -257,10 +258,12 @@ def main():
     )
 
     estados_minimos = define_classes(deterministico_sem_morto, [deterministico_sem_morto.estados_finais, deterministico_sem_morto.estados.difference(deterministico_sem_morto.estados_finais)])
-    estados_minimos = [estado for estado in estados_minimos if (estado)]
+    estados_minimos = [estado-{'S'} for estado in estados_minimos if (estado)]
     transicoes_minimas = monta_transicoes_minimas(deterministico_sem_morto, estados_minimos)
 
     print(estados_minimos)
+
+    print("Oi")
     print(transicoes_minimas)
     print()
     print()
