@@ -73,7 +73,6 @@ class Automato:
             ";".join([t for t in [';'.join(["{%s},%s,{%s}" % (qi, a, self.transicoes[qi][a]) for a in sorted(self.transicoes[qi].keys()) if (self.transicoes[qi][a])]) for qi in sorted(self.transicoes.keys())]])
         )
 
-
 TESTE = Automato(
     8,
     {'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I'},
@@ -191,15 +190,14 @@ def monta_transicoes_minimas(automato, classes):
         for a in sorted(automato.alfabeto):
             qj = set()
             for q in classe:
-                qj.add(automato.transicoes[q][a])
+                if (automato.transicoes[q][a] != ''):
+                    qj.add(automato.transicoes[q][a])
 
-            qj = ''.join(sorted(set(''.join(qj))))
             for classe_ in classes:
-                if qj in classe_:
+                if qj.intersection(classe_):
                     transicao[qi][a] = ''.join(sorted(set(''.join(classe_))))
                     break
-
-
+                
     return transicao
 
 
@@ -212,7 +210,7 @@ def main():
         Essa é apenas uma sugestão de estruturação.
         [...]
     """
-    vpl_input = INPUT5
+    vpl_input = INPUT4
     
     nao_deterministico = Automato(*ler_argumentos(vpl_input))
     print(nao_deterministico.transicoes)
@@ -257,12 +255,12 @@ def main():
         set([estado for estado in alcansaveis.keys() if (estado in deterministico.estados_finais)])
     )
 
+    print([deterministico_sem_morto.estados_finais, deterministico_sem_morto.estados.difference(deterministico_sem_morto.estados_finais)])
     estados_minimos = define_classes(deterministico_sem_morto, [deterministico_sem_morto.estados_finais, deterministico_sem_morto.estados.difference(deterministico_sem_morto.estados_finais)])
     estados_minimos = [estado-{'S'} for estado in estados_minimos if (estado)]
     transicoes_minimas = monta_transicoes_minimas(deterministico_sem_morto, estados_minimos)
 
     print(estados_minimos)
-
     print("Oi")
     print(transicoes_minimas)
     print()
