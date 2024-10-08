@@ -1,16 +1,57 @@
 DROP TABLE IF EXISTS Ambulatorios, Medicos, Pacientes, Funcionarios, Consultas;
 
-create table Ambulatorios (nroa int, andar numeric(2) not null, capacidade smallint, primary key(nroa));
+create table Ambulatorios (
+    nroa int,
+    andar numeric(2) not null,
+    capacidade smallint, primary key(nroa)
+);
 
-create table Medicos (codm int, nome varchar(40) not null, idade smallint not null, cidade varchar(40), CPF numeric(11) not null unique, especialidade varchar(30), nroa int, primary key(codm), foreign key(nroa) references Ambulatorios);
+create table Medicos (
+    codm int,
+    nome varchar(40) not null,
+    idade smallint not null,
+    cidade varchar(40),
+    CPF numeric(11) not null unique,
+    especialidade varchar(30),
+    nroa int,
+    primary key(codm),
+    foreign key(nroa) references Ambulatorios
+);
 
-create table Pacientes (codp int, nome varchar(40) not null, idade smallint not null, cidade varchar(40), CPF numeric(11) not null unique, doenca varchar(40) not null, primary key(codp));
+create table Pacientes (
+    codp int,
+    nome varchar(40) not null,
+    idade smallint not null,
+    cidade varchar(40), 
+    CPF numeric(11) not null unique,
+    doenca varchar(40) not null,
+    primary key(codp)
+);
 
-create table Funcionarios (codf int, nome varchar(40) not null, idade smallint not null, cidade varchar(40), CPF numeric(11) not null unique, salario numeric(10), primary key(codf));
+create table Funcionarios (
+    codf int,
+    nome varchar(40) not null,
+    idade smallint not null,
+    cidade varchar(40),
+    CPF numeric(11) not null unique,
+    salario numeric(10), primary key(codf)
+);
 
-create table Consultas (codm int, codp int, data date, hora time, primary key(codm, codp, data), foreign key(codm) references Medicos, foreign key(codp) references Pacientes);
+create table Consultas (codm int,
+    codp int,
+    data date,
+    hora time,
+    primary key(codm, codp, data),
+    foreign key(codm) references Medicos,
+    foreign key(codp) references Pacientes
+);
 
-insert into Ambulatorios values (1,1,30), (2,1,50), (3,2,40), (4,2,25), (5,2,55);
+insert into Ambulatorios values
+    (1,1,30),
+    (2,1,50),
+    (3,2,40),
+    (4,2,25),
+    (5,2,55);
 
 insert into Medicos (codm, nome, idade, especialidade, CPF, cidade, nroa) values 
     (1, 'Joao', 40, 'ortopedia', 10000100000, 'Florianopolis', 1), 
