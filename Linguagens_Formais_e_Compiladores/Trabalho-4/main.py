@@ -47,10 +47,12 @@ def get_first(n, F, P):
         else:
             for y in prod:
                 fy = get_first(y, F, P)
-                F[n] = F[n].union(fy.copy()-{"&"})
+                F[n] = F[n].union(fy-{"&"})
 
                 if ("&" not in fy):
                     break
+            else:
+                F[n].add("&")
 
     return F[n]
 
@@ -79,28 +81,32 @@ def get_follow(a, F, S, First, P):
     if (a == S):
         F[a].add('$')
 
-    print("a -> ", a)
     productions = P[a]
     for prod in productions:
-        print("    prod -> ", prod)
         l = len(prod)
-
         for i in range(l-1):
             b = prod[i]
-            print("        b -> ", b)
-
-            q = prod[i+1]
-            fq = First[q] if (q in N) else {q}
-            print("        q -> ", q)
 
             if (b in N):
-                F[b] = F[b].union(fq-{'&'})
-                print("            Added f%s in f%s" % (q, b))
+                j = 1
+                while (True):
+                    if (i+j == l):
+                        F[b] = F[b].union(F[a])
+                        break
 
-                if ('&' in fq):
-                    F[b] = F[b].union(F[a])
-                    print("            Added f%s in f%s, cause & in f%s" % (a, b, q))
+                    q = prod[i+j]
+                    fq = First[q] if (q in N) else {q}
 
+                    F[b] = F[b].union(fq-{'&'})
+
+                    if ('&' in fq):
+                        j += 1
+                    else:
+                        break
+
+        b = prod[-1]
+        if (b in N):
+            F[b] = F[b].union(F[a])
 
     return F[a]
 
@@ -133,15 +139,21 @@ def main():
     """
 
     S, P = get_productions(vpl_input)
-    print(S, P)
-    print()
 
     First = search_firts(P)
-    print(First)
-    print()
 
     Follow = search_follows(S, First, P)
-    print(Follow)
+
+    result = []
+    for n, f in First.items():
+        s = "First(%s) = {%s}" % (n, ", ".join(f))
+        result.append(s)
+
+    for n, f in Follow.items():
+        s = "Follow(%s) = {%s}" % (n, ", ".join(f))
+        result.append(s)
+
+    print("; ".join(result))
 
 if __name__ == "__main__":
     main()

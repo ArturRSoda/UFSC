@@ -36,7 +36,11 @@ class Grammar:
 
 
 def get_parameters(input):
-    input = input.replace(" ", "").replace("{", "")
+    input_str = ""
+    for s in input:
+        input_str += s
+
+    input = input_str.replace('"', '').replace(" ", "").replace("{", "")
     N_str, T_str, S_str, P_str = input.split('}')[:-1]
 
     N = set(N_str.split(","))
@@ -347,74 +351,43 @@ def remove_left_recursion(G):
     return G
 
 
-def main(input):
+def main():
 
-    #vpl_input = argv[1] # **Não remover essa linha**, ela é responsável por receber a string de entrada do VPL
-
-    vpl_input = input
+    vpl_input = argv[1:]
 
     """ 
-        Seu código para resolver o exercício e printar a saída. 
-        Você pode fazer funções foras da main se preferir. 
-        Essa é apenas uma sugestão de estruturação.
-        [...]
+    ========= INSTRUÇÕES ========= 
+        - Todo o código deve estar contido no arquivo main.py
+        - O arquivo main.py deve conter uma função main que será chamada pelo VPL,
+        essa função deve conter uma linha de código que recebe a string de entrada do VPL.
+        Um exemplo de como isso pode ser feito está no arquivo main.py fornecido.
+        - Você pode criar funções fora da main se preferir, mas se certifique de que a main chama essas funções.
+        - Caso você prefira fazer o exercício em uma IDE e quiser testar o código localmente, 
+        é só passar a string de entrada como argumento na hora de executar o código. 
+            Exemplo: python3 main.py "{A,B,S}{a,b,c,d}{S}{S = Bd; S = &; B = Bc; B = b; B = Ab; A = Sa; A = a}"
     """
 
     N, T, S, P = get_parameters(vpl_input)
-    print("original")
     G = Grammar(N, T, P, S)
-    print(G.N, G.T, G.S, G.P)
-    print()
 
-    print("unproductive")
     G = remove_unproductive_symbols(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
 
-    print("unreachable")
     G = remove_unreachable_symbols(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
 
-    print("nullable")
-    print(get_non_terminals_epsilon(G))
-    print()
-
-    print("e-livre")
     G = remove_non_terminal_epsilon(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
 
-    print("non circular")
     G = remove_circular_productions(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
 
-    print("unit prod")
     G = remove_unit_productions(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
+
+    G = remove_unreachable_symbols(G)
     s1 = G.to_str()
 
-    print("unreachable 2")
-    G = remove_unreachable_symbols(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
-
-    print("order A")
-    A = order_non_terminals(G)
-    print(A)
-    print()
-
-    print("left recursion")
-    print(G.N, G.T, G.S, G.P)
     G = remove_left_recursion(G)
-    print(G.N, G.T, G.S, G.P)
-    print()
+    s2 = G.to_str()
 
-    s1, s2 = "", ""
 
-    return "<<%s><%s>>" % (s1, s2)
+    print("<<%s><%s>>" % (s1, s2))
 
 if __name__ == "__main__":
     main()
