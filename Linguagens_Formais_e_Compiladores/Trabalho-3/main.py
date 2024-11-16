@@ -320,8 +320,11 @@ def remove_left_recursion(G):
         to_remove = list()
         to_add = list()
 
-        for j in range(i):
+        for j in range(len(A)):
             ai, aj = A[i], A[j]
+
+            if (ai == aj):
+                continue
 
             for prod in G.P[ai]:
                 p0 = prod[0]
