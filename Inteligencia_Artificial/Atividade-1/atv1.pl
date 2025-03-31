@@ -98,13 +98,13 @@ faixa_etaria_recomendada(idoso      , idoso).
 
 % ----- FUNCOES UTEIS -----
 
-% Retorna nome do filme
+% Associa abreviatura e nome do filme
 nome_filme(Abrv, Nome) :- filme(Abrv, Nome, _, _, _, _).
 
-% Retorna todos os generos de um filme
+% Associal abreviatura e todos os generos de um filme
 todos_os_generos(Abrv, Generos) :- filme(Abrv, _, _, _, _, Generos).
 
-% Retorna verdadeiro se filme possui um genero especifico
+% Verdadeiro se filme possui um genero especifico
 possui_genero(Abrv, Genero) :- filme(Abrv, _, _, _, _, Generos), member(Genero, Generos).
 
 % Retorna classificacao do filme por duracao
@@ -112,24 +112,23 @@ duracao_filme(Abrv, curta_metragem) :- filme(Abrv, _, Minutos, _, _, _), Minutos
 duracao_filme(Abrv, padrao)         :- filme(Abrv, _, Minutos, _, _, _), Minutos >= 90, Minutos =< 120.
 duracao_filme(Abrv, longa_metragem) :- filme(Abrv, _, Minutos, _, _, _), Minutos > 120.
 
-% Retorna classificacao etaria do filme
+% Associal abreviatura e classificacao etaria do filme
 classificacao_etaria(Abrv, ClassificacaoEtaria) :- filme(Abrv, _, _, ClassificacaoEtaria, _, _).
 
-% Retorna verdadeiro se companhia eh recomendada
+% Verdadeiro se companhia eh recomendada
 companhia_recomendada(Abrv, Companhia) :- filme(Abrv, _, _, _, CompanhiaRecomendada, _), member(Companhia, CompanhiaRecomendada).
 
-% Retorna faixa etaria do filme
+% Associa abreviatura e faixa etaria do filme
 faixa_etaria_filme(Abrv, FaixaEtaria) :- filme(Abrv, _, _, FaixaEtaria, _, _).
 
-% Retorna verdadeiro se faixa etaria da pessoa eh recomendada
+% Verdadeiro se faixa etaria da pessoa eh recomendada
 member_faixa_etaria_recomendada(Abrv, FaixaEtaria) :-
     faixa_etaria_filme(Abrv, FaixaEtariaFilme),
-    faixa_etaria_recomendada(FaixaEtariaFilme, FaixaEtariaRecomendada),
-    member(FaixaEtaria, FaixaEtariaRecomendada).
+    faixa_etaria_recomendada(FaixaEtaria, FaixaEtariaFilme).
 
 % ----- FUNCAO DE RECOMENDACAO -----
 
-% Retorna Sugestao de Filmes de acordo com os generos recomendados a Personalidade
+% Retorna Sugestao de Filmes
 sugestao_filme(Personalidade, FaixaEtaria, Disponibilidade, Companhia, Filme) :-
     generos_personalidade(Personalidade, GenerosRecomendados),
     duracao_recomendado(Disponibilidade, ClasseDuracao),
@@ -145,11 +144,10 @@ sugestao_filme(Personalidade, FaixaEtaria, Disponibilidade, Companhia, Filme) :-
 
         companhia_recomendada(Abrv, Companhia),
 
-        faixa_etaria_filme(Abrv, FaixaEtariaFilme),
-        faixa_etaria_recomendada(FaixaEtariaFilme, FaixaEtaria)
+        member_faixa_etaria_recomendada(Abrv, FaixaEtaria)
 
     ), ListaFilmes),
-    sort(ListaFilmes, ListaFilmesSemRepeticao),               % Remove filmes duplicados e organiza lista
+    sort(ListaFilmes, ListaFilmesSemRepeticao),
     member(Filme, ListaFilmesSemRepeticao).
 
 
@@ -170,12 +168,10 @@ sugestao_filme(Personalidade, FaixaEtaria, Disponibilidade, Companhia, Filme) :-
 % familia, amigos ou sozinho
 
 % Exemplo de execucao
-%   sugestao_filme(aventureiro, F).
+%   sugestao_filme(descontraido, criaca, ilimitado, familia, F).
 %   Output:
-%       F = 'Indiana Jones' ;
-%       F = 'Interestelar' ;
-%       F = 'Mad Max: Estrada da Furia' ;
-%       F = 'Missao Impossivel' ;
-%       F = 'O Senhor dos Aneis' ;
-%       F = 'Os Infiltrados'.
+%       F = 'Toy Story' ;
+%       F = 'Frozen' ;
+%       F = 'Procurando Nemo' ;
+%       false.
 
