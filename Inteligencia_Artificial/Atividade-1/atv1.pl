@@ -1,24 +1,21 @@
 %  ----- PREDICADOS -----
 
+% Caracteristicas pessoas
 % Personalidades 
 personalidade(aventureiro). personalidade(romantico).
 personalidade(intelectual). personalidade(descontraido).
 personalidade(mistico).     personalidade(realista).
 
-% Companhia
-companhia(familia).
-companhia(amigos).
-companhia(sozinho).
-
 % Faixa Etaria
 faixa_etaria(crianca). faixa_etaria(adolescente).
-faixa_etaria(adulto).  faixa_etaria(idoso).
+faixa_etaria(adulto).
 
 % Disponibilidade de tempo
 disponibilidade(limitado).
 disponibilidade(padrao).
 disponibilidade(ilimitado).
 
+% Caracteristicas filmes
 % Duracao do filme
 duracao(curta_metragem).
 duracao(padrao).
@@ -33,139 +30,886 @@ genero(guerra).     genero(biografia). genero(sobrenatural).
 genero(misterio).   genero(historico). genero(documentario).
 genero(competicao). genero(educativo). genero(classico).
 
-% Filmes (Abreviacao, Nome, Duracao(min), ClassificaoEtaria, CompanhiaRecomendada, Generos)
-filme(ts , "Toy Story"                       , 81 , crianca    , [sozinho, familia, amigos], [animacao, comedia, aventura]).
-filme(hp , "Harry Potter e a Pedra Filosoval", 152, crianca    , [sozinho, amigos]         , [fantasia, aventura, competicao]).
-filme(its, "Interestelar"                    , 169, adolescente, [sozinho]                 , [fantasia, aventura, competicao]).
-filme(rsr, "O resgate do Soldado Ryan"       , 169, adulto     , [sozinho]                 , [ficcao_cientifica, drama, aventura]).
-filme(fz , "Frozen"                          , 102, crianca    , [familia, amigos]         , [animacao, musical, aventura]).
-filme(ge , "Garota Exemplar"                 , 149, adulto     , [sozinho]                 , [suspense, crime, drama]).
-filme(lll, "La La Land"                      , 128, adolescente, [sozinho, amigos]         , [musical, romance, drama]).
-filme(im , "Invocacao do Mal"                , 112, adulto     , [sozinho, amigos]         , [terror, suspense, sobrenatural]).
-filme(pn , "Procurando Nemo"                 , 100, crianca    , [familia]                 , [animacao, educativo, aventura]).
-filme(cl , "Clube da Luta"                   , 139, adulto     , [sozinho, amigos]         , [suspense, drama, crime]).
-filme(cb , "Casablanca"                      , 102, idoso      , [sozinho]                 , [classico, romance, drama]).
-filme(ji , "O Jogo da Imitacao"              , 114, adolescente, [sozinho, amigos]         , [biografia, guerra, drama]).
-filme(jv , "Jogos Vorazes"                   , 142, adolescente, [sozinho, amigos]         , [acao, competicao, ficcao_cientifica]).
-filme(cln, "Coraline"                        , 100, adolescente, [sozinho, familia, amigos], [fantasia, terror, animacao]).
-filme(mot, "My Octopus Teacher"              , 85 , adulto     , [sozinho]                 , [documentario, educativo, drama]).
-filme(ghb, "O Grande Hotel Budapeste"        , 99 , adolescente, [sozinho, familia, amigos], [comedia, aventura, crime]).
-filme(eat, "Estrelas Alem do Tempo"          , 127, adolescente, [sozinho, amigos, familia], [biografia, drama, historico]).
-filme(if , "Os Infiltrados"                  , 151, adulto     , [sozinho, amigos]         , [crime, suspense, acao]).
+% Filmes (Nome, ClasseDuracao, ClassificaoEtaria, Generos)
+filme("Toy Story"                       , curta  , crianca    , [animacao, comedia, aventura]).
+filme("Harry Potter e a Pedra Filosoval", longa  , crianca    , [fantasia, aventura, competicao]).
+filme("Interestelar"                    , longa  , adolescente, [fantasia, aventura, competicao]).
+filme("O resgate do Soldado Ryan"       , longa  , adulto     , [ficcao_cientifica, drama, aventura]).
+filme("Frozen"                          , padrao , crianca    , [animacao, musical, aventura]).
+filme("Garota Exemplar"                 , longa  , adulto     , [suspense, crime, drama]).
+filme("La La Land"                      , padrao , adolescente, [musical, romance, drama]).
+filme("Invocacao do Mal"                , padrao , adulto     , [terror, suspense, sobrenatural]).
+filme("Procurando Nemo"                 , padrao , crianca    , [animacao, educativo, aventura]).
+filme("Clube da Luta"                   , longa  , adulto     , [suspense, drama, crime]).
+filme("Casablanca"                      , padrao , idoso      , [classico, romance, drama]).
+filme("O Jogo da Imitacao"              , padrao , adolescente, [biografia, guerra, drama]).
+filme("Jogos Vorazes"                   , longa  , adolescente, [acao, competicao, ficcao_cientifica]).
+filme("Coraline"                        , padrao , adolescente, [fantasia, terror, animacao]).
+filme("My Octopus Teacher"              , curta  , adulto     , [documentario, educativo, drama]).
+filme("O Grande Hotel Budapeste"        , padrao , adolescente, [comedia, aventura, crime]).
+filme("Estrelas Alem do Tempo"          , longa  , adolescente, [biografia, drama, historico]).
+filme("Os Infiltrados"                  , longa  , adulto     , [crime, suspense, acao]).
+
+
+% ----- RECOMENDACOES -----
+
+% Generos recomendados por personalidade
+% Se <personalidade> Entao <Lista Generos Recomendados>
+generos_personalidade(aventureiro , [acao, aventura, ficcao_cientifica]).
+generos_personalidade(romantico   , [romance, drama, musical]).
+generos_personalidade(intelectual , [ficcao_cientifica, historico, documentario]).
+generos_personalidade(descontraido, [comedia, animacao, romance]).
+generos_personalidade(mistico     , [fantasia, terror, aventura]).
+generos_personalidade(realista    , [crime, guerra, biografia]).
+
+% FaixaEtaria recomendada
+% Se crianca     Entao crianca
+% Se adolescente Entao crianca Ou adolescente
+% Se adulto      Entao crianca Ou adolescente Ou adulto Ou idoso
+faixa_etaria_recomendada(crianca    , [crianca]).
+faixa_etaria_recomendada(adolescente, [crianca, adolescente]).
+faixa_etaria_recomendada(adulto     , [crianca, adolescente, adulto]).
+
+% Duracao recomendada
+% Se limitado Entao curta
+% Se padrao   Entao curta Ou padrao
+% Se ilitado  Entao curta Ou padrao Ou Longa
+duracao_recomendada(limitado,  [curta]).
+duracao_recomendada(padrao,    [curta, padrao]).
+duracao_recomendada(ilimitado, [curta, padrao, longa]).
+
+% ----- UTEIS -----
+
+% Verifica que pelo menos um item da lista1 pertence a lista 2
+ao_menos_um_em_comum([X|_], List2) :- member(X, List2).
+ao_menos_um_em_comum([_|Tail], List2) :- ao_menos_um_em_comum(Tail, List2).
 
 
 % ----- REGRAS -----
 
-% Generos recomendados por personalidade
-% Se <personalidade> Entao <Lista Generos Recomendados>
-generos_personalidade(aventureiro , [acao, aventura, ficcao_cientifica, suspense]).
-generos_personalidade(romantico   , [romance, drama, musical]).
-generos_personalidade(intelectual , [ficcao_cientifica, historico, suspense, documentario]).
-generos_personalidade(descontraido, [comedia, animacao, romance, acao]).
-generos_personalidade(mistico     , [fantasia, terror, aventura]).
-generos_personalidade(realista    , [crime, guerra, biografia]).
+% Regra 1
+% SE aventureiro E limitado E crianca Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(aventureiro, limitado, crianca, NomeFilme) :-
+    setof(Nome, 
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_ucomum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
 
-% Duracao recomendado pelo disponibilidade
-% Se limitado  Entao curta_metragem
-% Se padrao    Entao curta_metragem e padrao
-% Se ilimitado Entao curta_metragem, padrao e longa_metragem
-duracao_recomendado(limitado, curta_metragem).
-duracao_recomendado(padrao, curta_metragem).
-duracao_recomendado(padrao, padrao).
-duracao_recomendado(ilimitado, curta_metragem).
-duracao_recomendado(ilimitado, padrao).
-duracao_recomendado(ilimitado, longa_metragem).
+% Regra 2
+% SE aventureiro E limitado E adolescente Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(aventureiro, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% FaixaEtaria recomendada
-% Se crianca     Entao crianca
-% Se adolescente Entao crianca e adolescente
-% Se adulto      Entao crianca, adolescente, adulto e idoso
-% Se idoso       Entao crianca, adolescente, adulto e idoso
-faixa_etaria_recomendada(crianca    , crianca).
-faixa_etaria_recomendada(adolescente, crianca).
-faixa_etaria_recomendada(adolescente, adolescente).
-faixa_etaria_recomendada(adulto     , crianca).
-faixa_etaria_recomendada(adulto     , adolescente).
-faixa_etaria_recomendada(adulto     , adulto).
-faixa_etaria_recomendada(adulto     , idoso).
-faixa_etaria_recomendada(idoso      , crianca).
-faixa_etaria_recomendada(idoso      , adolescente).
-faixa_etaria_recomendada(idoso      , adulto).
-faixa_etaria_recomendada(idoso      , idoso).
+% Regra 3
+% SE aventureiro E limitado E adulto Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(aventureiro, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Duracao
+% Regra 4
+% SE aventureiro E padrao E crianca Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(aventureiro, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% ----- FUNCOES UTEIS -----
+% Regra 5
+% SE aventureiro E padrao E adolescente Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(aventureiro, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Associa abreviatura e nome do filme
-nome_filme(Abrv, Nome) :- filme(Abrv, Nome, _, _, _, _).
+% Regra 6
+% SE aventureiro E padrao E adulto Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(aventureiro, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Associal abreviatura e todos os generos de um filme
-todos_os_generos(Abrv, Generos) :- filme(Abrv, _, _, _, _, Generos).
+% Regra 7
+% SE aventureiro E ilimitado E crianca Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(aventureiro, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Verdadeiro se filme possui um genero especifico
-possui_genero(Abrv, Genero) :- filme(Abrv, _, _, _, _, Generos), member(Genero, Generos).
+% Regra 8
+% SE aventureiro E ilimitado E adolescente Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(aventureiro, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Retorna classificacao do filme por duracao
-duracao_filme(Abrv, curta_metragem) :- filme(Abrv, _, Minutos, _, _, _), Minutos < 90.
-duracao_filme(Abrv, padrao)         :- filme(Abrv, _, Minutos, _, _, _), Minutos >= 90, Minutos =< 120.
-duracao_filme(Abrv, longa_metragem) :- filme(Abrv, _, Minutos, _, _, _), Minutos > 120.
+% Regra 9
+% SE aventureiro E ilimitado E adulto Entao
+% ENTAO Genero = acao OU aventura OU ficcao_cientifica]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(aventureiro, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [acao, aventura, ficcao_cientifica]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Associal abreviatura e classificacao etaria do filme
-classificacao_etaria(Abrv, ClassificacaoEtaria) :- filme(Abrv, _, _, ClassificacaoEtaria, _, _).
+% Regra 10
+% SE romantico E limitado E crianca Entao
+% ENTAO Genero = romance OU drama OU musical
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(romantico, limitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Verdadeiro se companhia eh recomendada
-companhia_recomendada(Abrv, Companhia) :- filme(Abrv, _, _, _, CompanhiaRecomendada, _), member(Companhia, CompanhiaRecomendada).
+% Regra 11
+% SE romantico E limitado E adolescente Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(romantico, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Associa abreviatura e faixa etaria do filme
-faixa_etaria_filme(Abrv, FaixaEtaria) :- filme(Abrv, _, _, FaixaEtaria, _, _).
+% Regra 12
+% SE romantico E limitado E adulto Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(romantico, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Verdadeiro se faixa etaria da pessoa eh recomendada
-member_faixa_etaria_recomendada(Abrv, FaixaEtaria) :-
-    faixa_etaria_filme(Abrv, FaixaEtariaFilme),
-    faixa_etaria_recomendada(FaixaEtaria, FaixaEtariaFilme).
+% Regra 13
+% SE romantico E padrao E crianca Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(romantico, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% ----- FUNCAO DE RECOMENDACAO -----
+% Regra 14
+% SE romantico E padrao E adolescente Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(romantico, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-% Retorna Sugestao de Filmes
-sugestao_filme(Personalidade, FaixaEtaria, Disponibilidade, Companhia, Filme) :-
-    generos_personalidade(Personalidade, GenerosRecomendados),
-    duracao_recomendado(Disponibilidade, ClasseDuracao),
+% Regra 15
+% SE romantico E padrao E adulto Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(romantico, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
+% Regra 16
+% SE romantico E ilimitado E crianca Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(romantico, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-    findall(NomeFilme, (
-        nome_filme(Abrv, NomeFilme),
+% Regra 17
+% SE romantico E ilimitado E adolescente Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(romantico, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-        possui_genero(Abrv, Genero),
-        member(Genero, GenerosRecomendados),
+% Regra 18
+% SE romantico E ilimitado E adulto Entao
+% ENTAO Genero = romance OU drama OU musical]
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(romantico, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [romance, drama, musical]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-        duracao_filme(Abrv, ClasseDuracao),
+% Regra 19
+% SE intelectual E limitado E crianca Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(intelectual, limitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-        companhia_recomendada(Abrv, Companhia),
+% Regra 20
+% SE intelectual E limitado E adolescente Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(intelectual, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-        member_faixa_etaria_recomendada(Abrv, FaixaEtaria)
+% Regra 21
+% SE intelectual E limitado E adulto Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(intelectual, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
-    ), ListaFilmes),
-    sort(ListaFilmes, ListaFilmesSemRepeticao),
-    member(Filme, ListaFilmesSemRepeticao).
+% Regra 22
+% SE intelectual E padrao E crianca Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(intelectual, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
+% Regra 23
+% SE intelectual E padrao E adolescente Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(intelectual, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 24
+% SE intelectual E padrao E adulto Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(intelectual, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 25
+% SE intelectual E ilimitado E crianca Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(intelectual, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 26
+% SE intelectual E ilimitado E adolescente Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(intelectual, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 27
+% SE intelectual E ilimitado E adulto Entao
+% ENTAO Genero = ficcao_cientifica OU historico OU documentario
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(intelectual, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [ficcao_cientifica, historico, documentario]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 28
+% SE descontraido E limitado E crianca Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(descontraido, limitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 29
+% SE descontraido E limitado E adolescente Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(descontraido, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 30
+% SE descontraido E limitado E adulto Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(descontraido, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 31
+% SE descontraido E padrao E crianca Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(descontraido, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 32
+% SE descontraido E padrao E adolescente Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(descontraido, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 33
+% SE descontraido E padrao E adulto Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(descontraido, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 34
+% SE descontraido E ilimitado E crianca Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(descontraido, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 35
+% SE descontraido E ilimitado E adolescente Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(descontraido, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 36
+% SE descontraido E ilimitado E adulto Entao
+% ENTAO Genero = comedia OU animacao OU romance
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(descontraido, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [comedia, animacao, romance]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 37
+% SE mistico E limitado E crianca Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(mistico, limitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 38
+% SE mistico E limitado E adolescente Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(mistico, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 39
+% SE mistico E limitado E adulto Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(mistico, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 40
+% SE mistico E padrao E crianca Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(mistico, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 41
+% SE mistico E padrao E adolescente Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(mistico, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 42
+% SE mistico E padrao E adulto Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(mistico, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 43
+% SE mistico E ilimitado E crianca Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(mistico, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 44
+% SE mistico E ilimitado E adolescente Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(mistico, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 45
+% SE mistico E ilimitado E adulto Entao
+% ENTAO Genero = fantasia OU terror OU aventura
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(mistico, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [fantasia, terror, aventura]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 46
+% SE realista E limitado E crianca Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     Duracao = curta_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(realista, limitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 47
+% SE realista E limitado E adolescente Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(realista, limitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 48
+% SE realista E limitado E adulto Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(realista, limitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 49
+% SE realista E padrao E crianca Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca
+sugestao_filme(realista, padrao, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 50
+% SE realista E padrao E adolescente Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem ou padrao
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(realista, padrao, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 51
+% SE realista E padrao E adulto Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem OU padrao
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(realista, padrao, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 52
+% SE realista E ilimitado E crianca Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca
+sugestao_filme(realista, ilimitado, crianca, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 53
+% SE realista E ilimitado E adolescente Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente
+sugestao_filme(realista, ilimitado, adolescente, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
+
+% Regra 54
+% SE realista E ilimitado E adulto Entao
+% ENTAO Genero = crime OU guerra OU biografia
+% E     duracao = curta_metragem OU padrao OU longa_metragem
+% E     Classificacao Etaria = crianca OU adolescente OU adulto
+sugestao_filme(realista, ilimitado, adulto, NomeFilme) :-
+    setof(Nome,
+    (
+        filme(Nome, DuracaoFilme, ClassEtariaFilme, GenerosFilme),
+        ao_menos_um_em_comum(GenerosFilme, [crime, guerra, biografia]),
+        member(DuracaoFilme, [curta, padrao, longa]),
+        member(ClassEtariaFilme, [crianca, adolescente, adulto])
+    ), ListaNomeFilme),
+    member(NomeFilme, ListaNomeFilme).
 
 % COMO PERDIR SUGESTAO DE FILMES
-% Utilize o comando sugestao(<Personalidade>, <FaixaEtaria>, <Disponibilidade>, <Companhia>, Filme).
+% Utilize o comando sugestao_filme(<Personalidade>, <Disponibilidade>, <FaixaEtaria>, Filme).
 % Para receber mais de uma recomendação (se houver) aperte o botão ";" para que o programa continue sugerindo
 
 % Personalidade pode ser:
 % aventureiro, romantico, intelectual, descontraido, mistico ou realista
 
 % FaixaEtaria pode ser:
-% crianca, adolescente, adulto ou idoso
+% crianca, adolescente, adulto
 
 % Disponibilidade pode ser:
 % limitado, padrao ou ilimitado.
-
-% Companhia pode ser:
-% familia, amigos ou sozinho
 
 % Exemplo de execucao
 %   sugestao_filme(descontraido, criaca, ilimitado, familia, F).
