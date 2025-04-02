@@ -1,0 +1,7 @@
+[RESOURCES]
+Processador
+[VARIABLES]
+Decide 1.NumberOut False
+Finaliza Processo.NumberOut
+Chega Processo.NumberOut
+Decide 1.NumberOut True

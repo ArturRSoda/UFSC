@@ -1,0 +1,726 @@
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 1 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000         84    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000         84    
+processo.WaitTime                           1.4305     (Insuf)    .00000     13.491         84    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000         84    
+processo.OtherTime                          4.5974     (Insuf)    .00000     18.093         84    
+processo.TotalTime                          6.0279     (Insuf)    .00000     19.431         84    
+processo.VACost                             .00000     (Insuf)    .00000     .00000         84    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000         84    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000         84    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000         84    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000         84    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000         84    
+Programa aloca processador para executar.Q  1.4305     (Insuf)    .00000     13.491         84    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000         84    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                .50635     (Insuf)    .00000     4.0000     .00000    
+Processador.NumberBusy                      .38619     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .38619     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .12016     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           84.000    
+processo.NumberOut                          84.000    
+Processador.NumberSeized                    84.000    
+Processador.ScheduledUtilization            .38619    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            84.000    
+
+Beginning replication 2 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 2 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        105    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        105    
+processo.WaitTime                           2.9555     (Insuf)    .00000     22.460        105    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        105    
+processo.OtherTime                          4.9608     (Insuf)    .90709     15.883        105    
+processo.TotalTime                          7.9164     (Insuf)    .90709     27.562        105    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        105    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        105    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        105    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        105    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        105    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        105    
+Programa aloca processador para executar.Q  3.0122     (Insuf)    .00000     22.460        106    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        106    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                .85214     (Insuf)    .00000     4.0000     2.0000    
+Processador.NumberBusy                      .52467     (Insuf)    .00000     1.0000     1.0000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .52467     (Insuf)    .00000     1.0000     1.0000    
+Programa aloca processador para executar.Q  .32747     (Insuf)    .00000     3.0000     1.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           107.00    
+processo.NumberOut                          105.00    
+Processador.NumberSeized                    106.00    
+Processador.ScheduledUtilization            .52467    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            105.00    
+
+Beginning replication 3 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 3 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        105    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        105    
+processo.WaitTime                           3.7562     (Insuf)    .00000     19.087        105    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        105    
+processo.OtherTime                          4.9207     (Insuf)    .00000     20.323        105    
+processo.TotalTime                          8.6770     (Insuf)    .65510     27.906        105    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        105    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        105    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        105    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        105    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        105    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        105    
+Programa aloca processador para executar.Q  3.7562     (Insuf)    .00000     19.087        105    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        105    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                .91109     (Insuf)    .00000     4.0000     .00000    
+Processador.NumberBusy                      .51668     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .51668     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .39441     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           105.00    
+processo.NumberOut                          105.00    
+Processador.NumberSeized                    105.00    
+Processador.ScheduledUtilization            .51668    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            105.00    
+
+Beginning replication 4 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 4 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitTime                           4.2558     (Insuf)    .00000     20.604        109    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherTime                          4.9545     (Insuf)    .00000     17.939        109    
+processo.TotalTime                          9.2104     (Insuf)    .00000     27.349        109    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        109    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        109    
+Programa aloca processador para executar.Q  4.2558     (Insuf)    .00000     20.604        109    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                1.0039     (Insuf)    .00000     6.0000     .00000    
+Processador.NumberBusy                      .54004     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .54004     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .46389     (Insuf)    .00000     5.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           109.00    
+processo.NumberOut                          109.00    
+Processador.NumberSeized                    109.00    
+Processador.ScheduledUtilization            .54004    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            109.00    
+
+Beginning replication 5 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 5 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitTime                           6.7011     (Insuf)    .00000     33.759        109    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherTime                          5.0517     (Insuf)    .33052     17.117        109    
+processo.TotalTime                          11.752     (Insuf)    1.0020     45.192        109    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        109    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        109    
+Programa aloca processador para executar.Q  6.7011     (Insuf)    .00000     33.759        109    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                1.2810     (Insuf)    .00000     7.0000     .00000    
+Processador.NumberBusy                      .55064     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .55064     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .73042     (Insuf)    .00000     6.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           109.00    
+processo.NumberOut                          109.00    
+Processador.NumberSeized                    109.00    
+Processador.ScheduledUtilization            .55064    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            109.00    
+
+Beginning replication 6 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 6 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000         96    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000         96    
+processo.WaitTime                           2.8891     (Insuf)    .00000     14.206         96    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000         96    
+processo.OtherTime                          5.2482     (Insuf)    .00000     15.316         96    
+processo.TotalTime                          8.1374     (Insuf)    .83530     20.570         96    
+processo.VACost                             .00000     (Insuf)    .00000     .00000         96    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000         96    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000         96    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000         96    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000         96    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000         96    
+Programa aloca processador para executar.Q  2.9536     (Insuf)    .00000     14.206         97    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000         97    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                .82315     (Insuf)    .00000     6.0000     4.0000    
+Processador.NumberBusy                      .50862     (Insuf)    .00000     1.0000     1.0000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .50862     (Insuf)    .00000     1.0000     1.0000    
+Programa aloca processador para executar.Q  .31453     (Insuf)    .00000     5.0000     3.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           100.00    
+processo.NumberOut                          96.000    
+Processador.NumberSeized                    97.000    
+Processador.ScheduledUtilization            .50862    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            96.000    
+
+Beginning replication 7 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 7 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        107    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        107    
+processo.WaitTime                           8.6689     (Insuf)    .00000     50.727        107    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        107    
+processo.OtherTime                          4.9794     (Insuf)    .93427     16.043        107    
+processo.TotalTime                          13.648     (Insuf)    .93427     55.233        107    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        107    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        107    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        107    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        107    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        107    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        107    
+Programa aloca processador para executar.Q  8.6689     (Insuf)    .00000     50.727        107    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        107    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                1.4603     (Insuf)    .00000     8.0000     .00000    
+Processador.NumberBusy                      .53280     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .53280     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .92758     (Insuf)    .00000     7.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           107.00    
+processo.NumberOut                          107.00    
+Processador.NumberSeized                    107.00    
+Processador.ScheduledUtilization            .53280    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            107.00    
+
+Beginning replication 8 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 8 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        114    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        114    
+processo.WaitTime                           4.9613     (Insuf)    .00000     30.272        114    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        114    
+processo.OtherTime                          4.8966     (Insuf)    .00000     16.926        114    
+processo.TotalTime                          9.8579     (Insuf)    .00000     39.976        114    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        114    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        114    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        114    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        114    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        114    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        114    
+Programa aloca processador para executar.Q  4.9182     (Insuf)    .00000     30.272        115    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        115    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                1.1239     (Insuf)    .00000     6.0000     1.0000    
+Processador.NumberBusy                      .55831     (Insuf)    .00000     1.0000     1.0000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .55831     (Insuf)    .00000     1.0000     1.0000    
+Programa aloca processador para executar.Q  .56560     (Insuf)    .00000     5.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           115.00    
+processo.NumberOut                          114.00    
+Processador.NumberSeized                    115.00    
+Processador.ScheduledUtilization            .55831    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            114.00    
+
+Beginning replication 9 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 9 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        103    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        103    
+processo.WaitTime                           5.2477     (Insuf)    .00000     31.165        103    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        103    
+processo.OtherTime                          5.2439     (Insuf)    .64530     16.686        103    
+processo.TotalTime                          10.491     (Insuf)    .92882     33.607        103    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        103    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        103    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        103    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        103    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        103    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        103    
+Programa aloca processador para executar.Q  5.2563     (Insuf)    .00000     31.165        104    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        104    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                1.0896     (Insuf)    .00000     5.0000     2.0000    
+Processador.NumberBusy                      .54190     (Insuf)    .00000     1.0000     1.0000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .54190     (Insuf)    .00000     1.0000     1.0000    
+Programa aloca processador para executar.Q  .54777     (Insuf)    .00000     4.0000     1.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           105.00    
+processo.NumberOut                          103.00    
+Processador.NumberSeized                    104.00    
+Processador.ScheduledUtilization            .54190    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            103.00    
+
+Beginning replication 10 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 10 of 10
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+processo.VATime                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVATime                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitTime                           3.9563     (Insuf)    .00000     23.329        109    
+processo.TranTime                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherTime                          5.0005     (Insuf)    .00000     18.508        109    
+processo.TotalTime                          8.9568     (Insuf)    .00000     37.241        109    
+processo.VACost                             .00000     (Insuf)    .00000     .00000        109    
+processo.NVACost                            .00000     (Insuf)    .00000     .00000        109    
+processo.WaitCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.TranCost                           .00000     (Insuf)    .00000     .00000        109    
+processo.OtherCost                          .00000     (Insuf)    .00000     .00000        109    
+processo.TotalCost                          .00000     (Insuf)    .00000     .00000        109    
+Programa aloca processador para executar.Q  3.9563     (Insuf)    .00000     23.329        109    
+Programa aloca processador para executar.Q  .00000     (Insuf)    .00000     .00000        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+processo.WIP                                .97629     (Insuf)    .00000     5.0000     .00000    
+Processador.NumberBusy                      .54506     (Insuf)    .00000     1.0000     .00000    
+Processador.NumberScheduled                 1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador.Utilization                     .54506     (Insuf)    .00000     1.0000     .00000    
+Programa aloca processador para executar.Q  .43124     (Insuf)    .00000     4.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+processo.NumberIn                           109.00    
+processo.NumberOut                          109.00    
+Processador.NumberSeized                    109.00    
+Processador.ScheduledUtilization            .54506    
+Processador.BusyCost                        .00000    
+Processador.IdleCost                        .00000    
+Processador.UsageCost                       .00000    
+All Entities.VACost                         .00000    
+All Entities.NVACost                        .00000    
+All Entities.WaitCost                       .00000    
+All Entities.TranCost                       .00000    
+All Entities.OtherCost                      .00000    
+All Entities.TotalCost                      .00000    
+All Resources.BusyCost                      .00000    
+All Resources.IdleCost                      .00000    
+All Resources.UsageCost                     .00000    
+All Resources.TotalCost                     .00000    
+System.TotalCost                            .00000    
+System.NumberOut                            109.00    
+
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                 Output Summary for 10 Replications
+
+Project: Sistema Computacional                                       Run execution date : 4/ 2/2025
+Analyst: Prof. Dr. Eng. Rafael Luiz Cancian                          Model revision date: 4/ 2/2025
+
+
+                                             OUTPUTS
+
+Identifier                                 Average    Half-width Minimum    Maximum # Replications
+___________________________________________________________________________________________________
+
+processo.NumberIn                           105.00     5.9465     84.000     115.00     10
+processo.NumberOut                          104.10     6.0831     84.000     114.00     10
+Processador.NumberSeized                    104.50     6.1092     84.000     115.00     10
+Processador.ScheduledUtilization            .52049     .03548     .38619     .55831     10
+Processador.BusyCost                        .00000     .00000     .00000     .00000     10
+Processador.IdleCost                        .00000     .00000     .00000     .00000     10
+Processador.UsageCost                       .00000     .00000     .00000     .00000     10
+All Entities.VACost                         .00000     .00000     .00000     .00000     10
+All Entities.NVACost                        .00000     .00000     .00000     .00000     10
+All Entities.WaitCost                       .00000     .00000     .00000     .00000     10
+All Entities.TranCost                       .00000     .00000     .00000     .00000     10
+All Entities.OtherCost                      .00000     .00000     .00000     .00000     10
+All Entities.TotalCost                      .00000     .00000     .00000     .00000     10
+All Resources.BusyCost                      .00000     .00000     .00000     .00000     10
+All Resources.IdleCost                      .00000     .00000     .00000     .00000     10
+All Resources.UsageCost                     .00000     .00000     .00000     .00000     10
+All Resources.TotalCost                     .00000     .00000     .00000     .00000     10
+System.TotalCost                            .00000     .00000     .00000     .00000     10
+System.NumberOut                            104.10     6.0831     84.000     114.00     10
+
+Simulation run time: 0.02 minutes.
+Simulation run complete.

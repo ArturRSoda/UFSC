@@ -1,0 +1,658 @@
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 1 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             15.855     (Insuf)    .00000     36.596         84    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000         84    
+Processo.WaitTime                           .04828     (Insuf)    .00000     3.4862         84    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000         84    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000         84    
+Processo.TotalTime                          15.903     (Insuf)    .00000     36.596         84    
+FilaProcessador.WaitingTime                 .04828     (Insuf)    .00000     3.4862         84    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.3359     (Insuf)    .00000     5.0000     .00000    
+Processador4.NumberBusy                     .12308     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .12308     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .27086     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .27086     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .36894     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .36894     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberBusy                     .56897     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .56897     (Insuf)    .00000     1.0000     .00000    
+FilaProcessador.NumberInQueue               .00406     (Insuf)    .00000     1.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           84.000    
+Processo.NumberOut                          84.000    
+Processador4.NumberSeized                   5.0000    
+Processador4.ScheduledUtilization           .12308    
+Processador3.NumberSeized                   17.000    
+Processador3.ScheduledUtilization           .27086    
+Processador2.NumberSeized                   25.000    
+Processador2.ScheduledUtilization           .36894    
+Processador1.NumberSeized                   37.000    
+Processador1.ScheduledUtilization           .56897    
+System.NumberOut                            84.000    
+
+Beginning replication 2 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 2 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             17.765     (Insuf)    .90709     38.120        104    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        104    
+Processo.WaitTime                           1.4884     (Insuf)    .00000     22.088        104    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        104    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        104    
+Processo.TotalTime                          19.253     (Insuf)    .90709     49.197        104    
+FilaProcessador.WaitingTime                 1.5082     (Insuf)    .00000     22.088        107    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                2.0390     (Insuf)    .00000     7.0000     3.0000    
+Processador4.NumberBusy                     .25020     (Insuf)    .00000     1.0000     1.0000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .25020     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberBusy                     .40689     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .40689     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberBusy                     .58891     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .58891     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberBusy                     .63167     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .63167     (Insuf)    .00000     1.0000     .00000    
+FilaProcessador.NumberInQueue               .16138     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           107.00    
+Processo.NumberOut                          104.00    
+Processador4.NumberSeized                   14.000    
+Processador4.ScheduledUtilization           .25020    
+Processador3.NumberSeized                   24.000    
+Processador3.ScheduledUtilization           .40689    
+Processador2.NumberSeized                   29.000    
+Processador2.ScheduledUtilization           .58891    
+Processador1.NumberSeized                   40.000    
+Processador1.ScheduledUtilization           .63167    
+System.NumberOut                            104.00    
+
+Beginning replication 3 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 3 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             16.279     (Insuf)    .00000     34.398        105    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        105    
+Processo.WaitTime                           .19878     (Insuf)    .00000     6.3672        105    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        105    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        105    
+Processo.TotalTime                          16.478     (Insuf)    .60407     34.398        105    
+FilaProcessador.WaitingTime                 .19878     (Insuf)    .00000     6.3672        105    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.7302     (Insuf)    .00000     6.0000     .00000    
+Processador4.NumberBusy                     .24102     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .24102     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .30848     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .30848     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .50654     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .50654     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberBusy                     .65335     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .65335     (Insuf)    .00000     1.0000     .00000    
+FilaProcessador.NumberInQueue               .02087     (Insuf)    .00000     2.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           105.00    
+Processo.NumberOut                          105.00    
+Processador4.NumberSeized                   13.000    
+Processador4.ScheduledUtilization           .24102    
+Processador3.NumberSeized                   19.000    
+Processador3.ScheduledUtilization           .30848    
+Processador2.NumberSeized                   32.000    
+Processador2.ScheduledUtilization           .50654    
+Processador1.NumberSeized                   41.000    
+Processador1.ScheduledUtilization           .65335    
+System.NumberOut                            105.00    
+
+Beginning replication 4 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 4 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             16.667     (Insuf)    .00000     35.441        108    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        108    
+Processo.WaitTime                           .99029     (Insuf)    .00000     16.565        108    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        108    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        108    
+Processo.TotalTime                          17.657     (Insuf)    .00000     46.765        108    
+FilaProcessador.WaitingTime                 .98121     (Insuf)    .00000     16.565        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.9218     (Insuf)    .00000     9.0000     1.0000    
+Processador4.NumberBusy                     .19125     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .19125     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .38109     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .38109     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberBusy                     .55738     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .55738     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberBusy                     .68518     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .68518     (Insuf)    .00000     1.0000     .00000    
+FilaProcessador.NumberInQueue               .10695     (Insuf)    .00000     5.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           109.00    
+Processo.NumberOut                          108.00    
+Processador4.NumberSeized                   12.000    
+Processador4.ScheduledUtilization           .19125    
+Processador3.NumberSeized                   22.000    
+Processador3.ScheduledUtilization           .38109    
+Processador2.NumberSeized                   32.000    
+Processador2.ScheduledUtilization           .55738    
+Processador1.NumberSeized                   43.000    
+Processador1.ScheduledUtilization           .68518    
+System.NumberOut                            108.00    
+
+Beginning replication 5 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 5 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             15.695     (Insuf)    1.4706     35.132        108    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        108    
+Processo.WaitTime                           .38111     (Insuf)    .00000     10.929        108    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        108    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        108    
+Processo.TotalTime                          16.076     (Insuf)    1.4706     35.132        108    
+FilaProcessador.WaitingTime                 .37761     (Insuf)    .00000     10.929        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.7464     (Insuf)    .00000     7.0000     1.0000    
+Processador4.NumberBusy                     .20538     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .20538     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .37481     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .37481     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .46415     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .46415     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberBusy                     .66099     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .66099     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .04116     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           109.00    
+Processo.NumberOut                          108.00    
+Processador4.NumberSeized                   13.000    
+Processador4.ScheduledUtilization           .20538    
+Processador3.NumberSeized                   22.000    
+Processador3.ScheduledUtilization           .37481    
+Processador2.NumberSeized                   34.000    
+Processador2.ScheduledUtilization           .46415    
+Processador1.NumberSeized                   40.000    
+Processador1.ScheduledUtilization           .66099    
+System.NumberOut                            108.00    
+
+Beginning replication 6 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 6 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             15.125     (Insuf)    .00000     32.753         95    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000         95    
+Processo.WaitTime                           .00534     (Insuf)    .00000     .50685         95    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000         95    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000         95    
+Processo.TotalTime                          15.130     (Insuf)    .00000     32.753         95    
+FilaProcessador.WaitingTime                 .16604     (Insuf)    .00000     7.0390         99    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.4954     (Insuf)    .00000     8.0000     5.0000    
+Processador4.NumberBusy                     .13046     (Insuf)    .00000     1.0000     1.0000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .13046     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberBusy                     .25699     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .25699     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberBusy                     .48998     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .48998     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberBusy                     .59253     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .59253     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .02547     (Insuf)    .00000     4.0000     1.0000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           100.00    
+Processo.NumberOut                          95.000    
+Processador4.NumberSeized                   9.0000    
+Processador4.ScheduledUtilization           .13046    
+Processador3.NumberSeized                   18.000    
+Processador3.ScheduledUtilization           .25699    
+Processador2.NumberSeized                   31.000    
+Processador2.ScheduledUtilization           .48998    
+Processador1.NumberSeized                   41.000    
+Processador1.ScheduledUtilization           .59253    
+System.NumberOut                            95.000    
+
+Beginning replication 7 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 7 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             17.524     (Insuf)    .93427     38.632        106    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        106    
+Processo.WaitTime                           .88797     (Insuf)    .00000     10.489        106    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        106    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        106    
+Processo.TotalTime                          18.412     (Insuf)    .93427     38.968        106    
+FilaProcessador.WaitingTime                 .87967     (Insuf)    .00000     10.489        107    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.9579     (Insuf)    .00000     7.0000     1.0000    
+Processador4.NumberBusy                     .20221     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .20221     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .33303     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .33303     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .59402     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .59402     (Insuf)    .00000     1.0000     .00000    
+Processador1.NumberBusy                     .73460     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .73460     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .09413     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           107.00    
+Processo.NumberOut                          106.00    
+Processador4.NumberSeized                   10.000    
+Processador4.ScheduledUtilization           .20221    
+Processador3.NumberSeized                   21.000    
+Processador3.ScheduledUtilization           .33303    
+Processador2.NumberSeized                   33.000    
+Processador2.ScheduledUtilization           .59402    
+Processador1.NumberSeized                   43.000    
+Processador1.ScheduledUtilization           .73460    
+System.NumberOut                            106.00    
+
+Beginning replication 8 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 8 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             17.871     (Insuf)    .00000     38.574        112    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        112    
+Processo.WaitTime                           .45132     (Insuf)    .00000     8.4460        112    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        112    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        112    
+Processo.TotalTime                          18.322     (Insuf)    .00000     38.574        112    
+FilaProcessador.WaitingTime                 .51972     (Insuf)    .00000     9.2198        115    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                2.0862     (Insuf)    .00000     7.0000     3.0000    
+Processador4.NumberBusy                     .31110     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .31110     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .45454     (Insuf)    .00000     1.0000     1.0000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .45454     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberBusy                     .57501     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .57501     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberBusy                     .68582     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .68582     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .05977     (Insuf)    .00000     3.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           115.00    
+Processo.NumberOut                          112.00    
+Processador4.NumberSeized                   16.000    
+Processador4.ScheduledUtilization           .31110    
+Processador3.NumberSeized                   28.000    
+Processador3.ScheduledUtilization           .45454    
+Processador2.NumberSeized                   31.000    
+Processador2.ScheduledUtilization           .57501    
+Processador1.NumberSeized                   40.000    
+Processador1.ScheduledUtilization           .68582    
+System.NumberOut                            112.00    
+
+Beginning replication 9 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 9 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             16.243     (Insuf)    .64530     34.709        103    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        103    
+Processo.WaitTime                           .50795     (Insuf)    .00000     10.805        103    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        103    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        103    
+Processo.TotalTime                          16.751     (Insuf)    .64530     34.709        103    
+FilaProcessador.WaitingTime                 .49827     (Insuf)    .00000     10.805        105    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.7344     (Insuf)    .00000     6.0000     2.0000    
+Processador4.NumberBusy                     .17412     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .17412     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .33063     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .33063     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .47722     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .47722     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberBusy                     .70016     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .70016     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .05232     (Insuf)    .00000     2.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           105.00    
+Processo.NumberOut                          103.00    
+Processador4.NumberSeized                   14.000    
+Processador4.ScheduledUtilization           .17412    
+Processador3.NumberSeized                   18.000    
+Processador3.ScheduledUtilization           .33063    
+Processador2.NumberSeized                   34.000    
+Processador2.ScheduledUtilization           .47722    
+Processador1.NumberSeized                   39.000    
+Processador1.ScheduledUtilization           .70016    
+System.NumberOut                            103.00    
+
+Beginning replication 10 of 10
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                  Summary for Replication 10 of 10
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+Replication ended at time      : 1000.0 Seconds 
+Base Time Units: Seconds
+
+                                           TALLY VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Observations
+___________________________________________________________________________________________________
+
+Processo.VATime                             15.153     (Insuf)    .00000     35.584        107    
+Processo.NVATime                            .00000     (Insuf)    .00000     .00000        107    
+Processo.WaitTime                           1.5011     (Insuf)    .00000     22.989        107    
+Processo.TranTime                           .00000     (Insuf)    .00000     .00000        107    
+Processo.OtherTime                          .00000     (Insuf)    .00000     .00000        107    
+Processo.TotalTime                          16.654     (Insuf)    .00000     48.326        107    
+FilaProcessador.WaitingTime                 1.4735     (Insuf)    .00000     22.989        109    
+
+                                     DISCRETE-CHANGE VARIABLES
+
+Identifier                                  Average   Half Width  Minimum    Maximum   Final Value
+___________________________________________________________________________________________________
+
+Processo.WIP                                1.8040     (Insuf)    .00000     9.0000     2.0000    
+Processador4.NumberBusy                     .18973     (Insuf)    .00000     1.0000     .00000    
+Processador4.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador4.Utilization                    .18973     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberBusy                     .29972     (Insuf)    .00000     1.0000     .00000    
+Processador3.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador3.Utilization                    .29972     (Insuf)    .00000     1.0000     .00000    
+Processador2.NumberBusy                     .49640     (Insuf)    .00000     1.0000     1.0000    
+Processador2.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador2.Utilization                    .49640     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberBusy                     .65757     (Insuf)    .00000     1.0000     1.0000    
+Processador1.NumberScheduled                1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Processador1.Utilization                    .65757     (Insuf)    .00000     1.0000     1.0000    
+FilaProcessador.NumberInQueue               .16062     (Insuf)    .00000     5.0000     .00000    
+
+                                             OUTPUTS
+
+Identifier                                   Value
+_____________________________________________________________
+
+Processo.NumberIn                           109.00    
+Processo.NumberOut                          107.00    
+Processador4.NumberSeized                   13.000    
+Processador4.ScheduledUtilization           .18973    
+Processador3.NumberSeized                   22.000    
+Processador3.ScheduledUtilization           .29972    
+Processador2.NumberSeized                   37.000    
+Processador2.ScheduledUtilization           .49640    
+Processador1.NumberSeized                   37.000    
+Processador1.ScheduledUtilization           .65757    
+System.NumberOut                            107.00    
+
+
+                                      ARENA Simulation Results
+                                      artur - License: STUDENT
+
+                                 Output Summary for 10 Replications
+
+Project: Unnamed Project                                             Run execution date : 4/ 2/2025
+Analyst: artur                                                       Model revision date: 4/ 2/2025
+
+
+                                             OUTPUTS
+
+Identifier                                 Average    Half-width Minimum    Maximum # Replications
+___________________________________________________________________________________________________
+
+Processo.NumberIn                           105.00     5.9465     84.000     115.00     10
+Processo.NumberOut                          103.20     5.7699     84.000     112.00     10
+Processador4.NumberSeized                   11.900     2.2481     5.0000     16.000     10
+Processador4.ScheduledUtilization           .20185     .04000     .12308     .31110     10
+Processador3.NumberSeized                   21.100     2.3712     17.000     28.000     10
+Processador3.ScheduledUtilization           .34170     .04454     .25699     .45454     10
+Processador2.NumberSeized                   31.800     2.3068     25.000     37.000     10
+Processador2.ScheduledUtilization           .51185     .04967     .36894     .59402     10
+Processador1.NumberSeized                   40.100     1.4871     37.000     43.000     10
+Processador1.ScheduledUtilization           .65709     .03543     .56897     .73460     10
+System.NumberOut                            103.20     5.7699     84.000     112.00     10
+
+Simulation run time: 2.07 minutes.
+Simulation run complete.
