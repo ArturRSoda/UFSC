@@ -260,6 +260,546 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+(defrule Romantico-Crianca-Limitado
+    (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Crianca-Padrao
+    (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Crianca-Ilimitado
+    (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adolescente-Limitado
+    (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adolescente-Padrao
+    (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adolescente-Ilimitado
+    (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adulto-Limitado
+    (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adulto-Padrao
+    (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Romantico-Adulto-Ilimitado
+    (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ romance ?generos) (member$ drama ?generos) (member$ musical ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Crianca-Limitado
+    (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Crianca-Padrao
+    (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Crianca-Ilimitado
+    (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adolescente-Limitado
+    (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adolescente-Padrao
+    (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adolescente-Ilimitado
+    (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adulto-Limitado
+    (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adulto-Padrao
+    (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Intelectual-Adulto-Ilimitado
+    (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ ficcao_cientifica ?generos) (member$ historico ?generos) (member$ documentario ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Crianca-Limitado
+    (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Crianca-Padrao
+    (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Crianca-Ilimitado
+    (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adolescente-Limitado
+    (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adolescente-Padrao
+    (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adolescente-Ilimitado
+    (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adulto-Limitado
+    (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adulto-Padrao
+    (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Descontraido-Adulto-Ilimitado
+    (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ comedia ?generos) (member$ animacao ?generos) (member$ romance ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Crianca-Limitado
+    (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Crianca-Padrao
+    (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Crianca-Ilimitado
+    (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adolescente-Limitado
+    (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adolescente-Padrao
+    (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adolescente-Ilimitado
+    (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adulto-Limitado
+    (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adulto-Padrao
+    (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Mistico-Adulto-Ilimitado
+    (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ fantasia ?generos) (member$ terror ?generos) (member$ aventura ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Crianca-Limitado
+    (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Crianca-Padrao
+    (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Crianca-Ilimitado
+    (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adolescente-Limitado
+    (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adolescente-Padrao
+    (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adolescente-Ilimitado
+    (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adulto-Limitado
+    (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade limitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adulto-Padrao
+    (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade padrao))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
+(defrule Realista-Adulto-Ilimitado
+    (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade ilimitado))
+    ?filme <- (DetalhesFilme
+                (nome ?nome)
+                (duracao ?dur&curta|padrao|ilimitado)
+                (classificacao ?class&crianca|adolescente|adulto)
+                (generos $?generos)
+                (sinopse ?sinopse))
+    (test (or (member$ crime ?generos) (member$ guerra ?generos) (member$ biografia ?generos)))
+    =>
+    (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
+
 ; Regra para mostrar que a recomendação foi concluída
 (defrule fim-recomendacao
     (declare (salience -10))
