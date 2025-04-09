@@ -151,7 +151,7 @@
 
 ; Regras de Recomendacao
 
-
+; Regra 1
 (defrule Aventureiro-Crianca-Limitado
     (Pessoa (personalidade aventureiro) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -164,6 +164,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 2
 (defrule Aventureiro-Crianca-Padrao
     (Pessoa (personalidade aventureiro) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -176,6 +177,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 3
 (defrule Aventureiro-Crianca-Ilimitado
     (Pessoa (personalidade aventureiro) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -188,6 +190,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 4
 (defrule Aventureiro-Adolescente-Limitado
     (Pessoa (personalidade aventureiro) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -200,6 +203,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 5
 (defrule Aventureiro-Adolescente-Padrao
     (Pessoa (personalidade aventureiro) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -212,6 +216,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 6
 (defrule Aventureiro-Adolescente-Ilimitado
     (Pessoa (personalidade aventureiro) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -224,6 +229,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 7
 (defrule Aventureiro-Adulto-Limitado
     (Pessoa (personalidade aventureiro) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -236,6 +242,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 8
 (defrule Aventureiro-Adulto-Padrao
     (Pessoa (personalidade aventureiro) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -248,6 +255,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 9
 (defrule Aventureiro-Adulto-Ilimitado
     (Pessoa (personalidade aventureiro) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -260,6 +268,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 10
 (defrule Romantico-Crianca-Limitado
     (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -272,6 +281,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 11
 (defrule Romantico-Crianca-Padrao
     (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -284,6 +294,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 12
 (defrule Romantico-Crianca-Ilimitado
     (Pessoa (personalidade romantico) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -296,6 +307,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 13
 (defrule Romantico-Adolescente-Limitado
     (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -308,6 +320,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 14
 (defrule Romantico-Adolescente-Padrao
     (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -320,6 +333,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 15
 (defrule Romantico-Adolescente-Ilimitado
     (Pessoa (personalidade romantico) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -332,6 +346,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 16
 (defrule Romantico-Adulto-Limitado
     (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -344,6 +359,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 17
 (defrule Romantico-Adulto-Padrao
     (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -356,6 +372,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 18
 (defrule Romantico-Adulto-Ilimitado
     (Pessoa (personalidade romantico) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -368,6 +385,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 19
 (defrule Intelectual-Crianca-Limitado
     (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -380,6 +398,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 20
 (defrule Intelectual-Crianca-Padrao
     (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -392,6 +411,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 21
 (defrule Intelectual-Crianca-Ilimitado
     (Pessoa (personalidade intelectual) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -404,6 +424,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 22
 (defrule Intelectual-Adolescente-Limitado
     (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -416,6 +437,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 23
 (defrule Intelectual-Adolescente-Padrao
     (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -428,6 +450,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 24
 (defrule Intelectual-Adolescente-Ilimitado
     (Pessoa (personalidade intelectual) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -440,6 +463,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 25
 (defrule Intelectual-Adulto-Limitado
     (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -452,6 +476,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 26
 (defrule Intelectual-Adulto-Padrao
     (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -464,6 +489,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 27
 (defrule Intelectual-Adulto-Ilimitado
     (Pessoa (personalidade intelectual) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -476,6 +502,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 28
 (defrule Descontraido-Crianca-Limitado
     (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -488,6 +515,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 29
 (defrule Descontraido-Crianca-Padrao
     (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -500,6 +528,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 30
 (defrule Descontraido-Crianca-Ilimitado
     (Pessoa (personalidade descontraido) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -512,6 +541,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 31
 (defrule Descontraido-Adolescente-Limitado
     (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -524,6 +554,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 32
 (defrule Descontraido-Adolescente-Padrao
     (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -536,6 +567,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 33
 (defrule Descontraido-Adolescente-Ilimitado
     (Pessoa (personalidade descontraido) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -548,6 +580,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 34
 (defrule Descontraido-Adulto-Limitado
     (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -560,6 +593,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 35
 (defrule Descontraido-Adulto-Padrao
     (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -572,6 +606,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 36
 (defrule Descontraido-Adulto-Ilimitado
     (Pessoa (personalidade descontraido) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -584,6 +619,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 37
 (defrule Mistico-Crianca-Limitado
     (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -596,6 +632,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 38
 (defrule Mistico-Crianca-Padrao
     (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -608,6 +645,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 39
 (defrule Mistico-Crianca-Ilimitado
     (Pessoa (personalidade mistico) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -620,6 +658,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 40
 (defrule Mistico-Adolescente-Limitado
     (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -632,6 +671,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 41
 (defrule Mistico-Adolescente-Padrao
     (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -644,6 +684,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 42
 (defrule Mistico-Adolescente-Ilimitado
     (Pessoa (personalidade mistico) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -656,6 +697,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 43
 (defrule Mistico-Adulto-Limitado
     (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -668,6 +710,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 44
 (defrule Mistico-Adulto-Padrao
     (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -680,6 +723,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 45
 (defrule Mistico-Adulto-Ilimitado
     (Pessoa (personalidade mistico) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -692,6 +736,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 46
 (defrule Realista-Crianca-Limitado
     (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -704,6 +749,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 47
 (defrule Realista-Crianca-Padrao
     (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -716,6 +762,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 48
 (defrule Realista-Crianca-Ilimitado
     (Pessoa (personalidade realista) (faixa_etaria crianca) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -728,6 +775,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 49
 (defrule Realista-Adolescente-Limitado
     (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -740,6 +788,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 50
 (defrule Realista-Adolescente-Padrao
     (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -752,6 +801,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 51
 (defrule Realista-Adolescente-Ilimitado
     (Pessoa (personalidade realista) (faixa_etaria adolescente) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
@@ -764,6 +814,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 52
 (defrule Realista-Adulto-Limitado
     (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade limitado))
     ?filme <- (DetalhesFilme
@@ -776,6 +827,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 53
 (defrule Realista-Adulto-Padrao
     (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade padrao))
     ?filme <- (DetalhesFilme
@@ -788,6 +840,7 @@
     =>
     (print-detalhes-filme ?nome ?class ?dur ?generos ?sinopse))
 
+; Regra 54
 (defrule Realista-Adulto-Ilimitado
     (Pessoa (personalidade realista) (faixa_etaria adulto) (disponibilidade ilimitado))
     ?filme <- (DetalhesFilme
