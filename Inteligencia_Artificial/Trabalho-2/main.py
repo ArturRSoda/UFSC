@@ -28,7 +28,6 @@ def print_tabuleiro(solution):
                 linha.append('.')
         print(' '.join(linha))
 
-
 # Verifica o numero de rainhas que nao se atacam (fitness maximo == 28)
 def fitness_func(ga_instance, solution, solution_idx):
     fitness = 28
@@ -46,16 +45,16 @@ def fitness_func(ga_instance, solution, solution_idx):
 
 def main():
     ga_instance = pygad.GA(
-        num_generations         = 500,                                    # Numero de geracoes
-        num_parents_mating      = 20,                                     # Numero de pais para cruzamento em cada geracao
+        num_generations         = 1000,                                   # Numero de geracoes
+        num_parents_mating      = 10,                                     # Numero de pais para cruzamento em cada geracao
         fitness_func            = fitness_func,                           # Funcao fitness
-        sol_per_pop             = 100,                                    # Numero de solucoes por geracao
+        sol_per_pop             = 50,                                     # Numero de solucoes por geracao
         num_genes               = 8,                                      # Numero de genes em cada solucao
-        gene_space              = [{'low': 0, 'high': 7, 'step': 1}] * 8, # restringe os valores dos genes (0-7)
-        mutation_type           = "random",                               # Tipo de mutacao ("swap" -> troca 2 genes aleatorios durante a mutacao)
-        mutation_probability    = 0.15,                                   # Probabilidade de um gene sofre mutacao
-        mutation_num_genes      = 3,                                      # Numero de genes afetados por mutacao
-        crossover_type          = "uniform",                              # funcao de cruzamento ("uniform" -> cada gene do filho tem 50% de chance de ser do pai1 ou do pai2)
+        gene_space              = [{'low': 0, 'high': 8, 'step': 1}] * 8, # restringe os valores dos genes (0-7)
+        mutation_type           = "random",                               # Tipo de mutacao ("random" -> cada gene tem uma probabilidade de ser trocado)
+        mutation_probability    = 0.05,                                   # Probabilidade de um gene sofre mutacao
+        mutation_num_genes      = 1,                                      # Numero de genes afetados por mutacao
+        crossover_type          = "single_point",                         # funcao de cruzamento ("single_point" -> divide os cromossomos pais em um unico ponto e troca as partes subsequentes para gerar os filhos)
         parent_selection_type   = "tournament",                           # metodo de selecao de pais ("tournament" -> seleciona melhoers pais para manter)
         keep_parents            = 5,                                      # Numero de pais mantidos na proxima geracao
     )
@@ -63,11 +62,10 @@ def main():
     ga_instance.run()
 
     solution, solution_fitness, solution_idx = ga_instance.best_solution()
+    ga_instance.plot_fitness()
     print(f"Parameters of the best solution : {solution}")
     print(f"Fitness value of the best solution = {solution_fitness}")
-
     print_tabuleiro(solution)
 
 
 main()
-
