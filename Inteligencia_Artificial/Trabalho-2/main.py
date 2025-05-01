@@ -1,3 +1,7 @@
+# Grupo:
+#   Artur Luiz Rizzato Toru Soda - 22200349
+#   Davi Menegaz Junkes - 22200354
+
 """
 Problema das 8 Rainhas:
 Objetivo: Posicionar 8 rainhas em um tabuleiro 8x8 de forma que nenhuma rainha ataque outra (mesma linha, coluna ou diagonal).
