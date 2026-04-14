@@ -1,0 +1,85 @@
+Exercício 5
+Testes de Mutação
+
+Exercício 5
+Analise os testes de unidades feitos para o projeto EightPuzzle.
+1.
+
+2.
+3.
+
+4.
+
+5.
+
+Mostre a execução dos testes existentes do projeto (testes de
+cobertura de código e cobertura de dados).
+Execute uma ferramenta de testes de mutação.
+
+Identifique 5 mutantes vivos e explique por que eles estão
+vivos.
+Escreva novos testes para que estes 5 mutantes vivos sejam
+mortos.
+Execute os novos testes, utilizando a ferramenta, e mostre
+que os 5 mutantes selecionados foram mortos.
+
+Exercício com Mutmut - Python
+❑
+
+❑
+
+Instale a ferramenta (version 3.x):
+pip install mutmut
+
+Para configurar o código que será mutado e os testes que
+serão executados, crie o arquivo pyproject.toml no diretório
+raiz do projeto com os seguintes comandos, por exemplo:
+paths_to_mutate = ["src/puzzle_game.py"]
+tests_dir = ["tests/"]
+
+❑
+
+Para executar o Mutmut a partir do diretório raiz:
+PYTHONPATH=src:tests mutmut run
+
+Exercício com Mutmut - Python
+❑
+
+Para visualizar os resultados:
+mutmut results
+mutmut show <mutant_id>
+
+Ou
+
+mutmut browse
+
+Website: https://pypi.org/project/mutmut/
+
+Exercício 5
+▪
+
+Apresentar para a professora:
+➢ Execução dos testes existentes.
+➢ Execução da ferramenta Mutmut.
+➢ Explicação de por que 5 mutantes vivos não foram mortos.
+➢ Implementação de 5 novos testes que matam os 5 mutantes
+
+selecionados. Explicação de por que os mutantes serão
+mortos com esses testes.
+➢ Execução da ferramenta Mutmut. Os 5 mutantes vivos
+devem ser mortos e não devem mais aparecer.
+
+Exercício 5
+▪
+
+Fazer o upload no moodle:
+➢ Testes executados na primeira execução do Mutmut.
+➢ Mutantes que não foram mortos, com destaque para os 5
+
+mutantes selecionados.
+➢ Novos testes que matarão os 5 mutantes vivos. Cada teste
+deve identificar o mutante que será morto.
+➢ Mutantes que permanecem vivos após a nova execução do
+Mutmut.
+
+

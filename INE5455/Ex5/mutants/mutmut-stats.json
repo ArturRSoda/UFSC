@@ -1,0 +1,139 @@
+{
+    "tests_by_mangled_function_name": {
+        "puzzle_game.x\u01c1PuzzleGame\u01c1__put_tiles_in_dic_positions__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "puzzle_game.x\u01c1PuzzleGame\u01c1__generate_list_of_tiles__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "board.x\u01c1Board\u01c1__init__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "puzzle_game.x\u01c1PuzzleGame\u01c1move_tile": [
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1"
+        ],
+        "board.x\u01c1Board\u01c1is_inside_the_board": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "puzzle_game.x\u01c1PuzzleGame\u01c1__put_tiles_in_the_board__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "board.x\u01c1Board\u01c1positions_are_adjacent": [
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1"
+        ],
+        "puzzle_game.x\u01c1PuzzleGame\u01c1__init__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "board.x\u01c1Board\u01c1put_tile": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "invalid_position_exception.x\u01c1InvalidPositionException\u01c1__init__": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "puzzle_game.x\u01c1PuzzleGame\u01c1get_tile": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0"
+        ],
+        "board.x\u01c1Board\u01c1get_tile": [
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1",
+            "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1"
+        ]
+    },
+    "duration_by_test": {
+        "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho1": 0.0004857029998674989,
+        "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho2": 0.0003167409995512571,
+        "tests/test_cobertura-de-controle.py::ClasseTestes::test_caminho3": 0.00031391600032293354,
+        "tests/test_cobertura-de-controle.py::ClasseTestes::test_garatir_peca_foi_movida": 0.0003149480007778038,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_coluna_igual_0": 0.0003580800002964679,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_1": 0.00028148400042482535,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_2": 0.0002746720001596259,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_line_column_3": 0.00029121299985490623,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_coluna_maior_que_dimensao": 0.00027914100064663216,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_0": 0.00027756699955716613,
+        "tests/test_cobertura-de-dados.py::ClasseTestes::test_linha_igual_1": 0.00028498100027718465
+    },
+    "stats_time": 0.14404754800000003
+}
