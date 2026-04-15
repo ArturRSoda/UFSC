@@ -1,0 +1,97 @@
+Descrição do Problema
+
+A geração de números pseudo-aleatórios (PRNG) é fundamental na criptografia moderna. Você deverá implementar duas abordagens computacionais para gerar números pseudo-aleatórios e comparar seus resultados.
+O Linear Congruential Generator (LCG):
+
+O LCG é um algoritmo clássico, extremamente rápido e simples, porém não é considerado seguro para fins criptográficos. O próximo número da sequência é gerado através da relação linear:
+Xn+1 = (a * Xn + c) mod m
+
+Para a utilização do LCG, devem ser definidos os parâmetros m (módulo), a (multiplicador), c (incremento) e uma semente inicial X0.
+O Algoritmo de Blum Blum Shub (BBS):
+
+O Algoritmo BBS se baseia em propriedades da teoria dos números e na dificuldade computacional de fatorar grandes números compostos. A principal ideia é utilizar a seguinte equação de recorrência:
+Xn+1 = Xn2 (mod M) 
+onde M = p * q (sendo p e q dois números primos grandes congruentes a 3 módulo 4).
+
+O gerador é executado iterativamente e, a cada passo, extrai-se apenas um bit (como a paridade de Xn+1 ou seu bit menos significativo) para compor, bit a bit, o número pseudo-aleatório final.
+Exercício:
+
+Implemente o LCG e o algoritmo de BBS para gerar um número pseudo-aleatório grande. O algoritmo deve receber um número que define o tamanho em bits do valor a ser gerado.
+Parâmetros Fixos Obrigatórios (Para Correção Automática):
+
+Para que seu código seja avaliado corretamente, você deve utilizar estritamente os seguintes parâmetros em suas implementações:
+
+    Parâmetros do LCG:
+
+        m = 2147483648
+
+        a = 1103515245
+
+        c = 12345
+
+        Semente Inicial (X0) = 12345
+
+    Parâmetros do BBS:
+
+        p = 499
+
+        q = 503
+
+        Semente de Entrada (s) = 12345
+
+Regra de Construção dos Bits:
+
+Para que ambos os algoritmos gerem um número com a exata quantidade de bits especificada na entrada, siga esta regra estritamente para ambos os geradores (LCG e BBS):
+
+    Em cada iteração, calcule o próximo Xn+1 utilizando a fórmula do respectivo algoritmo.
+
+    Extraia o bit menos significativo do estado atual calculando: Xn+1 mod 2.
+
+    Concatene os bits gerados da esquerda para a direita. O bit extraído na 1ª iteração será o mais à esquerda (MSB), e o bit da última iteração será o mais à direita (LSB).
+
+    Após realizar N iterações, converta a string binária formada de volta para um número decimal inteiro e imprima-o
+
+Passos:
+
+    Implemente o Linear Congruential Generator e o algoritmo de Blum Blum Shub.
+
+    Realize a geração para a quantidade de bits definida na entrada, cada execução deve apresentar o resultado do LCG e do BBS nessa ordem.
+
+Observação:
+
+Como o LCG prioriza velocidade em vez de segurança, ele apresenta padrões se analisado em larga escala, enquanto o BBS é criptograficamente seguro, mas computacionalmente mais custoso. Note que a extração de apenas 1 bit por iteração no BBS fará com que o tempo de execução seja consideravelmente maior que o do LCG para gerar um número com a mesma quantidade de bits.
+Requisitos de Entrada e Saída:
+
+A entrada é composta por um único número inteiro representando a quantidade de bits desejada para o número gerado.
+
+A saída deve possuir 2 linhas:
+
+A primeira é o número pseudo-aleatório gerado pelo LCG no tamanho solicitado;
+
+A segunda é o número pseudo-aleatório gerado pelo BBS no tamanho solicitado;
+
+LCG -> ${resultado}
+
+BBS -> ${resultado}
+
+Exemplo de Entrada e Saída:
+
+Entrada:
+
+40
+
+Saída:
+
+LCG -> 733007751850
+
+BBS -> 1000614790827
+
+Entrada:
+
+8
+
+Saída:
+
+LCG -> 170
+
+BBS -> 232

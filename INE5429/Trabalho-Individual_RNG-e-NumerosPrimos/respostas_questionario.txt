@@ -1,0 +1,183 @@
+Respostas do Questionário
+
+Questão 1
+
+Na atividade VPL - RNG, foram implementados dois geradores de números pseudo-aleatórios: o LCG (Linear Congruential Generator) e o BBS (Blum Blum Shub).
+
+O LCG é um algoritmo simples e rápido. Ele gera cada novo valor a partir do valor anterior usando a fórmula X(n+1) = (aXn + c) mod m. No código, os valores de a, c, m e da semente inicial foram exatamente os definidos no enunciado. Depois de calcular cada estado, foi extraído apenas o bit menos significativo, isto é, o valor de X mod 2, e a sequência binária foi montada até atingir a quantidade de bits pedida. No final, essa sequência foi convertida para um número inteiro. A principal vantagem do LCG é a velocidade, mas ele não é considerado seguro para uso criptográfico, porque sua sequência tem estrutura matemática simples e pode ser prevista se algumas saídas forem conhecidas.
+
+O BBS segue uma ideia diferente. Ele parte de dois números primos, calcula M = p x q e usa a recorrência X(n+1) = Xn² mod M. No programa, também foram usados os valores fixos exigidos no enunciado. Assim como no LCG, a cada iteração foi extraído somente o bit menos significativo para formar o número final. O BBS é bem mais lento que o LCG em implementações criptográficas reais, mas é muito mais forte do ponto de vista de segurança, porque sua construção está ligada à dificuldade de fatorar números grandes. Por isso, ele é mais adequado para contextos criptográficos do que um gerador congruencial linear.
+
+De forma resumida, os dois algoritmos resolvem o mesmo problema, mas com objetivos diferentes: o LCG prioriza simplicidade e desempenho, enquanto o BBS prioriza segurança, mesmo com custo computacional maior.
+
+Referências
+
+- Enunciado da atividade em VPL1.txt.
+- Material da disciplina em Slides-Principios-Matematicos.txt.
+- Stallings, W. Cryptography and Network Security.
+- Rosulek, M. The Joy of Cryptography.
+
+Questão 2
+
+Foram gerados números pseudo-aleatórios com 40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048 e 4096 bits utilizando os dois algoritmos implementados no VPL - RNG. A medição foi feita localmente com o código em Python, usando o tempo médio de execução para cada tamanho.
+
+Os resultados obtidos foram os seguintes:
+
+Algoritmo | Tamanho (bits) | Tempo médio de geração (s)
+LCG | 40 | 0.000005333
+LCG | 56 | 0.000007590
+LCG | 80 | 0.000010734
+LCG | 128 | 0.000017605
+LCG | 168 | 0.000021981
+LCG | 224 | 0.000028721
+LCG | 256 | 0.000033194
+LCG | 512 | 0.000068422
+LCG | 1024 | 0.000138225
+LCG | 2048 | 0.000269553
+LCG | 4096 | 0.000563028
+BBS | 40 | 0.000003461
+BBS | 56 | 0.000004625
+BBS | 80 | 0.000006663
+BBS | 128 | 0.000010332
+BBS | 168 | 0.000013319
+BBS | 224 | 0.000017521
+BBS | 256 | 0.000020641
+BBS | 512 | 0.000041729
+BBS | 1024 | 0.000081623
+BBS | 2048 | 0.000165480
+BBS | 4096 | 0.000333662
+
+Observa-se que, neste ambiente de execução, ambos os algoritmos conseguiram gerar todos os tamanhos solicitados sem necessidade de interrupção. Caso a execução fosse realizada em uma máquina mais lenta ou com parâmetros criptográficos maiores, seria aceitável interromper os testes mais custosos e registrar no relatório que o resultado não foi obtido por limitação de tempo de processamento. Essa justificativa é coerente principalmente para algoritmos mais pesados, como o BBS, quando usados com parâmetros grandes.
+
+Também é importante registrar que, nesta implementação específica do VPL, o BBS acabou apresentando tempo menor que o LCG. Isso ocorreu porque os parâmetros usados no enunciado são pequenos, especialmente no BBS, cujo módulo M = p x q é baixo em comparação com cenários criptográficos reais. Portanto, esses tempos representam o comportamento da implementação exigida na atividade, e não necessariamente o comportamento esperado de versões seguras usadas na prática.
+
+Questão 3
+
+Com base nos dados da Questão 2, observa-se que o tempo de execução cresce conforme aumenta a quantidade de bits gerados. Nos dois algoritmos, esse crescimento foi aproximadamente linear no ambiente testado. Isso pode ser percebido porque, ao dobrar o número de bits, o tempo de geração também cresce de forma próxima do dobro, sem saltos abruptos.
+
+No caso do LCG, esse comportamento era esperado, pois o algoritmo faz uma atualização simples do estado por iteração e produz um bit por passo. Assim, para gerar n bits, são necessárias aproximadamente n iterações. Desse modo, a complexidade observada foi O(n), e a complexidade teórica da implementação também pode ser descrita como O(n), considerando que os parâmetros aritméticos usados no enunciado são fixos.
+
+No caso do BBS implementado no trabalho, o comportamento observado também foi O(n), porque igualmente há uma iteração para cada bit produzido. No entanto, é importante separar a implementação do VPL da ideia criptográfica do algoritmo. Em um cenário real, o BBS trabalha com números muito maiores, e cada operação de quadrado modular se torna mais cara. Por isso, teoricamente, o custo do BBS tende a ser maior que o do LCG. Em termos práticos, para um módulo de k bits, o custo pode ser visto como O(n x custo da multiplicação modular). Nesta atividade, como p e q são pequenos, esse custo adicional quase não apareceu, e por isso o BBS ficou até mais rápido que o LCG na medição local.
+
+Para avaliar a qualidade das sequências geradas, foi aplicado o Teste de Frequência, também chamado de Teste Monobit. Esse teste verifica se a quantidade de bits 0 e 1 em uma sequência está razoavelmente equilibrada. A ideia é simples: uma sequência muito desbalanceada entre zeros e uns tende a não parecer aleatória. Foi utilizada uma sequência de 4096 bits para cada algoritmo, o que atende com folga a exigência mínima de pelo menos 40 bits. O critério adotado foi o valor-p com nível de significância de 0,01. Quando o valor-p é maior ou igual a 0,01, a sequência é considerada aprovada nesse teste.
+
+Os resultados foram os seguintes:
+
+LCG: 4096 bits, 2048 zeros, 2048 uns, valor-p = 1.000000, aprovado.
+BBS: 4096 bits, 2069 zeros, 2027 uns, valor-p = 0.511663, aprovado.
+
+Os dois algoritmos foram aprovados no Teste Monobit. Isso indica que, nessa amostra, ambos produziram uma quantidade de zeros e uns compatível com o que se espera de uma sequência balanceada. Mesmo assim, essa aprovação não significa que os dois geradores tenham a mesma qualidade criptográfica. O Teste Monobit é apenas um teste básico, que analisa o balanço entre bits 0 e 1. Ele não detecta sozinho padrões estruturais mais profundos, previsibilidade ou fraquezas matemáticas do algoritmo.
+
+Esse ponto é especialmente importante no LCG. O fato de ele ter sido aprovado no Teste Monobit não altera o problema central do método: sua previsibilidade. Um gerador pode passar em um teste estatístico simples e ainda assim ser inadequado para criptografia. Portanto, a conclusão correta é que as duas sequências passaram no teste estatístico escolhido, mas somente o BBS foi projetado com foco em segurança criptográfica.
+
+Questão 4
+
+O problema do LCG em criptografia é que ele não esconde bem a relação entre um valor e o próximo. Sua regra é sempre a mesma:
+
+X(n+1) = (aXn + c) mod m
+
+Isso significa que, se um atacante descobrir um estado interno Xn, ele consegue calcular imediatamente todos os próximos valores, porque basta repetir a mesma fórmula. Ou seja, o gerador deixa de ser imprevisível.
+
+Além disso, quando o valor de a possui inversa módulo m, também é possível voltar na sequência e recuperar estados anteriores. Nesse caso:
+
+Xn = a^(-1) (X(n+1) - c) mod m
+
+No LCG usado na atividade, m = 2147483648 e a = 1103515245. Como a é ímpar, existe inversa módulo m. Portanto, conhecendo um valor da sequência, é possível calcular tanto os próximos quanto os anteriores.
+
+Um cenário prático seria o seguinte: um sistema usa LCG para gerar códigos temporários, nonces ou valores de sessão. Se um atacante observar algumas saídas consecutivas do gerador, ele pode ajustar o estado atual e passar a prever toda a sequência. Com isso, torna-se possível antecipar códigos futuros e até reconstruir valores já usados.
+
+Esse é o motivo de o LCG não ser indicado para criptografia. O algoritmo é muito rápido, mas sua estrutura linear facilita a previsão da sequência. Em outras palavras, basta pouca informação para que um atacante deixe de adivinhar e passe a calcular exatamente os próximos números gerados.
+
+Questão 5
+
+A segurança do BBS está ligada principalmente à dificuldade de fatorar o número M = p x q, quando p e q são primos grandes. Se um atacante conhecesse a fatoração de M, ficaria muito mais fácil analisar a estrutura matemática do gerador e tentar reconstruir estados internos. Como fatorar números grandes é um problema computacionalmente difícil, essa tarefa se torna inviável na prática quando os parâmetros são escolhidos corretamente.
+
+No BBS, cada novo estado é calculado por uma operação de quadrado módulo M. Isso faz com que, olhando apenas a saída, seja muito difícil descobrir qual foi o estado anterior ou prever com segurança os próximos bits. Em outras palavras, a saída observada não revela de forma simples a semente inicial nem a sequência completa.
+
+De forma mais direta, a ideia é a seguinte: quebrar o BBS de maneira eficiente exigiria resolver um problema matemático considerado difícil. Por isso, diferente do LCG, ele não pode ser previsto apenas observando algumas saídas. Essa é a razão pela qual o BBS é tratado como um gerador criptograficamente seguro, desde que use primos grandes e parâmetros adequados.
+
+Questão 6
+
+No caso do LCG, a principal melhoria identificada ao longo do tempo foi o ajuste de parâmetros, como módulo, multiplicador e incremento, para aumentar o período da sequência e reduzir padrões mais visíveis. Também existem variações que combinam mais de um gerador ou fazem transformações adicionais na saída para melhorar o comportamento estatístico. Mesmo assim, essas melhorias não resolvem o problema central do LCG: sua estrutura continua linear e previsível.
+
+Os principais riscos do LCG são justamente essa previsibilidade e a facilidade de reconstruir a sequência quando algumas saídas são conhecidas. Além disso, ele pode apresentar padrões internos, correlação entre valores consecutivos e baixa qualidade em aplicações mais exigentes. Por isso, o LCG pode ser aceitável em simulações simples, testes ou tarefas não críticas, mas não deve ser usado para geração de chaves, nonces, sementes de outros geradores ou qualquer mecanismo de segurança.
+
+No caso do BBS, a principal melhoria está na escolha correta dos parâmetros. Para que o algoritmo tenha segurança, é necessário usar primos grandes, adequados e gerados de forma confiável, além de uma semente realmente imprevisível. Em implementações mais cuidadosas, também é importante proteger o ambiente de execução, evitar vazamento do estado interno e garantir que a geração dos primos e da semente não introduza fragilidades. Ou seja, o BBS não depende apenas da fórmula, mas também da qualidade de sua configuração.
+
+Os riscos do BBS hoje não estão tanto na ideia matemática do algoritmo, mas na implementação prática. Se os primos forem pequenos, mal escolhidos ou se a semente inicial for fraca, a segurança cai bastante. Também existem riscos ligados a vazamento de informação por falhas de implementação, como tempo de execução, armazenamento inseguro da semente ou reutilização inadequada de parâmetros. Além disso, o BBS costuma ser mais lento do que alternativas modernas, o que reduz seu uso prático em sistemas atuais.
+
+Assim, a principal conclusão é a seguinte: o LCG pode receber ajustes para melhorar desempenho estatístico, mas continua inadequado para criptografia por causa de sua previsibilidade. Já o BBS continua sendo teoricamente forte, mas depende de parâmetros corretos e de uma implementação cuidadosa para manter essa segurança na prática.
+
+Questão 7
+
+Na atividade VPL - Números Primos, foram implementados dois testes probabilísticos de primalidade: o teste de Fermat e o teste de Miller-Rabin. Antes de aplicar os testes, também foi usado o algoritmo de Euclides para verificar se a base a e o número n são coprimos, isto é, se o mdc(a, n) = 1. Essa verificação é importante porque o teste de Fermat só faz sentido corretamente quando essa condição é satisfeita.
+
+O teste de Fermat verifica se a^(n-1) mod n = 1. Se o resultado for diferente de 1, o número é certamente composto. Se o resultado for 1, o número é tratado como provavelmente primo. O problema é que esse teste pode aceitar alguns números compostos como se fossem primos.
+
+O teste de Miller-Rabin é mais forte. Ele escreve n - 1 na forma 2^k x m, com m ímpar, e depois analisa potências sucessivas da base módulo n. Se aparecer um comportamento incompatível com números primos, o número é classificado como composto. Se passar no teste, ele é considerado provavelmente primo. Na prática, Miller-Rabin costuma ser mais confiável do que Fermat.
+
+Sim, foi testado um caso em que os resultados foram diferentes: n = 561 com base a = 2. Nesse exemplo, o teste de Fermat retorna provavelmente primo, enquanto o teste de Miller-Rabin retorna composto. Esse caso é importante porque mostra uma limitação conhecida do teste de Fermat.
+
+Quando houver diferença entre os dois resultados, a resposta com maior probabilidade de estar certa é a de Miller-Rabin. O critério para isso é que Miller-Rabin faz uma checagem mais rigorosa da estrutura do número e rejeita muitos compostos que passam em Fermat. Por isso, em uma comparação direta, Miller-Rabin deve ser considerado o teste mais confiável. Em termos práticos, se um dos testes disser composto, o mais seguro é tratar o número como composto.
+
+Referências
+
+- Enunciado da atividade em VPL2.txt.
+- Material da disciplina em Slides-Principios-Matematicos.txt.
+- Stallings, W. Cryptography and Network Security.
+- Stinson, D. e Paterson, M. Cryptography: Theory and Practice.
+
+Questão 8
+
+Esses números compostos que conseguem passar no teste de Fermat para praticamente todas as bases coprimas são chamados de números de Carmichael. Eles são especiais porque enganam o teste de Fermat de forma sistemática. Ou seja, não se trata de um erro raro ou de azar na escolha da base: trata-se de uma limitação do próprio método.
+
+Matematicamente, um número de Carmichael é um número composto n que satisfaz a congruência a^(n-1) mod n = 1 para todo a que seja coprimo com n. Isso significa que, mesmo sendo composto, ele se comporta como se fosse primo dentro da regra usada pelo teste de Fermat. O exemplo clássico é 561, que é composto, pois 561 = 3 x 11 x 17, mas ainda assim passa no teste de Fermat para todas as bases a coprimas com ele.
+
+Esse é o motivo pelo qual aumentar apenas a quantidade de bases testadas não resolve o problema. Se o número analisado for um número de Carmichael, várias escolhas de base continuarão produzindo o mesmo resultado enganoso. Em outras palavras, o teste de Fermat não falha apenas em alguns casos isolados: existe uma família inteira de números compostos construída exatamente de modo a passar por esse teste.
+
+Por isso, essa limitação é considerada estrutural e irremovível. O teste de Fermat observa apenas uma propriedade que é verdadeira para todos os primos, mas essa propriedade não é exclusiva dos primos. Alguns compostos também a satisfazem. Assim, por mais que se repita o teste com novas bases, ainda existirão casos em que o algoritmo continuará respondendo provavelmente primo para um número que na verdade é composto.
+
+Essa é uma das principais razões para Miller-Rabin ser preferido na prática. Ele faz uma verificação mais forte da estrutura do número e consegue detectar muitos compostos que Fermat não consegue distinguir.
+
+Questão 9
+
+Em testes probabilísticos de primalidade, quanto maior o número de bases a testadas, menor tende a ser a chance de erro. A ideia geral é simples: cada nova base funciona como uma nova verificação. Se um número composto conseguir enganar o teste em uma base, ele ainda pode falhar em outra. Assim, repetir o processo aumenta a confiança no resultado.
+
+No entanto, essa redução de erro não é igual para todos os métodos. No teste de Fermat, aumentar a quantidade de bases ajuda em vários casos, mas não resolve o problema dos números de Carmichael. Como esses números podem passar no teste para muitas bases coprimas, o erro de Fermat não desaparece de forma confiável apenas com mais iterações.
+
+No Miller-Rabin, a situação é melhor. Para um número composto, a chance de ele passar incorretamente em uma rodada é, no máximo, 1/4. Isso significa que, ao repetir o teste t vezes com bases diferentes, a chance de erro cai aproximadamente como (1/4)^t. Em outras palavras, o erro diminui de forma exponencial, o que torna o teste bastante confiável com poucas repetições.
+
+Se um sistema exige alta precisão criptográfica, a prática comum é usar Miller-Rabin com várias iterações. Em geral, algo entre 20 e 40 bases já fornece uma confiança muito alta para uso prático. Em bibliotecas e sistemas reais, também é comum combinar esse teste com outras verificações, ou usar conjuntos de bases já conhecidos como suficientes para certos tamanhos de números. Assim, a probabilidade de aceitar um composto como primo se torna extremamente pequena, a ponto de ser tratada como desprezível na prática.
+
+Portanto, a relação é a seguinte: mais bases testadas significam menor taxa de erro, mas essa ideia funciona muito melhor no Miller-Rabin do que no Fermat. Para aplicações criptográficas, o mais adequado é confiar em Miller-Rabin repetido várias vezes, e não apenas no teste de Fermat.
+
+Questão 10
+
+Se a base a compartilha um fator primo com o número p, então mdc(a, p) diferente de 1. Nesse caso, a base não é coprima com p, e a condição necessária para aplicar corretamente o teste de Fermat deixa de valer.
+
+Matematicamente, isso significa que a congruência a^(p-1) mod p = 1 não precisa mais ser verdadeira, mesmo que o comportamento observado não esteja relacionado de forma limpa com primalidade. Em muitos casos, o resultado já será diferente de 1, porque a base carrega um fator em comum com p. Quando isso acontece, o teste pode acusar que o número é composto, mas por um motivo mais simples: a própria base já revelou um divisor comum com p.
+
+Em outras palavras, ignorar a verificação do MDC mistura duas situações diferentes. A primeira é quando o número falha de fato no teste de Fermat. A segunda é quando a base escolhida já mostra diretamente que existe um fator comum. Por isso, a checagem do mdc(a, p) = 1 é importante: ela garante que o teste esteja sendo aplicado no contexto correto.
+
+Na prática, se mdc(a, p) for maior que 1, isso já é suficiente para concluir que p é composto. Portanto, antes mesmo de calcular a potência modular, a existência de um fator comum já resolve o problema de forma mais direta.
+
+Questão 11
+
+Para construir um gerador eficiente de números primos grandes, o ideal é não aplicar Miller-Rabin diretamente em qualquer número gerado. Antes disso, vale a pena usar uma etapa de pré-filtragem para descartar rapidamente candidatos ruins. Isso economiza bastante tempo.
+
+Um pipeline eficiente pode seguir esta ordem:
+
+1. Gerar um número aleatório com o tamanho desejado em bits.
+2. Forçar o número a ser ímpar, já que todo primo maior que 2 é ímpar.
+3. Garantir que o bit mais significativo esteja ligado, para manter o tamanho correto.
+4. Testar divisibilidade por pequenos primos, como 3, 5, 7, 11, 13, 17 e assim por diante.
+5. Se o número passar nessa filtragem inicial, aplicar Miller-Rabin com várias bases.
+6. Se ainda for necessário, aplicar um teste final mais forte ou mais rodadas de Miller-Rabin.
+
+Essa pré-filtragem é muito útil porque muitos candidatos são eliminados logo no começo por divisões baratas. Assim, Miller-Rabin fica reservado apenas para números que já parecem promissores.
+
+Se um número for reprovado na pré-filtragem ou no teste final, não é necessário gerar outro número gigante do zero. A estratégia mais eficiente é aproveitar o candidato atual e avançar para o próximo valor ímpar, por exemplo somando 2. Depois disso, o novo candidato passa novamente pela filtragem e pelos testes. Essa abordagem costuma ser muito mais barata do que reiniciar todo o processo de geração aleatória.
+
+Também é possível melhorar essa busca pulando valores que certamente seriam descartados. Por exemplo, se o candidato for múltiplo de 3 ou de 5, pode-se avançar diretamente para outro número ímpar que evite esses casos. Em implementações mais otimizadas, esse salto pode ser feito com técnicas de peneiramento, reduzindo ainda mais a quantidade de candidatos ruins.
+
+Portanto, a resposta é sim: existe uma estratégia mais eficiente do que chamar o RNG do zero toda vez. O procedimento mais prático é gerar um bom candidato inicial, aplicar pré-filtragens simples, usar Miller-Rabin apenas nos candidatos que sobreviverem e, em caso de falha, continuar a busca a partir do próximo ímpar viável. Isso reduz o custo computacional e acelera bastante a geração de primos grandes.

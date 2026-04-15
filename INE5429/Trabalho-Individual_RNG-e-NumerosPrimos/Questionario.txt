@@ -1,0 +1,29 @@
+1) Explique brevemente os algoritmos que você escreveu na atividade VPL - RNG e inclua as referencias que você utilizou para a escrita do algoritmo.
+
+2) Gere números pseudo-aleatórios de grande porte (até 4096 bits), utilizando os dois algoritmos implementados e submetidos na atividade VPL - RNG. Os tamanhos a serem gerados são: 40, 56, 80, 128, 168, 224, 256, 512, 1024, 2048 e 4096 bits.
+A execução deve ser realizada localmente para medir e identificar o desempenho dos algoritmos.
+Compile os resultados em uma tabela com o Algoritmo, o Tamanho do Número (em bits) e o Tempo de Geração.
+
+3) A partir dos dados obtidos na Questão 2, construa uma discussão crítica sobre o tempo de execução de ambos os algoritmos em relação ao tamanho dos bits.
+Qual é a complexidade assintótica (Notação Big-O) observada e teórica para cada algoritmo?
+Para avaliar a qualidade dos números gerados, aplique um teste estatístico de aleatoriedade básico (como o Teste de Frequência/Monobit ou utilize uma biblioteca externa adequada). Explique brevemente o funcionamento do teste escolhido, os parâmetros utilizados e discuta se as sequências geradas por ambos os algoritmos foram aprovadas.
+Observação: Para a avaliação da qualidade dos números gerados, devem ser utilizados os valores produzidos em cada iteração do algoritmo implementado, utilize os números gerados para um número de pelo menos 40 bits.
+
+4) O Linear Congruential Generator (LCG) destaca-se pela sua extrema velocidade, sendo amplamente utilizado em funções básicas de linguagens de programação. No entanto, não é recomendado seu uso em criptografia. Demonstre, matematicamente ou através de um cenário prático, como um atacante que possua conhecimento de uma pequena sequência de saídas consecutivas do LCG consegue prever todos os números futuros e anteriores, quebrando a segurança do sistema.
+
+5) Ao contrário do LCG, o algoritmo de Blum Blum Shub (BBS) é considerado criptograficamente seguro. Qual é a dificuldade computacional que garante a segurança do BBS, impedindo que um atacante deduza a semente inicial ou os próximos bits apenas observando a saída gerada?
+
+6) Sobre os algoritmos  LCG e BBS. Que melhorias foram identificadas para esses algoritmos? Quais os riscos/vetores de ataque atuais foram identificados para os algoritmos? 
+
+7) Explique brevemente os algoritmos que você escreveu na atividade VPL - Números Primos e inclua as referências que você utilizou para a escrita do algoritmo. Além disso, você testou algum cenário onde os resultados de Fermat e Miller-Rabin foram distintos? Qual critério pode ser utilizado para definir qual é a resposta com maior probabilidade de estar certa?
+
+8) Durante a implementação, nota-se que certos números compostos (como o 561) conseguem passar no teste do Pequeno Teorema de Fermat para praticamente todas as bases co-primas testadas. Defina o que são esses números e explique matematicamente por que eles representam uma limitação estrutural irremovível de Fermat, justificando por que simplesmente aumentar a quantidade de bases aleatórias testadas não resolve esse problema de falsos positivos.
+
+9) Ambos os métodos implementados imprimem "provavelmente primo" e são testes probabilísticos. Qual é a relação entre a quantidade de bases “a” testadas e a taxa de erro do algoritmo? Se um sistema exige altíssima precisão criptográfica, quantas bases (ou iterações) geralmente são recomendadas para se ter certeza virtual de que um número é primo?
+
+10) No enunciado do trabalho prático de primalidade, para o teorema de Fermat, foi imposta uma regra: verificar se o MDC entre a base “a” e o número “p” é igual a 1 antes de realizar o teste. O que ocorreria matematicamente com o resultado da congruência de Fermat se ignorássemos essa regra e tentássemos uma base “a” que compartilha um fator primo com “p”?
+
+11) Imagine que você precisa construir o módulo central de geração de números primos gigantes para um protocolo criptográfico. Testar a primalidade probabilística de números de 2048 bits consome muitos recursos.
+Descreva um pipeline otimizado: que técnicas de pré-filtragem você aplicaria antes de submeter o número aos testes de Miller-Rabin?
+Caso o número pseudo-aleatório gerado inicialmente seja reprovado na pré-filtragem ou no teste final, é possível utilizar uma estratégia mais eficiente em termos de custo computacional para encontrar o próximo candidato viável, em vez de acionar o gerador de números aleatórios (RNG) para criar um número gigante totalmente novo a partir do zero?
+

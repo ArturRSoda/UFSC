@@ -1,0 +1,1272 @@
+Segurança em Computação
+INE5429-07208
+Thaís Bardini Idalino
+Princípios matemáticos
+
+Criptograﬁa Simétrica
+
+K’
+Criptoanálise
+
+Texto claro
+X
+
+Algoritmo de
+Cifragem
+
+Texto cifrado
+Y = E(X, K)
+
+Chave secreta K
+compartilhada
+
+X’
+
+Algoritmo de
+Decifragem
+
+Chave secreta K
+compartilhada
+
+Canal seguro
+
+Texto claro
+X = D(Y, K)
+
+Criptograﬁa Assimétrica
+●
+●
+●
+
+Um par de chaves: uma chave pública e uma privada
+O que é feito com uma chave poder ser “desfeito” com outra
+Para estudar algoritmos assimétricos precisamos de teoria dos números
+
+Texto claro
+X
+
+Algoritmo de
+Cifragem
+
+Chave pública
+pk
+
+Texto cifrado
+Y = E(X, pk)
+
+Algoritmo de
+Decifragem
+
+Chave secreta
+sk
+
+Texto claro
+X = D(Y, sk)
+
+Sumário
+●
+●
+●
+●
+●
+
+Conceitos básicos de teoria de números
+Aritmética modular
+Teorema de Fermat e Euler
+Testes de primalidade
+Problema do logaritmo discreto
+
+Security
+
+Números primos
+Deﬁnição: um inteiro p > 1 é um número primo se
+e somente se os seus únicos divisores são 1 e
+ele mesmo.
+●
+●
+
+Fundamentais para criptograﬁa assimétrica
+Fatoração prima: Todo número inteiro
+pode ser representado unicamente por
+uma fatoração de (potências de) primos
+○
+
+●
+
+12 = 22 x 3, 91 = 7 x 13, 3600 = 24 x 32 x 52
+
+Não conhecemos nenhum algoritmo de
+fatoração (não-quântico) eﬁciente o
+suﬁciente para fatorar números grandes
+○
+
+garante a segurança de esquemas como o
+RSA.
+
+Imagem: W. Stallings. Cryptography
+and network security. Cap 2.4
+
+Revisão da escola - MDC
+Deﬁnição: um número d é divisor de a se a = d * n, onde a, d, n são inteiros.
+Exemplo: os divisores positivos de 24 são 1, 2, 3, 4, 6, 8, 12, e 24.
+Deﬁnição: o máximo divisor comum entre a e b é o maior inteiro que divide
+simultaneamente a e b.
+Exemplo:
+●
+●
+
+360 = 2³ * 3² * 5 e 84 = 2² * 3 * 7
+mdc(360, 84) = 12 = 2² * 3
+
+Revisão de mtm discreta - MDC
+●
+
+O cálculo do mdc é importante para diversos algoritmos criptográﬁcos
+○
+
+●
+●
+
+Se a e b são “relativamente primos”, isso signiﬁca que mdc(a,b) = 1
+
+A técnica de fatoração para encontrar o mdc só funciona para números
+compostos, cuja fatoração contém primos conhecidos/pequenos.
+Como calculamos mdc de números grandes?
+○
+○
+○
+
+Algoritmo de Euclides
+mdc(a, b) = mdc(b, a mod b)
+Exemplo: mdc(360, 84) = mdc(84, 24) = mdc(24, 12) = mdc(12, 0) = 12
+
+Algoritmo de Euclides
+Algoritmo de Euclides:
+sejam a = 360 e b = 84:
+a=q×b+r
+360 = (4) × 84 + 24
+84 = (3) × 24 + 12
+24 = (2) × 12 + 0
+
+mdc(360, 84)
+Imagem: W. Stallings. Cryptography
+and network security. Cap 2.2
+
+Problema da fatoração
+●
+●
+●
+●
+
+Considere n um número composto
+Para fatorar um número pequeno, podemos utilizar a técnica da escola: tentar
+dividir pelos primeiros números primos até atingir √n
+Para números maiores, existem algoritmos mais soﬁsticados
+Para números suﬁcientemente grandes, não se conhece nenhum algoritmo
+eﬁciente para fatoração
+○
+
+●
+
+a não ser que se tenha um computador quântico grande o suﬁciente para executar o algoritmo
+de Shor
+
+A diﬁculdade presumida deste problema é importante para os algoritmos
+usados em criptograﬁa, como a criptograﬁa de chave pública RSA
+
+Sumário
+●
+●
+●
+●
+●
+
+Conceitos básicos de teoria de números
+Aritmética modular
+Teorema de Fermat e Euler
+Testes de primalidade
+Problema do logaritmo discreto
+
+Mod e congruência
+●
+
+a mod n é o inteiro r tal que a = qn+r,
+○
+○
+○
+○
+○
+
+●
+
+exemplo: 11 mod 7 = 4 pois 11 = 1 x 7 + 4
+a mod n é o resto da divisão de a por n
+n é chamado de módulo, r de resto
+mod n mapeia qualquer número inteiro a para um número do conjunto {0, 1, …, n-1}
+Obs.: se a mod n = 0, então a é divisível por n
+
+a ≡ b (mod n) se a mod n = b mod n
+○
+○
+
+0 <= r < n
+
+24 ≡ 9 (mod 5) (r = 4)
+Obs.: se a ≡ b (mod n), então b ≡ a (mod n)
+
+O conjunto ℤn e aritmética modular
+●
+
+ℤn é o conjunto de inteiros módulo n
+○
+
+●
+
+ou seja, ℤn = {0, 1, …, n-1}
+
+Podemos executar operações restritas em ℤn (aritmética modular)
+○
+○
+○
+
+[(a mod n) + (b mod n)] mod n = (a + b) mod n
+[(a mod n) - (b mod n)] mod n = (a - b) mod n
+[(a mod n) * (b mod n)] mod n = (a * b) mod n
+
+26 | 8
+2 3
+-4 | 8
+4 -1
+165 | 8
+5 20
+
+Imagem: W. Stallings. Cryptography
+and network security. Cap 2.3
+
+O conjunto ℤn e aritmética modular
+●
+
+Exponenciação é feita com multiplicações sucessivas, como nos números
+inteiros com aritmética "tradicional"
+
+121 ≡ 4 (mod 13)
+121 | 13
+4 9
+
+4 | 13
+4 0
+
+Imagem: W. Stallings. Cryptography
+and network security. Cap 2.3
+
+O conjunto ℤn e aritmética modular
+
+Imagens: W. Stallings. Cryptography and network security. Cap 2.3
+
+Inversas
+●
+
+A inversa aditiva de a em ℤn é
+○
+○
+○
+
+●
+
+A inversa multiplicativa de a módulo n é
+○
+○
+○
+
+●
+
+um inteiro x ∈ ℤn tal que a+x ≡ 0 (mod n)
+chamamos de -a
+exemplo: inversa aditiva de 6 em ℤ8 é 2
+um inteiro x ∈ ℤn tal que a⋅x ≡ 1 (mod n)
+se x existe, ele é único e chamamos de a-1
+exemplo: inversa multiplicativa de 3 em ℤ8 é 3.
+
+Nem todo número tem inversa multiplicativa em ℤn
+○
+○
+
+a é inversível sse mdc(a,n) = 1
+precisaremos de um número com inversa quando
+estudarmos a geração de chaves no RSA
+
+Imagens: W. Stallings. Cryptography
+and network security. Cap 2.3
+
+Algoritmo de Euclides Estendido
+●
+
+Se mdc(a,n) = 1, sabemos que a-1 existe em ℤn
+○
+○
+
+●
+●
+
+além disso, sabemos também que mdc(a,n) = ax + ny
+se mdc(a,n) = 1 = ax + ny, o valor de x é o a-1
+
+Para encontrá-lo, utilizamos o algoritmo de euclides estendido
+Exemplo: seja a = 5 e n = 8, queremos encontrar a inversa de 5 em ℤ8
+Algoritmo de Euclides:
+n=q⨉a+ r
+8=1⨉5+3
+5=1⨉3+2
+3=1⨉2+1
+2=2⨉1+0
+
+Algoritmo de Euclides estendido:
+mdc(5,8) = 1 = 3 - 1 ⨉ 2
+= 3 - 1 ⨉ [5 - 1 ⨉ 3]
+(substitui 2)
+=3-1⨉5+1⨉3
+(distributiva)
+=2⨉3-1⨉5
+( juntar)
+= 2 ⨉ [8 - 1 ⨉ 5] - 1 ⨉ 5 (substitui 3)
+= 2 ⨉ 8 - 2 ⨉ 5 - 1 ⨉ 5 (distributiva)
+=2⨉8-3x5
+( juntar)
+
+inversa de 5 é -3 mod 8 = 5
+
+Multiplicação em ℤ10
+
+Grupo multiplicativo
+●
+
+O grupo multiplicativo de ℤn é deﬁnido como
+ℤn* = {a ∈ ℤn | mdc(a,n) = 1}
+○
+○
+
+●
+
+O que acontece quando n é primo?
+○
+
+●
+
+todo valor a ∈ ℤn, a ≠ 0, tem inversa
+
+O tamanho de ℤn* é dado por ϕ(n), a função
+totiente de Euler: ϕ(n) = |ℤn*|
+○
+
+●
+●
+
+ℤ8* = {1, 3, 5, 7}
+ℤ10* = {1, 3, 7, 9}
+
+Exemplo: ϕ(5) = 4, ϕ(8) = 4, ϕ(10) = 4, ϕ(37) = 36
+
+Se n é primo, ϕ(n) = (n-1)
+n = pq é o produto de dois primos p e q, então
+ϕ(n) = ϕ(p)ϕ(q) = (p-1)(q-1)
+○
+
+usaremos essa função quando estudarmos RSA
+
+ⓧ 10
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+0
+
+1
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+2
+
+0
+
+2
+
+4
+
+6
+
+8
+
+0
+
+2
+
+4
+
+6
+
+8
+
+3
+
+0
+
+3
+
+6
+
+9
+
+2
+
+5
+
+8
+
+1
+
+4
+
+7
+
+4
+
+0
+
+4
+
+8
+
+2
+
+6
+
+0
+
+4
+
+8
+
+2
+
+6
+
+5
+
+0
+
+5
+
+0
+
+5
+
+0
+
+5
+
+0
+
+5
+
+0
+
+5
+
+6
+
+0
+
+6
+
+2
+
+8
+
+4
+
+0
+
+6
+
+2
+
+8
+
+4
+
+7
+
+0
+
+7
+
+4
+
+1
+
+8
+
+5
+
+2
+
+9
+
+6
+
+3
+
+8
+
+0
+
+8
+
+6
+
+4
+
+2
+
+0
+
+8
+
+6
+
+4
+
+2
+
+9
+
+0
+
+9
+
+8
+
+7
+
+6
+
+5
+
+4
+
+3
+
+2
+
+1
+
+Aplicações
+●
+●
+
+Boa parte das operações em criptograﬁa assimétrica é feita com aritmética
+modular
+O cálculo do mdc é fundamental para diversos algoritmos criptográﬁcos
+○
+
+●
+
+Especialmente a checagem se mdc(a,n) = 1
+
+No RSA, a inversa multiplicativa determina as chaves criptográﬁcas
+
+Sumário
+●
+●
+●
+●
+●
+
+Conceitos básicos de teoria de números
+Aritmética modular
+Teorema de Fermat e Euler
+Testes de primalidade
+Problema do logaritmo discreto
+
+(Pequeno) Teorema de Fermat
+Teorema de Fermat: Se p é primo e a é um inteiro positivo não divisível por p
+então
+ap-1 ≡ 1 (mod p)
+●
+
+Requer que a e p sejam relativamente primos
+○
+
+●
+●
+
+mdc(a,p) = 1
+
+Forma alternativa: p é primo e a é um inteiro positivo, então ap ≡ a (mod p)
+Exemplo: p = 5, a = 3
+○
+○
+
+○
+○
+
+ap-1 = 34 = 81 ≡ 1 (mod 5)
+ap = 35 = 243 ≡ 3 (mod 5) = a (mod p)
+3⁴⁰² (mod 5)
+(34)100 x 3² ≡ 1100 x 3² ≡ 9 ≡ 4 (mod 5)
+
+Teorema de Euler
+Teorema de Euler: se a e n são relativamente primos, então
+aϕ(n) ≡ 1 (mod n)
+●
+●
+●
+
+Note que esse teorema não assume n primo!
+Forma alternativa: aϕ(n)+1 ≡ a (mod n)
+Exemplo: a = 3, n = 10, mdc(3,10) = 1, ϕ(10) =ϕ(2)ϕ(5) = 1x4 = 4
+○
+○
+
+aϕ(n) = 34 = 81 ≡ 1 (mod 10)
+Versão alternativa: 35 = 243 ≡ 3 (mod 10)
+
+Aplicações
+●
+●
+
+A contrapositiva do teorema de Fermat é utilizada em testes de primalidade
+O teorema de Euler é fundamental na cifragem e decifragem do esquema RSA
+
+Sumário
+●
+●
+●
+●
+●
+
+Conceitos básicos de teoria de números
+Aritmética modular
+Teorema de Fermat e Euler
+Testes de primalidade
+Problema do logaritmo discreto
+
+Testes de primalidade
+●
+
+Saber se um número é primo é importante para criptograﬁa
+○
+
+●
+●
+
+Euclides (365-300 BC) provou que existem inﬁnitos números primos
+Temos que trabalhar com números das ordem de grandeza de 1024 bits
+○
+
+●
+
+Algoritmos com o RSA precisam de números primos "aleatórios" grandes para o funcionamento
+correto e seguro
+
+Um nº aleatório tem Pr de 1/ ln 21024 ≅ 1/710 de ser primo
+
+Na prática, geramos um número grande ímpar e testamos se ele é primo
+○
+○
+○
+
+utilizamos algoritmos probabilísticos e eﬁcientes
+existe a possibilidade de o algoritmo responder que é primo mesmo quando não é
+ao rodar o algoritmo com o mesmo número diversas vezes, a probabilidade de erro reduz
+bastante
+
+Teste de Fermat
+●
+
+Teorema de Fermat: Se p é primo e a é um inteiro positivo não divisível por p
+então
+ap-1 ≡ 1 (mod p)
+
+●
+
+Teste de primalidade: se 2n-1 ≡ 1 (mod n), o número n é primo
+○
+○
+○
+○
+
+Note que esse é o converso do teorema de Fermat, não foi provado e nem sempre é verdade!
+esse teste é condição necessária mas não suﬁciente para garantirmos que n é primo
+se n falhar no teste, temos certeza que ele é composto
+se n passar no teste, ele é provavelmente primo
+
+○
+
+Cuidado, existem exceções: os pseudoprimos
+■ 2560 ≡ 1 (mod 561) mas 561 = 3✕11✕17
+
+Algoritmo de Miller-Rabin
+Começamos com algumas propriedades:
+
+●
+
+Se ﬁzermos esse teste com um número n e:
+○
+
+●
+
+Para qualquer número ímpar n ≥ 3, podemos
+escrever n - 1 = 2k m, onde k > 0 e m é a parte ímpar
+do número.
+
+○
+
+Note que, se n é ímpar, então n-1 é par, estamos
+dividindo n-1 por 2 k vezes, até chegar em m.
+
+○
+
+○
+
+●
+●
+
+Seja p um primo maior que 2, podemos escrever
+p-1 = 2k m.
+Seja a qualquer inteiro 1 < a < p-1, uma das duas
+condições é verdadeira (ver prova no Stallings):
+○
+○
+
+am ≡ 1 (mod p) (ou seja, am mod p = 1); ou
+um dos valores am, a2m, a4m, …, a(2^(k-1))m será congruente
+à -1 módulo p
+■
+ou seja, a(2^i)m ≡ -1 (mod p), para algum 0 < i < k
+■
+Lembrete: -1 mod p = p-1
+
+nenhuma dessas condições for satisfeita, n é
+com certeza composto;
+se alguma das condições for satisfeita, n não
+necessariamente é primo.
+Exemplo: n = 2047, n-1 = 2x1023,
+21023 ≡ 1 (mod 2047) mas 2047 = 23x89 é
+composto.
+
+Algoritmo de Miller-Rabin
+Exemplo: n = 29
+
+Miller-Rabin(n)
+1.
+2.
+3.
+4.
+
+5.
+
+k
+
+Escreva n - 1 = 2 m, onde m é ímpar
+selecione um número aleatório a, 1 < a < n-1
+Se am mod n = 1
+return “provavelmente primo”
+para i = 0 até k - 1:
+Se a(2^i)m mod n = n-1
+return “provavelmente primo”
+return “composto”
+
+1.
+2.
+3.
+4.
+
+Podemos testar mais uma vez com a=2
+1.
+2.
+
+27 mod 29 = 12
+(27)2 mod 29 = 28, provavelmente primo
+
+●
+
+Podemos testar com todos os valores de a entre 1
+e 28 e todos eles vão dar "provavelmente primo"
+compatível com o fato de que 29 é realmente
+primo.
+
+●
+Algoritmo: W. Stallings. Cryptography and network security. Cap 2.6
+D. Stinson e M. Paterson. Cryptography: Theory and Practice. Cap 6.4
+
+n-1 = 28 = 22*7, então k = 2 e m = 7
+testamos a = 10
+107 mod 29 = 17
+(107)2 mod 29 = 28, portanto provavelmente primo
+
+Algoritmo de Miller-Rabin
+●
+
+Esse é um teste probabilístico:
+○
+○
+○
+○
+
+●
+●
+
+Eﬁciente
+Nunca responde “composto” se for primo
+Mas pode responder “primo” e ser composto
+Probabilidade de erro: no máx ¼
+
+Podemos diminuir a probabilidade de erro rodando ele t vezes com valores
+aleatórios de a (1 < a < n-1)
+Se n é composto, a maioria dos valores de a falhariam o teste
+
+Geradores de números pseudo-aleatórios
+●
+
+Em muitas situações em criptograﬁa, é importante
+gerar números aleatórios:
+○
+○
+○
+
+●
+
+Geração de números aleatórios de forma não
+determinística é muito caro e difícil
+○
+
+●
+
+"geração" de números primos
+geração de chaves criptográﬁcas
+em esquemas de cifragem e de assinatura digital
+
+através de "cara-ou-coroa" ou outros métodos físicos
+
+Na prática, utilizamos geradores de números
+pseudo-aleatórios (PRNG)
+
+Geradores de números pseudo-aleatórios
+●
+
+Um PRNG é uma função G que tem como entrada uma seed de tamanho λ e
+como saída uma string binária de tamanho λ+ℓ
+○
+○
+○
+
+●
+
+é determinística, portanto G(s) depende apenas da seed s
+existem apenas 2λ possibilidades de saída para G
+entretanto, a distribuição de saídas deve ser indistinguível da distribuição uniforme
+
+Existem testes estatísticos que nos dizem se uma saída tem as propriedades
+esperadas de uma distribuição uniforme
+
+Imagens: M. Rosulek. The Joy of
+Cryptography. Cap 5
+
+Geradores de congruência linear
+●
+
+Módulo m, multiplicador a, incremento c e
+semente inicial X0
+Xn+1 = (a Xn+ c) mod m, 0 ≤ Xn < m
+
+●
+
+Dependente na boa escolha de parâmetros
+○
+
+○
+
+●
+
+Teste para avaliar a função:
+○
+○
+○
+
+●
+
+m grande para produzir uma longa série de
+números
+■
+normalmente, perto ou igual a 231
+normalmente a = 16807
+a função deve gerar todos os números entre 0 e
+m-1 antes de repetir
+a sequência gerada deve parecer aleatória
+a função deve ser eﬁciente
+
+Não é um gerador seguro para uso criptográﬁco
+
+Exemplo: m = 9, a = 7, c = 4, X0 = 3
+
+PRNGs criptograﬁcamente seguros
+●
+
+CSPRNGs são PRNGs com propriedades que
+os tornam apropriados para uso criptográﬁco
+○
+
+●
+
+Não se sabe se uma PRNG criptograﬁcamente
+segura existe
+○
+
+●
+
+Ver em NIST SP 800-22
+
+Se existir, P ≠ NP
+
+Existem bons candidatos a PRNG
+○
+○
+
+baseados em primitivas criptográﬁcas, como cifras e
+funções de hash
+baseados em problemas matemáticos difíceis
+Imagem: Cryptographically Secure
+Pseudo-Random Number: Introduction
+
+Geradores Criptográﬁcos
+●
+
+Utiliza cifras simétricas de bloco
+○
+
+●
+
+Dentre as diversas possibilidades, estão os
+modos CTR e OFB
+○
+○
+
+●
+
+já que a saída das cifras simétricas aparenta ser
+aleatória (não carrega padrões da entrada)
+
+seed consiste em uma chave K e um valor V
+que é atualizado em cada iteração
+bits pseudo aleatórios são produzidos em
+blocos
+■
+para o AES, 128 bits por vez
+
+Ver mais em:
+○
+○
+
+RFC4086
+NIST SP 800-90A
+
+Imagens: W. Stallings. Cryptography
+and network security. Cap 8.3
+
+Problemas famosos
+●
+
+Debian (2008): Código que provia as sementes do PRNG do OpenSSL foi removido
+○
+
+●
+
+Java (2013): Classe SecureRandom gerou nonces fracos
+○
+
+●
+●
+
+Consequência: foram geradas diversas chaves criptográﬁcas “fracas”
+Consequência: chaves privadas para ECDSA poderiam ser recuperadas (roubo de bitcoins)
+
+Playstation (2010): uso de uma constante ao invés de um nonce permitiu o roubo
+de chaves do PS3
+NIST (2013): Snowden revelou que a NSA introduziu um backdoor no PRNG
+
+Sumário
+●
+●
+●
+●
+●
+
+Conceitos básicos de teoria de números
+Aritmética modular
+Teorema de Fermat e Euler
+Testes de primalidade
+Problema do logaritmo discreto
+
+A função log
+● O que é log?
+○ é a operação inversa da exponenciação
+○ logab nos dá o valor x tal que ax = b
+● Por exemplo:
+○
+
+a = 3, b = 81, sabemos que log3 81 = 4 já que 34 = 81
+
+Potências na aritmética modular
+●
+●
+
+Considere as potências de 7 em ℤ19
+Qual o valor de x tal que 7x ≡ 1 (mod 19)?
+○
+○
+
+●
+
+Solução: 73 = 343 ≡ 1 (mod 19)
+entretanto, existem outras soluções:
+73≡ 1 (mod 19), 79≡ 1 (mod 19),
+712≡ 1 (mod 19), 715≡ 1 (mod 19),
+718≡ 1 (mod 19)
+
+Sejam a e n inteiros relativamente primos,
+então existe pelo menos um inteiro m que
+satisfaça am ≡ 1 (mod n)
+○
+○
+
+●
+
+o menor inteiro positivo m que satisfaça essa
+equação é chamado de ordem de a (mod n)
+se a tem ordem ϕ(n), dizemos que a é uma raiz
+primitiva módulo n
+
+Exemplo: considere a = 2 e n = 19
+○ a ordem de 2 (mod 19) é 18
+○ 18 é o menor expoente tal que 218≡ 1 (mod 19)
+○
+
+ou seja, 2 é uma raiz primitiva módulo 19
+
+Potências na aritmética modular
+●
+
+Seja a uma raiz primitiva e n um número primo,
+sabemos que ϕ(n) = n-1.
+○
+○
+○
+
+●
+
+temos que aϕ(n) = an-1 ≡ 1 (mod n)
+Ao calcular ax (mod n) para todo valor 1 ≤ x ≤ n-1,
+produziremos todos os valores de ℤn*
+ou seja, podemos gerar todo o grupo multiplicativo
+ℤn* a partir de uma raiz primitiva.
+
+Exemplo: considere raiz primitiva a = 2 e n = 19
+○
+
+○
+
+Observe o que acontece ao calcularmos
+2x (mod 19) para todo valor 1 ≤ x ≤ 18
+■
+geramos todos os números em ℤ19*
+Em ℤ19 temos as raízes primitivas 2, 3, 10, 13, 14, 15.
+
+Imagens: W. Stallings. Cryptography
+and network security. Cap 2.8
+
+Logaritmo discreto
+●
+
+●
+
+Para qualquer inteiro b e raiz primitiva a de um
+número primo n, podemos encontrar um único
+expoente x tal que b = ax mod n
+○ esse expoente é o logaritmo discreto do
+número b para a base a (mod n)
+○ representamos esse valor como dloga,n(b)
+Exemplo:
+○
+○
+
+dlog2,19(4) = 2 pois 4 = 22 mod 19
+dlog2,19(18) = 9 pois 18 = 29 mod 19
+
+Imagens: W. Stallings. Cryptography
+and network security. Cap 2.8
+
+Problema do logaritmo discreto
+●
+
+Considere a equação: b = ax mod p
+○
+
+●
+
+Problema: dado b, a e p, geralmente é muito difícil encontrar x
+○
+
+●
+
+dado a, x e p, é fácil e eﬁciente calcular b, basta fazer exponenciação
+Acredita-se que a diﬁculdade é da mesma ordem de magnitude da diﬁculdade de fatorar os
+números requeridos para o RSA
+
+Força bruta: elevar a base a à diversas potências x até achar o valor b
+○
+
+Como 1 ≤ x ≤ p-1, se p for grande o suﬁciente, força bruta é computacionalmente inviável
+
+Aplicações
+●
+
+Diversos esquemas criptográﬁcos tem a segurança baseada na diﬁculdade de
+resolver o problema do logaritmo discreto
+○
+○
+○
+○
+
+Protocolo de troca de chaves Diﬃe-Hellman
+Algoritmo de assinatura DSA
+Variação do problema em curvas elípticas e o algoritmo ECDSA
+Nesses casos, utilizamos o grupo ℤp*, onde p é um primo grande
+
+Resumo
+●
+
+Conceitos básicos de teoria de números
+○
+
+●
+
+Aritmética modular
+○
+
+●
+
+aplicar as operações tradicionais e operar o mod n no ﬁnal
+
+Teorema de Fermat e Euler
+○
+
+●
+●
+
+Números primos, MDC, problema da fatoração
+
+propriedades importantes da exponenciação modular
+
+Testes de primalidade
+Problema do logaritmo discreto
+○
+
+dados a, b e p, encontrar o x tal que b = ax mod p
+
+Referências
+●
+
+W. Stallings. Cryptography and network security. 7a edição.
+○
+○
+○
+○
+○
+
+●
+
+D. Stinson e M. Paterson. Cryptography: Theory and Practice. 4a edição.
+○
+○
+○
+
+●
+
+teste de primalidade: 6.4
+logaritmo discreto: 7.1
+PRG: apêndice B
+
+Mike Rosulek. The Joy of Cryptography.
+○
+
+●
+●
+
+mdc e primos: 2.2,
+números primos e teste de primalidade: 2.4, 2.6
+aritmética modular: 2.3, 2.5
+logaritmo discreto: 2.8
+PRNG: 8.1, 8.2, 8.3
+
+Link: https://joyofcryptography.com/
+
+Cryptographically Secure Pseudo-Random Number: Introduction
+imagens: Flaticon.com
+
+
