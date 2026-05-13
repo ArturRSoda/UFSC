@@ -1,0 +1,97 @@
+Detetives
+criptográﬁcos
+
+Precisa-se de detetives
+Nossa equipe de inteligência interceptou um pacote de dados trafegando na rede
+de um grupo cibercriminoso. Acreditamos que o pacote faça parte do processo de
+integração e compartilhamento do sistema interno de validação de identidades e
+assinaturas do grupo.
+
+Dados Interceptados
+O pacote interceptado contém um executável responsável pelas validações
+(verificador.exe), a assinatura desse próprio veriﬁcador, um arquivo binário
+obscuro chamado IUVA e uma nota de texto suspeita chamada secret.txt. Sua
+missão é descobrir como o sistema deles estabelece conﬁança e, o mais
+importante, elaborar um método para forjar mensagens que o veriﬁcador deles
+aceite como legítimas.
+
+Passo 1
+O único arquivo que conseguimos analisar diretamente é o secret.txt. Ele é um
+arquivo de texto que contém exatamente 64 caracteres quebrado em duas linhas
+de 32 caracteres. Precisamos descobrir como essa informação pode ser útil para
+os próximos passos da investigação. Nossa equipe de criptoanalistas indicam que
+a mensagem parece utilizar algum tipo de criptograﬁa clássica, mas com uma
+variação que vai além do alfabeto tradicional (A-Z).
+
+Teve$ywev$s$zivmjmgehsv$gsrwypxi$
+ew$mrxvyëùiw0$oAwikvihs$EIWcGFG
+Dica: 64 caracteres ASCII possuem 512 bits
+
+Informações extraídas do arquivo cifrado
+Seguindo com a nossa análise, percebemos que, além do veriﬁcador, existe um
+outro arquivo criptografado que pode conter informações vitais sobre o
+funcionamento da rede inimiga. Nossos especialistas em criptoanálise disseram
+que o cabeçalho do arquivo indica que originalmente era um PDF e que foi
+utilizada criptograﬁa simétrica moderna com a ferramenta openssl.
+
+Passo 2
+Precisamos descobrir o que é esse arquivo para entender as regras do executável.
+Como podemos quebrar essa camada de segurança? Talvez as informações do
+secret.txt sejam a peça que faltava.
+
+Passo 3
+Agora que você já sabe como o veriﬁcador funciona, precisamos descobrir como
+garantir que os documentos forjados por nós sejam considerados legítimos pela
+ferramenta.
+Para comprometer a operação do grupo e provar que podemos burlar o sistema deles,
+você precisará explorar essa falha arquitetural.
+Dica: Não precisamos quebrar a criptograﬁa da assinatura deles.
+
+Passo 4
+Se tudo estiver certo você deve ser capaz de criar uma identidade se passando
+por um membro importante do grupo e assinar digitalmente os documentos que
+quiser.
+Faça uma execução de testes para garantir que tudo está como esperado.
+
+Passo 5
+A inﬁltração pode ter sido um sucesso, mas o trabalho de um especialista em
+segurança não termina na quebra do sistema. Precisamos catalogar nossos
+métodos e as vulnerabilidades inimigas no Banco de Dados de Ameaças.
+Sua diretriz ﬁnal é elaborar um Dossiê Técnico detalhando como a infraestrutura de
+validação do grupo cibercriminoso foi comprometida. Este documento será
+essencial para subsidiar futuras análises de tráfego e treinamentos da nossa
+divisão.
+
+Passo 5
+O seu relatório deve conter, obrigatoriamente, os seguintes tópicos:
+●
+
+Vetor de Ataque (Passo a Passo Reprodutível):
+○
+
+●
+
+Mapeamento de Primitivas Criptográﬁcas:
+○
+
+●
+
+Documente o ﬂuxo exato da operação, listando e explicando todos os comandos de terminal
+utilizados desde a análise inicial do secret.txt até a execução ﬁnal da ferramenta de validação.
+Catalogue as defesas do grupo inimigo. Identiﬁque e classiﬁque as tecnologias criptográﬁcas
+que eles empregaram ao longo do processo. Explique brevemente qual era a função de cada
+uma dentro da arquitetura original deles e como você as contornou.
+
+Evidências de Comprometimento (IoC):
+○
+
+Anexe evidências visuais (capturas de tela) que comprovem a quebra da integridade e da
+conﬁança do sistema. É imprescindível incluir o log ﬁnal do veriﬁcador aprovando a sua ordem
+forjada.
+
+Parabéns,
+você concluiu o
+desaﬁo com
+sucesso!
+
+

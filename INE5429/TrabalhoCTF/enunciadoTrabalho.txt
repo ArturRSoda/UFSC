@@ -1,0 +1,33 @@
+Atividade Prática: Capture The Flag (CTF) em Criptografia Aplicada
+
+Objetivo: Aplicar conceitos práticos de criptografia (Cifras Clássicas, Criptografia Simétrica e Assimétrica, Funções de Resumo e Infraestrutura de Chaves Públicas) em um cenário simulado de análise de artefatos e segurança ofensiva.
+1. Contexto do Estudo de Caso
+
+O presente exercício simula um ambiente de inteligência cibernética. Foi disponibilizado a você um pacote de dados correspondente a uma interceptação de rede de uma infraestrutura hostil. A análise preliminar indica que este pacote compõe o sistema interno de validação de identidades e transmissão de ordens da referida rede.
+
+O pacote de artefatos contém:
+
+    Um executável responsável pela validação de integridade e confiança (verificador).
+
+    Um arquivo em formato binário não reconhecido preliminarmente (IUVA).
+
+    Uma nota de texto contendo uma string cifrada (secret.txt).
+
+Diretriz da Atividade: O discente deverá conduzir uma criptoanálise progressiva sobre os artefatos fornecidos para compreender a arquitetura de validação do sistema. O objetivo final é explorar o fluxo de execução para forjar um documento, garantindo que sua integridade e sua autenticidade sejam validadas e aceitas pelo executável como legítimas.
+2. Requisitos de Ambiente Operacional
+
+A execução deste laboratório requer a utilização da interface de linha de comando (CLI) do sistema operacional e acesso à ferramenta openssl.
+
+    Ambientes baseados em Unix (Linux e macOS): As dependências necessárias operam de forma nativa e geralmente não exigem instalação prévia.
+
+    Ambientes Windows: O interpretador de comandos padrão do sistema (CMD ou PowerShell) não dispõe do openssl nativamente. É recomendado o uso do Git Bash (fornecido junto à instalação do Git) ou a utilização do subsistema WSL (Windows Subsystem for Linux) para assegurar a compatibilidade dos comandos requeridos.
+
+3. Diretrizes para Submissão (Relatório Técnico)
+
+A avaliação desta atividade está condicionada à entrega de um Relatório Técnico Documental, exclusivamente em formato PDF. O documento deverá conter obrigatoriamente as seguintes seções:
+
+    Metodologia e Vetor de Ataque (Reprodutibilidade): Documentação detalhada e sequencial do fluxo da operação. Deve-se listar e fundamentar todos os comandos de terminal executados, desde a inspeção inicial do arquivo secret.txt até o acionamento final da ferramenta verificador.
+
+    Mapeamento de Primitivas Criptográficas: Identificação e classificação técnica de todas as tecnologias criptográficas empregadas no sistema alvo. O relatório deve explicar o propósito arquitetural de cada primitiva e o método empregado para contorná-la.
+
+    Evidenciação de Comprometimento: Anexação de evidências visuais (capturas de tela das saídas de terminal) que comprovem a execução bem-sucedida das etapas.
