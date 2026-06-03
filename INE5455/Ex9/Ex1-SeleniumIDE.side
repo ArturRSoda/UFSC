@@ -1,0 +1,55 @@
+{
+  "id": "7784a900-9763-461f-a792-1c04699d033e",
+  "version": "2.0",
+  "name": "Ex1-SeleniumIDE",
+  "url": "https://www.google.com",
+  "tests": [{
+    "id": "731bde9e-0007-4c86-be2e-b4d49bc2324e",
+    "name": "Untitled",
+    "commands": [{
+      "id": "5cdf9c27-6e6e-44f6-9a59-c941d4c01fda",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a4555b8f-cc2a-4f13-a88e-ac63bb9f8fe7",
+      "comment": "",
+      "command": "click",
+      "target": "id=APjFqb",
+      "targets": [
+        ["id=APjFqb", "id"],
+        ["name=q", "name"],
+        ["css=#APjFqb", "css:finder"],
+        ["xpath=//textarea[@id='APjFqb']", "xpath:attributes"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7472f087-4ad9-4955-9047-f6740c9508a5",
+      "comment": "",
+      "command": "executeScript",
+      "target": "document.getElementById(\"APjFqb\").value = \"Artur Luiz Rizzato Toru Soda\";",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1f7bffcf-9a6f-45c6-a0f2-9398c2c3fc4c",
+      "comment": "",
+      "command": "executeScript",
+      "target": "document.forms[0].submit();",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c78350af-b156-4261-9bb7-99324d049cea",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["731bde9e-0007-4c86-be2e-b4d49bc2324e"]
+  }],
+  "urls": ["https://www.google.com/"],
+  "plugins": []
+}
