@@ -63,8 +63,7 @@ class TestMultiplicacaoDivisao(unittest.TestCase):
 
         # Verifica o resultado final da divisão
         resultado_final = self.ler_resultado()
-        self.assertEqual(resultado_final, "12",
-                         f"120 ÷ 10 deveria ser 12, obtido '{resultado_final}'")
+        self.assertEqual(resultado_final, "12")
 
 
 if __name__ == "__main__":

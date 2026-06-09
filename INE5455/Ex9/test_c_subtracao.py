@@ -62,8 +62,7 @@ class TestSubtracaoEMultiplicacao(unittest.TestCase):
         time.sleep(1)
 
         resultado_final = self.ler_resultado()
-        self.assertEqual(resultado_final, "150",
-                         f"50 × 3 deveria ser 150, obtido '{resultado_final}'")
+        self.assertEqual(resultado_final, "150")
 
 
 if __name__ == "__main__":

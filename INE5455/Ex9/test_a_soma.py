@@ -63,7 +63,7 @@ class TestSoma(unittest.TestCase):
 
         # Verifica se o resultado é 40
         resultado = self.ler_resultado()
-        self.assertEqual(resultado, "40", f"Esperado '40', obtido '{resultado}'")
+        self.assertEqual(resultado, "40")
 
 
 if __name__ == "__main__":

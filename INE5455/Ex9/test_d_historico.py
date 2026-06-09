@@ -51,7 +51,7 @@ class TestTresOperacoesEHistorico(unittest.TestCase):
         time.sleep(0.3)
 
     def test_tres_operacoes_e_historico(self):
-        # --- Operação 1: 11 + 22 = 33 ---
+        # Operação 1: 11 + 22 = 33
         self.clicar("1")
         self.clicar("1")
         self.clicar("+")
@@ -65,10 +65,10 @@ class TestTresOperacoesEHistorico(unittest.TestCase):
         # Limpa para a próxima operação
         self.limpar()
 
-        # --- Operação 2: 99 - 44 = 55 ---
+        # Operação 2: 99 - 44 = 55
         self.clicar("9")
         self.clicar("9")
-        self.clicar("-")   # botão de subtração tem value='-'
+        self.clicar("-")
         self.clicar("4")
         self.clicar("4")
         self.clicar("=")
@@ -79,7 +79,7 @@ class TestTresOperacoesEHistorico(unittest.TestCase):
         # Limpa para a próxima operação
         self.limpar()
 
-        # --- Operação 3: 6 × 7 = 42 ---
+        # Operação 3: 6 × 7 = 42
         self.clicar("6")
         self.clicar("×")
         self.clicar("7")
@@ -88,26 +88,20 @@ class TestTresOperacoesEHistorico(unittest.TestCase):
 
         resultado_3 = self.ler_resultado()
 
-        # --- Verificação do histórico ---
-        # Rola até a aba "History" e clica via JS (o elemento pode estar fora da área visível)
-        aba_historico = self.driver.find_element(By.CSS_SELECTOR, ".tile__option__history")
-        self.driver.execute_script("arguments[0].click();", aba_historico)
-        time.sleep(0.5)
-
         # Lê todos os resultados listados no histórico
         elementos_resultado = self.driver.find_elements(By.CSS_SELECTOR, ".tile__past-result")
         resultados_historico = [e.text.strip() for e in elementos_resultado]
 
         # Verifica os resultados individuais
-        self.assertEqual(resultado_1, "33", f"11 + 22 deveria ser 33, obtido '{resultado_1}'")
-        self.assertEqual(resultado_2, "55", f"99 - 44 deveria ser 55, obtido '{resultado_2}'")
-        self.assertEqual(resultado_3, "42", f"6 × 7 deveria ser 42, obtido '{resultado_3}'")
+        self.assertEqual(resultado_1, "33")
+        self.assertEqual(resultado_2, "55")
+        self.assertEqual(resultado_3, "42")
 
         # Verifica que as três operações aparecem no histórico
-        self.assertIn("33", resultados_historico, "Resultado '33' não encontrado no histórico")
-        self.assertIn("55", resultados_historico, "Resultado '55' não encontrado no histórico")
-        self.assertIn("42", resultados_historico, "Resultado '42' não encontrado no histórico")
+        self.assertIn("33", resultados_historico)
+        self.assertIn("55", resultados_historico)
+        self.assertIn("42", resultados_historico)
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    unittest.main()
